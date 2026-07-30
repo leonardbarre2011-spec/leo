@@ -1,0 +1,627 @@
+<title>Playbook — Coaching Basket Premium en ligne</title>
+<style>
+  :root {
+    --bg: #0B0E14;
+    --surface: #141A24;
+    --surface-2: #1B2230;
+    --line: rgba(236, 231, 223, 0.10);
+    --line-strong: rgba(236, 231, 223, 0.18);
+    --text: #ECE7DF;
+    --muted: #9AA2AE;
+    --faint: #6C7079;
+    --accent: #FF5B2E;
+    --accent-soft: rgba(255, 91, 46, 0.14);
+    --bronze: #D3A24C;
+    --good: #57C08A;
+    --warn: #E0A64E;
+    --crit: #E5695F;
+    --shadow: 0 20px 50px -20px rgba(0,0,0,.7);
+
+    --ff-display: "Arial Narrow", "Helvetica Neue Condensed", "Roboto Condensed", system-ui, sans-serif;
+    --ff-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --ff-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", monospace;
+
+    --maxw: 1080px;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #F4EFE6;
+      --surface: #FFFFFF;
+      --surface-2: #FBF7F0;
+      --line: rgba(26, 20, 12, 0.12);
+      --line-strong: rgba(26, 20, 12, 0.20);
+      --text: #191C22;
+      --muted: #5A6068;
+      --faint: #8A8F97;
+      --accent: #E8461B;
+      --accent-soft: rgba(232, 70, 27, 0.10);
+      --bronze: #9C6E24;
+      --good: #2C9466;
+      --warn: #B77E1F;
+      --crit: #C6392E;
+      --shadow: 0 18px 44px -22px rgba(60,40,20,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B0E14; --surface: #141A24; --surface-2: #1B2230;
+    --line: rgba(236,231,223,0.10); --line-strong: rgba(236,231,223,0.18);
+    --text: #ECE7DF; --muted: #9AA2AE; --faint: #6C7079;
+    --accent: #FF5B2E; --accent-soft: rgba(255,91,46,0.14); --bronze: #D3A24C;
+    --good:#57C08A; --warn:#E0A64E; --crit:#E5695F;
+    --shadow: 0 20px 50px -20px rgba(0,0,0,.7);
+  }
+  :root[data-theme="light"] {
+    --bg: #F4EFE6; --surface: #FFFFFF; --surface-2: #FBF7F0;
+    --line: rgba(26,20,12,0.12); --line-strong: rgba(26,20,12,0.20);
+    --text: #191C22; --muted: #5A6068; --faint: #8A8F97;
+    --accent: #E8461B; --accent-soft: rgba(232,70,27,0.10); --bronze: #9C6E24;
+    --good:#2C9466; --warn:#B77E1F; --crit:#C6392E;
+    --shadow: 0 18px 44px -22px rgba(60,40,20,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--ff-body);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    font-size: 17px;
+    overflow-x: hidden;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  h1, h2, h3, .display {
+    font-family: var(--ff-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    line-height: 0.98;
+  }
+
+  .eyebrow {
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before {
+    content: ""; width: 26px; height: 2px; background: var(--accent); display: inline-block;
+  }
+
+  a { color: var(--accent); }
+
+  /* ---------- COURT MOTIF ---------- */
+  .court-lines {
+    position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    color: var(--line-strong);
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(1200px 500px at 85% -10%, var(--accent-soft), transparent 60%),
+      linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+  }
+  .hero-inner { padding: 96px 24px 80px; position: relative; z-index: 2; }
+  .kicker-row {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    font-family: var(--ff-mono); font-size: 12px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 26px;
+  }
+  .tag {
+    border: 1px solid var(--line-strong); border-radius: 100px;
+    padding: 5px 12px; color: var(--text); background: var(--surface-2);
+  }
+  .tag.accent { color: var(--accent); border-color: var(--accent); }
+  h1 {
+    font-size: clamp(46px, 8.5vw, 104px);
+    margin: 0 0 22px;
+  }
+  h1 .em { color: var(--accent); }
+  .lede {
+    font-size: clamp(18px, 2.3vw, 22px);
+    color: var(--muted); max-width: 60ch; margin: 0 0 40px; line-height: 1.5;
+  }
+  .lede strong { color: var(--text); font-weight: 600; }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+    background: var(--surface); box-shadow: var(--shadow);
+  }
+  .hstat { padding: 26px 24px; border-right: 1px solid var(--line); }
+  .hstat:last-child { border-right: none; }
+  .hstat .n {
+    font-family: var(--ff-mono); font-size: clamp(30px, 4.5vw, 44px);
+    font-weight: 600; color: var(--text); letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums; line-height: 1;
+  }
+  .hstat .n span { color: var(--accent); }
+  .hstat .l { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 78px 0; border-bottom: 1px solid var(--line); }
+  .sec-head { max-width: 62ch; margin-bottom: 44px; }
+  h2 { font-size: clamp(30px, 5vw, 50px); margin: 0 0 16px; }
+  h2 .idx { color: var(--faint); font-size: .5em; vertical-align: super; margin-right: .3em; font-family: var(--ff-mono); font-weight: 400; }
+  .sec-head p { color: var(--muted); margin: 0; font-size: 18px; }
+
+  .grid { display: grid; gap: 18px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 14px; padding: 26px 24px; position: relative;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+  .card h3 { font-size: 20px; margin: 0 0 10px; letter-spacing: .02em; }
+  .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+  .card .mono-label {
+    font-family: var(--ff-mono); font-size: 11px; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--faint); margin-bottom: 14px; display: block;
+  }
+
+  /* trend cards */
+  .trend { border-left: 3px solid var(--accent); }
+
+  /* diagnostic columns */
+  .diag { border-top: 3px solid var(--line-strong); }
+  .diag.opp { border-top-color: var(--good); }
+  .diag.risk { border-top-color: var(--crit); }
+  .diag.fcs { border-top-color: var(--bronze); }
+  .diag ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .diag li { color: var(--muted); font-size: 15px; padding-left: 22px; position: relative; }
+  .diag li::before {
+    content: ""; position: absolute; left: 0; top: 9px; width: 8px; height: 8px;
+    border-radius: 2px; background: var(--accent);
+  }
+  .diag.opp li::before { background: var(--good); }
+  .diag.risk li::before { background: var(--crit); }
+  .diag.fcs li::before { background: var(--bronze); }
+  .diag li strong { color: var(--text); font-weight: 600; }
+  .diag .mono-label { color: var(--text); }
+
+  /* promise block */
+  .promise {
+    background: linear-gradient(135deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--line-strong); border-radius: 16px; padding: 40px 36px;
+    position: relative; overflow: hidden;
+  }
+  .promise::before {
+    content: "\201C"; position: absolute; top: -20px; left: 20px;
+    font-family: Georgia, serif; font-size: 160px; color: var(--accent-soft); line-height: 1;
+  }
+  .promise .q {
+    font-family: var(--ff-display); text-transform: none; font-weight: 700;
+    font-size: clamp(22px, 3.2vw, 32px); line-height: 1.2; margin: 0 0 14px; position: relative; letter-spacing: 0;
+  }
+  .promise .q .hl { color: var(--accent); }
+  .promise .attr { font-family: var(--ff-mono); font-size: 12px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+
+  .levers { margin-top: 26px; }
+  .lever { text-align: left; }
+  .lever .n { font-family: var(--ff-mono); color: var(--accent); font-size: 13px; font-weight: 600; }
+
+  /* offer ladder */
+  .ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+  .tier {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 28px 24px; display: flex; flex-direction: column;
+  }
+  .tier.feature {
+    border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow);
+    background: linear-gradient(180deg, var(--accent-soft), var(--surface) 40%);
+  }
+  .tier .tname { font-family: var(--ff-display); text-transform: uppercase; font-size: 24px; letter-spacing: .02em; }
+  .tier .ttag { font-family: var(--ff-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin-top: 6px; }
+  .tier.feature .ttag { color: var(--accent); }
+  .tier .price { font-family: var(--ff-mono); font-size: 22px; font-variant-numeric: tabular-nums; margin: 18px 0 4px; }
+  .tier .price small { color: var(--muted); font-size: 13px; }
+  .tier .role { color: var(--muted); font-size: 14px; margin: 0 0 18px; min-height: 40px; }
+  .tier ul { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid var(--line); display: grid; gap: 11px; }
+  .tier li { font-size: 14.5px; color: var(--text); padding-left: 24px; position: relative; }
+  .tier li::before { content: "\2192"; position: absolute; left: 0; color: var(--accent); font-family: var(--ff-mono); }
+
+  /* funnel */
+  .funnel { display: grid; gap: 12px; }
+  .fstep {
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 20px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px;
+    position: relative;
+  }
+  .fstep .fn { font-family: var(--ff-mono); font-size: 22px; color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .fstep .ft strong { font-family: var(--ff-display); text-transform: uppercase; letter-spacing: .03em; font-size: 18px; display: block; margin-bottom: 3px; }
+  .fstep .ft span { color: var(--muted); font-size: 14.5px; }
+  .fstep .fk { font-family: var(--ff-mono); font-size: 12px; color: var(--faint); text-align: right; letter-spacing: .04em; }
+  .fstep .fk b { color: var(--bronze); font-weight: 600; display: block; font-size: 15px; }
+
+  /* channels */
+  .chan { display: flex; align-items: baseline; gap: 12px; }
+  .chan .pct { font-family: var(--ff-mono); font-size: 30px; color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .chan .bar { height: 6px; border-radius: 6px; background: var(--accent); margin: 12px 0 4px; }
+
+  /* timeline */
+  .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+  .phase { padding: 28px 24px; border-right: 1px solid var(--line); }
+  .phase:last-child { border-right: none; }
+  .phase .pnum { font-family: var(--ff-mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+  .phase h3 { font-size: 21px; margin: 8px 0 4px; }
+  .phase .days { font-family: var(--ff-mono); font-size: 12.5px; color: var(--faint); margin-bottom: 16px; }
+  .phase ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .phase li { color: var(--muted); font-size: 14.5px; padding-left: 18px; position: relative; }
+  .phase li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; border: 2px solid var(--accent); }
+
+  /* KPI */
+  .kpi { text-align: left; }
+  .kpi .kn { font-family: var(--ff-mono); font-size: 15px; color: var(--bronze); letter-spacing: .1em; text-transform: uppercase; }
+  .kpi .kt { font-size: 20px; font-family: var(--ff-display); text-transform: uppercase; letter-spacing: .02em; margin: 8px 0 6px; }
+  .kpi p { font-size: 14px; color: var(--muted); margin: 0; }
+
+  /* callout */
+  .callout {
+    background: var(--surface-2); border: 1px solid var(--line-strong); border-left: 4px solid var(--accent);
+    border-radius: 12px; padding: 20px 24px; margin-top: 26px; color: var(--muted); font-size: 15.5px;
+  }
+  .callout b { color: var(--text); }
+
+  footer { padding: 54px 0 70px; color: var(--faint); font-size: 13.5px; }
+  footer .disc { font-family: var(--ff-mono); font-size: 11.5px; letter-spacing: .04em; max-width: 70ch; line-height: 1.7; }
+
+  .reveal { opacity: 0; transform: translateY(18px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (max-width: 860px) {
+    .g3, .g4, .ladder, .timeline, .hero-stats { grid-template-columns: 1fr; }
+    .g2 { grid-template-columns: 1fr; }
+    .hstat, .phase { border-right: none; border-bottom: 1px solid var(--line); }
+    .hstat:last-child, .phase:last-child { border-bottom: none; }
+    .fstep { grid-template-columns: 44px 1fr; }
+    .fstep .fk { grid-column: 2; text-align: left; }
+    .hero-inner { padding: 66px 24px 56px; }
+    section { padding: 56px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+    .card:hover { transform: none; }
+  }
+</style>
+
+<header class="hero">
+  <svg class="court-lines" viewBox="0 0 1200 600" preserveAspectRatio="xMaxYMid slice" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <circle cx="1000" cy="300" r="120"/>
+    <circle cx="1000" cy="300" r="4" fill="currentColor"/>
+    <path d="M1200 120 H900 A180 180 0 0 0 900 480 H1200"/>
+    <line x1="1000" y1="60" x2="1000" y2="540"/>
+    <path d="M1200 40 H1040 V560 H1200"/>
+  </svg>
+  <div class="wrap hero-inner reveal">
+    <div class="kicker-row">
+      <span class="tag accent">Coaching en ligne</span>
+      <span class="tag">Cible&nbsp;: joueurs 11–18 ans + parents</span>
+      <span class="tag">Modèle app + vidéo</span>
+    </div>
+    <p class="eyebrow">Analyse marché &amp; playbook go-to-market</p>
+    <h1>Le premium se vend sur<br><span class="em">la preuve</span>, pas l'adjectif.</h1>
+    <p class="lede">Analyse du marché des programmes de basketball premium <strong>100&nbsp;% en ligne</strong> pour jeunes joueurs ambitieux, et le plan marketing &amp; vente pour transformer une audience en abonnés à forte valeur vie.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="n">4–6<span>&nbsp;ans</span></div><div class="l">Durée d'un parcours de développement 11→18 ans → LTV élevée</div></div>
+      <div class="hstat"><div class="n">70<span>/20/10</span></div><div class="l">Ratio contenu : valeur / preuve / offre pour bâtir l'autorité</div></div>
+      <div class="hstat"><div class="n">12<span>&nbsp;sem.</span></div><div class="l">Fenêtre de transformation mesurable qui justifie le prix</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="marche">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">01 — Le terrain de jeu</p>
+        <h2><span class="idx">01</span>Un marché porté par le digital et l'ambition</h2>
+        <p>La demande de développement individuel du joueur explose, et le format en ligne lève la barrière géographique&nbsp;: un coach d'élite peut suivre un joueur partout, à l'échelle.</p>
+      </div>
+      <div class="grid g3">
+        <div class="card trend">
+          <span class="mono-label">Tendance</span>
+          <h3>Le skills training à la carte</h3>
+          <p>Les familles investissent au-delà du club&nbsp;: technique individualisée, prépa physique, mental. La vidéo à distance rend ça accessible et scalable.</p>
+        </div>
+        <div class="card trend">
+          <span class="mono-label">Tendance</span>
+          <h3>La génération data</h3>
+          <p>Apps, tracking, breakdowns vidéo. Un jeune veut voir sa progression chiffrée — et le parent veut un retour sur investissement lisible.</p>
+        </div>
+        <div class="card trend">
+          <span class="mono-label">Tendance</span>
+          <h3>Le prescripteur, c'est le parent</h3>
+          <p>Le joueur consomme, mais le parent paie et décide. Deux audiences, deux messages&nbsp;: rêve &amp; motivation d'un côté, sérieux &amp; résultats de l'autre.</p>
+        </div>
+      </div>
+      <div class="callout"><b>Insight clé —</b> En ligne, tu ne vends pas des installations chic. Le premium se justifie par la <b>méthode exclusive</b>, l'<b>accès à des coachs d'élite</b> et la <b>transformation prouvée</b>. Tout le reste du plan en découle.</div>
+    </div>
+  </section>
+
+  <section id="diagnostic">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">02 — Retour</p>
+        <h2><span class="idx">02</span>Diagnostic&nbsp;: où est l'argent, où sont les pièges</h2>
+        <p>Ce qu'il faut jouer, ce qu'il faut éviter, et les leviers qui font gagner sur ce marché.</p>
+      </div>
+      <div class="grid g3">
+        <div class="card diag opp">
+          <span class="mono-label">Opportunités</span>
+          <ul>
+            <li><strong>Scalabilité</strong> — un contenu/coach sert 10 ou 10&nbsp;000 joueurs sans coût marginal.</li>
+            <li><strong>Récurrence naturelle</strong> — 4 à 6 ans de parcours = revenus abonnés stables.</li>
+            <li><strong>Marché mondial</strong> — aucune limite géographique, tu vises la langue pas la ville.</li>
+            <li><strong>Peu d'acteurs structurés</strong> — la plupart sont des coachs isolés sans marque ni méthode.</li>
+          </ul>
+        </div>
+        <div class="card diag risk">
+          <span class="mono-label">Risques</span>
+          <ul>
+            <li><strong>« Premium » sans preuve</strong> = perçu comme « cher ». Le luxe se prouve.</li>
+            <li><strong>Churn</strong> — sans résultats visibles rapides, l'abonnement saute au 2ᵉ mois.</li>
+            <li><strong>Dépendance au coach star</strong> — la marque doit survivre à un départ.</li>
+            <li><strong>Saisonnalité</strong> — rentrée &amp; été forts, creux hivernaux à lisser.</li>
+          </ul>
+        </div>
+        <div class="card diag fcs">
+          <span class="mono-label">Facteurs clés de succès</span>
+          <ul>
+            <li><strong>Méthode propriétaire nommée</strong> et documentée — ta signature.</li>
+            <li><strong>La preuve avant tout</strong> — témoignages vidéo + stats de progression.</li>
+            <li><strong>Un écosystème</strong> app + communauté qui crée l'habitude et la rétention.</li>
+            <li><strong>Onboarding qui livre un « quick win »</strong> dès les 7 premiers jours.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="positionnement">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">03 — Positionnement</p>
+        <h2><span class="idx">03</span>Construire un premium défendable</h2>
+        <p>Quatre leviers portent le prix. Une promesse claire les résume.</p>
+      </div>
+      <div class="promise">
+        <p class="q">« La seule méthode qui garantit <span class="hl">une progression mesurée en 12&nbsp;semaines</span>, encadrée par des coachs de niveau pro, avec un suivi vidéo individualisé — depuis ton salon. »</p>
+        <p class="attr">Exemple de promesse de marque — à adapter à ta méthode</p>
+      </div>
+      <div class="grid g4 levers">
+        <div class="card lever"><span class="n">01</span><h3>Méthode</h3><p>Un système nommé, structuré, propriétaire.</p></div>
+        <div class="card lever"><span class="n">02</span><h3>Encadrement</h3><p>Accès à des coachs de haut niveau, difficile à trouver ailleurs.</p></div>
+        <div class="card lever"><span class="n">03</span><h3>Résultats</h3><p>Progression chiffrée, joueurs mis en avant, preuves vidéo.</p></div>
+        <div class="card lever"><span class="n">04</span><h3>Statut</h3><p>Appartenance à une élite, communauté fermée, rareté réelle.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="offre">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">04 — L'offre</p>
+        <h2><span class="idx">04</span>L'escalier d'offres</h2>
+        <p>On vend en parcours/abonnement — pas à la séance. Chaque niveau nourrit le suivant et augmente la valeur vie client. (Prix illustratifs, à caler sur ton marché.)</p>
+      </div>
+      <div class="ladder">
+        <div class="tier">
+          <div class="tname">Découverte</div>
+          <div class="ttag">Capture de leads</div>
+          <div class="price">Gratuit<small> / low-cost</small></div>
+          <p class="role">Baisser la barrière et prouver la valeur vite.</p>
+          <ul>
+            <li>Évaluation vidéo du joueur</li>
+            <li>Plan personnalisé offert</li>
+            <li>7 jours d'accès à l'app</li>
+            <li>Objectif&nbsp;: le « quick win »</li>
+          </ul>
+        </div>
+        <div class="tier feature">
+          <div class="tname">Programme Cœur</div>
+          <div class="ttag">Le produit phare</div>
+          <div class="price">Abonnement<small> mensuel/annuel</small></div>
+          <p class="role">Le parcours de développement continu, en cohortes.</p>
+          <ul>
+            <li>Programme app individualisé</li>
+            <li>Feedback vidéo régulier</li>
+            <li>Suivi de progression chiffré</li>
+            <li>Communauté + défis mensuels</li>
+            <li>Bilans trimestriels</li>
+          </ul>
+        </div>
+        <div class="tier">
+          <div class="tname">Elite / VIP</div>
+          <div class="ttag">Haut de gamme</div>
+          <div class="price">Premium<small> places limitées</small></div>
+          <p class="role">Accompagnement rapproché pour les plus ambitieux.</p>
+          <ul>
+            <li>Coaching 1-to-1 en visio</li>
+            <li>Prépa physique + mentale</li>
+            <li>Exposition / mise en relation</li>
+            <li>Accès direct au coach</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout"><b>Pricing —</b> Ancre le prix sur la <b>transformation</b>, pas le coût horaire. Crée une <b>rareté réelle</b> (cohortes, places limitées)&nbsp;: c'est le premier moteur d'achat en premium. Propose le <b>paiement échelonné</b> pour lever l'objection prix côté parent.</div>
+    </div>
+  </section>
+
+  <section id="marketing">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">05 — Marketing</p>
+        <h2><span class="idx">05</span>Le funnel &amp; les canaux</h2>
+        <p>Le basket est ultra-visuel&nbsp;: la vidéo courte est ton moteur d'acquisition. On attire par la valeur, on convertit par la preuve.</p>
+      </div>
+      <div class="funnel">
+        <div class="fstep"><div class="fn">1</div><div class="ft"><strong>Contenu gratuit</strong><span>Reels / Shorts / TikTok — drills, breakdowns, transformations. Autorité + preuve sociale.</span></div><div class="fk">Métrique<b>Portée &amp; abonnés</b></div></div>
+        <div class="fstep"><div class="fn">2</div><div class="ft"><strong>Lead magnet</strong><span>Guide, évaluation vidéo gratuite ou mini-programme. On capte l'e-mail du parent.</span></div><div class="fk">Métrique<b>Coût / lead</b></div></div>
+        <div class="fstep"><div class="fn">3</div><div class="ft"><strong>Séance / diagnostic découverte</strong><span>Évaluation du joueur → plan personnalisé → présentation de l'offre.</span></div><div class="fk">Métrique<b>Taux de RDV</b></div></div>
+        <div class="fstep"><div class="fn">4</div><div class="ft"><strong>Programme Cœur</strong><span>Conversion en abonnement, entrée en cohorte, onboarding « quick win ».</span></div><div class="fk">Métrique<b>Taux de conversion</b></div></div>
+        <div class="fstep"><div class="fn">5</div><div class="ft"><strong>VIP / renouvellement / parrainage</strong><span>Montée en gamme et bouche-à-oreille des parents satisfaits.</span></div><div class="fk">Métrique<b>LTV &amp; rétention</b></div></div>
+      </div>
+
+      <div class="grid g3" style="margin-top:26px">
+        <div class="card">
+          <div class="chan"><span class="pct">55%</span></div>
+          <div class="bar" style="width:100%"></div>
+          <span class="mono-label" style="margin-top:10px">TikTok · Reels · Shorts</span>
+          <p style="color:var(--muted);font-size:14.5px;margin:0">Canal n°1. Volume, viralité, preuve visuelle. Vise le joueur ET rassure le parent.</p>
+        </div>
+        <div class="card">
+          <div class="chan"><span class="pct">30%</span></div>
+          <div class="bar" style="width:60%"></div>
+          <span class="mono-label" style="margin-top:10px">YouTube · long format</span>
+          <p style="color:var(--muted);font-size:14.5px;margin:0">Profondeur, autorité, SEO. Le contenu qui convainc le parent d'investir.</p>
+        </div>
+        <div class="card">
+          <div class="chan"><span class="pct">15%</span></div>
+          <div class="bar" style="width:32%"></div>
+          <span class="mono-label" style="margin-top:10px">Partenariats &amp; ambassadeurs</span>
+          <p style="color:var(--muted);font-size:14.5px;margin:0">Clubs, coachs, influenceurs basket, joueurs-ambassadeurs. Crédibilité empruntée.</p>
+        </div>
+      </div>
+      <div class="callout"><b>Règle de contenu —</b> <b>70&nbsp;%</b> valeur/inspiration · <b>20&nbsp;%</b> preuve (résultats, avant/après chiffrés) · <b>10&nbsp;%</b> offre. Chaque transformation devient une mini étude de cas vidéo de 30–60&nbsp;s&nbsp;: c'est ton meilleur argument de vente.</div>
+    </div>
+  </section>
+
+  <section id="vente">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">06 — Vente</p>
+        <h2><span class="idx">06</span>Convertir &amp; retenir</h2>
+        <p>En premium on vend par consultation, pas au catalogue. Et le vrai profit vient de la rétention et de l'upsell.</p>
+      </div>
+      <div class="grid g2">
+        <div class="card">
+          <span class="mono-label">Closing</span>
+          <h3>Vendre par diagnostic</h3>
+          <p>Script en 4 temps&nbsp;: <b style="color:var(--text)">diagnostic</b> (objectifs / niveau) → identifier l'écart → présenter le plan personnalisé → lever les objections (« le prix = un investissement sur l'avenir de votre enfant »).</p>
+        </div>
+        <div class="card">
+          <span class="mono-label">Réduction du risque</span>
+          <h3>Rassurer le parent</h3>
+          <p>Garantie de satisfaction, période d'essai, paiement échelonné, et un onboarding qui livre un premier résultat visible dès la première semaine.</p>
+        </div>
+        <div class="card">
+          <span class="mono-label">Rétention · le vrai profit</span>
+          <h3>Faire durer l'abonnement</h3>
+          <p>Bilans trimestriels chiffrés, défis mensuels, communauté, et jalons de progression célébrés. Un joueur qui voit ses stats monter ne se désabonne pas.</p>
+        </div>
+        <div class="card">
+          <span class="mono-label">Croissance</span>
+          <h3>Upsell &amp; parrainage</h3>
+          <p>Montée vers le VIP, et parrainage&nbsp;: les parents satisfaits sont ton meilleur canal d'acquisition. Récompense chaque filleul converti.</p>
+        </div>
+      </div>
+      <div class="callout"><b>Saisonnalité —</b> Lance des <b>camps / cohortes intensives l'été</b> (acquisition massive à faible coût) puis convertis vers l'abonnement annuel. Lisse les creux hivernaux avec des défis et des contenus « objectifs de mi-saison ».</div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">07 — Exécution</p>
+        <h2><span class="idx">07</span>Plan d'action 90 jours</h2>
+        <p>De la fondation à la première cohorte payante.</p>
+      </div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="pnum">Phase 1</div>
+          <h3>Fondations</h3>
+          <div class="days">Jours 1 → 30</div>
+          <ul>
+            <li>Nommer &amp; documenter la méthode</li>
+            <li>Figer l'escalier d'offres + pricing</li>
+            <li>Collecter 5 à 10 témoignages vidéo</li>
+            <li>Poser l'app / le socle de suivi</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="pnum">Phase 2</div>
+          <h3>Preuve &amp; contenu</h3>
+          <div class="days">Jours 31 → 60</div>
+          <ul>
+            <li>3 contenus/semaine (transformations + drills)</li>
+            <li>Lead magnet + page de vente</li>
+            <li>Séquence e-mail parents</li>
+            <li>1 partenariat ambassadeur</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="pnum">Phase 3</div>
+          <h3>Conversion</h3>
+          <div class="days">Jours 61 → 90</div>
+          <ul>
+            <li>Diagnostics découverte + appels de vente</li>
+            <li>Ouverture 1ʳᵉ cohorte payante</li>
+            <li>Onboarding « quick win »</li>
+            <li>Boucle parrainage activée</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kpi" style="border-bottom:none">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">08 — Pilotage</p>
+        <h2><span class="idx">08</span>Les KPI à suivre</h2>
+        <p>Quelques chiffres pilotent tout le modèle. Regarde-les chaque semaine.</p>
+      </div>
+      <div class="grid g4">
+        <div class="card kpi"><div class="kn">CAC</div><div class="kt">Coût d'acquisition</div><p>Combien coûte un nouvel abonné, par canal.</p></div>
+        <div class="card kpi"><div class="kn">CVR</div><div class="kt">Taux de conversion</div><p>Découverte → programme payant.</p></div>
+        <div class="card kpi"><div class="kn">LTV</div><div class="kt">Valeur vie client</div><p>Le nerf du modèle abonnement. Vise LTV ≫ 3× CAC.</p></div>
+        <div class="card kpi"><div class="kn">Churn</div><div class="kt">Taux de rétention</div><p>% d'abonnés conservés mois après mois.</p></div>
+        <div class="card kpi"><div class="kn">Referral</div><div class="kt">Taux de parrainage</div><p>Part d'acquisition venue du bouche-à-oreille.</p></div>
+        <div class="card kpi"><div class="kn">Activation</div><div class="kt">Quick win 7j</div><p>% de joueurs ayant atteint leur 1er jalon en 7 jours.</p></div>
+        <div class="card kpi"><div class="kn">Marge</div><div class="kt">Marge / programme</div><p>Rentabilité par niveau d'offre.</p></div>
+        <div class="card kpi"><div class="kn">ARPU</div><div class="kt">Revenu / abonné</div><p>Effet de l'upsell vers le VIP.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="disc">Playbook stratégique — programmes de basketball premium, modèle 100&nbsp;% en ligne, cible joueurs 11–18 ans et leurs parents. Les chiffres (prix, ratios de canaux, pourcentages) sont illustratifs et destinés à être calibrés sur ton marché, ton offre et tes coûts réels avant exécution.</p>
+  </div>
+</footer>
+
+<script>
+  // Progressive reveal on scroll — respects reduced-motion via CSS gating
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!mq.matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'rise .7s cubic-bezier(.2,.7,.2,1) forwards';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section .sec-head, .card, .tier, .fstep, .phase, .promise, .hero-stats').forEach(el => {
+      el.style.opacity = '0';
+      io.observe(el);
+    });
+  }
+</script>
