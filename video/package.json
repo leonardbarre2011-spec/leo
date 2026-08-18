@@ -1,0 +1,26 @@
+{
+  "name": "viral-basketball-tiktok",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Main out/viral-basketball.mp4",
+    "still": "remotion still src/index.ts Main"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.513",
+    "@remotion/google-fonts": "^4.0.513",
+    "@remotion/media-utils": "^4.0.513",
+    "@remotion/paths": "^4.0.513",
+    "@remotion/shapes": "^4.0.513",
+    "@remotion/transitions": "^4.0.513",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "^4.0.513"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "typescript": "^7.0.2"
+  }
+}
