@@ -3,13 +3,14 @@ import { renderMedia, selectComposition } from "@remotion/renderer";
 import path from "path";
 
 const BROWSER = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell";
+const COMP = process.env.COMP ?? "FirstStep";
 const out = process.argv[2] ?? "out/first-step.mp4";
 const crf = Number(process.argv[3] ?? 17);
 
 console.log("bundling…");
 const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), onProgress: () => {} });
 const composition = await selectComposition({
-  serveUrl, id: "FirstStep", browserExecutable: BROWSER, chromiumOptions: { gl: "angle" },
+  serveUrl, id: COMP, browserExecutable: BROWSER, chromiumOptions: { gl: "angle" },
 });
 console.log(`rendering ${composition.width}x${composition.height} @${composition.fps} · ${composition.durationInFrames}f`);
 let last = -1;

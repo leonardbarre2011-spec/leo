@@ -1,6 +1,22 @@
-# FIRST STEP — 25s basketball training short (Remotion)
+# Basketball training shorts (Remotion)
 
-`1080 × 1920 · 9:16 · 60 fps · H.264 · 25.0s` — built for TikTok, Reels and Shorts.
+Two vertical shorts, both `1080 × 1920 · 9:16 · 60 fps · H.264`, mastered to
+−14 LUFS for TikTok, Reels and Shorts.
+
+| | Composition | Render | Length |
+|---|---|---|---|
+| **FIRST STEP** | `FirstStep` | `out/first-step-basketball.mp4` | 25.0s |
+| **CROSSOVER** | `Crossover` | `out/crossover-tips.mp4` | 23.1s |
+
+```bash
+node tools/render.mjs out/first-step-basketball.mp4 16
+COMP=Crossover node tools/render.mjs out/crossover-tips.mp4 16
+COMP=Crossover node tools/qc.mjs 200 430 900   # stills for frame review
+```
+
+---
+
+# 1 · FIRST STEP — 25s
 
 Final render: **`out/first-step-basketball.mp4`**
 
@@ -113,3 +129,89 @@ src/
     Effects.tsx        ImpactFlash, Shake, Streaks, WhipVeil, Grain, …
   scenes/              Hook · Mistake · Fix · Drill · Proof · Cta
 ```
+
+
+---
+
+# 2 · CROSSOVER — 23s
+
+Final render: **`out/crossover-tips.mp4`** · source in `src/crossover/`
+
+Same brand, deliberately **calmer**. The first film was cut at roughly a
+shot per second; this one averages 2.3s per shot, because the note on it
+was that it moved faster than it could be understood.
+
+## What "less dynamic" meant in practice
+
+| | FIRST STEP | CROSSOVER |
+|---|---|---|
+| shots | ~30 | 10 |
+| avg shot | 0.8s | 2.3s |
+| section changes | hard cuts + whip blurs | 8–12 frame cross-dissolves throughout |
+| captions | word-by-word, a spring pop per word | whole lines, soft fade, then held |
+| camera shake | 8 instances | none |
+| impact flashes | 12 | none |
+| speed ramps | 4 multi-stage | 1, at the moment it means something |
+| SFX cues | 31 | 10 |
+
+Nothing was slowed for its own sake — the pacing follows what a viewer
+has to take in. The two ideas that need thinking about get four and
+three seconds respectively, each on a single continuous visual.
+
+## Clips built in Remotion
+
+Half the runtime is footage; the two moments that carry the actual
+teaching are drawn from scratch, because no B-roll can show what a
+defender's *weight* is doing (`src/crossover/Court.tsx`, `Diagrams.tsx`).
+
+**⬛ Board 1 — why it fails (2.7s → 7.2s).** A top-down half court, hoop
+at the top, the way the read actually looks. You cross; the defender
+mirrors you step for step; the path closes. The point lands because both
+markers move on the same curve — and only one of them was ever
+threatened.
+
+**⬛ Board 2 — why it works (13.0s → 16.3s).** The identical opening
+position. This time the attack goes hard at one foot first, the
+defender's marker commits its weight (drawn as the shadow it steps off),
+and the space he vacates lights up before the snap back into it.
+
+Both are the same board with the same markers, so the second reads as a
+correction of the first rather than a new diagram.
+
+## Voiceover
+
+This one arrived without a transcript, and the model hosts for the usual
+speech recognisers are outside this environment's network policy. The
+words were recovered with **PocketSphinx**, whose acoustic model ships
+inside the package, and its word alignment was cross-checked against
+phrase boundaries from `silencedetect` on the same file.
+
+Recovered transcript:
+
+> Your crossover isn't slow. It's predictable. The problem? You're
+> changing direction without making the defender move first. Try this:
+> attack hard, freeze for half a second, then snap the ball across your
+> body and explode. Make them lean first, then take the space they give
+> you. One move. One advantage. Follow if you want skills that actually
+> work in games.
+
+Two short lines are lower confidence — `THE PROBLEM?` and `TRY THIS` —
+and are marked ⚠ in `src/crossover/timing.ts`. They live in a `COPY`
+block: correcting a string there changes the caption and nothing else,
+because no timing is derived from the words.
+
+## B-roll
+
+- **x1** (Kyrie: size-up → cross → drive → finish → walk-off) carries the
+  hook, all three teaching steps and the payoff. One clip, six different
+  jobs, each on a different part of it.
+- **x2** (fan-POV, the arena erupting) is the CTA's evidence: the line is
+  "work in games", so the picture is a real game.
+- **c2** (the hooded portrait, reused from the first film) closes it.
+
+## Sound
+
+The bed is a slower Cm9 pad with nine long sub notes on section changes
+and no percussion at all — the first film's hats would have fought this
+edit. Master: **−14.5 LUFS, −0.88 dBTP**, no clipped samples; the voice
+sits roughly 8 dB over the ducked bed while speaking.

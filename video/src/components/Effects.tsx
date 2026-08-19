@@ -100,6 +100,18 @@ export const Vignette: React.FC<{ strength?: number }> = ({
   />
 );
 
+/** Mirror of CaptionScrim for a persistent element at the top. */
+export const TopScrim: React.FC<{ opacity?: number }> = ({ opacity = 1 }) => (
+  <AbsoluteFill
+    style={{
+      pointerEvents: "none",
+      opacity,
+      background:
+        "linear-gradient(to bottom, rgba(4,6,10,0.72) 0%, rgba(4,6,10,0.42) 14%, rgba(4,6,10,0) 32%)",
+    }}
+  />
+);
+
 /** Keeps captions readable over bright hardwood without a muddy scrim. */
 export const CaptionScrim: React.FC<{ opacity?: number }> = ({
   opacity = 1,

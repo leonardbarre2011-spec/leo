@@ -3,6 +3,7 @@ import { renderStill, selectComposition } from "@remotion/renderer";
 import path from "path";
 import fs from "fs";
 
+const COMP = process.env.COMP ?? "FirstStep";
 const frames = process.argv.slice(2).map(Number);
 if (!frames.length) { console.error("usage: node tools/qc.mjs <frame> ..."); process.exit(1); }
 
@@ -14,9 +15,9 @@ const serveUrl = await bundle({
   entryPoint: path.resolve("src/index.ts"),
   onProgress: () => {},
 });
-const comp = await selectComposition({ serveUrl, id: "FirstStep", browserExecutable: BROWSER, chromiumOptions: { gl: "angle" } });
+const comp = await selectComposition({ serveUrl, id: COMP, browserExecutable: BROWSER, chromiumOptions: { gl: "angle" } });
 for (const f of frames) {
-  const o = path.join(out, `f${String(f).padStart(4, "0")}.png`);
+  const o = path.join(out, `${COMP === "FirstStep" ? "f" : "x"}${String(f).padStart(4, "0")}.png`);
   await renderStill({
     composition: comp,
     serveUrl,
