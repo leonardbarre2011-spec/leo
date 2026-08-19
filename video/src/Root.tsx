@@ -2,12 +2,19 @@ import React from "react";
 import { Composition } from "remotion";
 import { Main } from "./Main";
 import { Crossover } from "./crossover/Main";
+import { Footwork } from "./footwork/Main";
 import {
   FPS as XFPS,
   HEIGHT as XH,
   TOTAL as XTOTAL,
   WIDTH as XW,
 } from "./crossover/timing";
+import {
+  FPS as WFPS,
+  HEIGHT as WH,
+  TOTAL as WTOTAL,
+  WIDTH as WW,
+} from "./footwork/timing";
 import { FPS, HEIGHT, TOTAL, WIDTH } from "./timing";
 import "./index.css";
 
@@ -21,6 +28,14 @@ export const RemotionRoot: React.FC = () => {
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}
+      />
+      <Composition
+        id="Footwork"
+        component={Footwork}
+        durationInFrames={WTOTAL}
+        fps={WFPS}
+        width={WW}
+        height={WH}
       />
       <Composition
         id="Crossover"

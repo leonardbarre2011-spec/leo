@@ -7,12 +7,21 @@ Two vertical shorts, both `1080 × 1920 · 9:16 · 60 fps · H.264`, mastered to
 |---|---|---|---|
 | **FIRST STEP** | `FirstStep` | `out/first-step-basketball.mp4` | 25.0s |
 | **CROSSOVER** | `Crossover` | `out/crossover-tips.mp4` | 23.1s |
+| **FOOTWORK** | `Footwork` | `out/footwork-separation.mp4` | 25.1s |
 
 ```bash
 node tools/render.mjs out/first-step-basketball.mp4 16
 COMP=Crossover node tools/render.mjs out/crossover-tips.mp4 16
-COMP=Crossover node tools/qc.mjs 200 430 900   # stills for frame review
+COMP=Footwork  node tools/render.mjs out/footwork-separation.mp4 16
+COMP=Footwork  node tools/qc.mjs 200 430 900   # stills for frame review
 ```
+
+## One footage library, three films
+
+All three were cut from the same four source clips. `docs/footage-ledger.md`
+tracks which seconds of each clip every film has used, so a new edit can be
+built from what is still untouched rather than from the same handful of
+seconds. FOOTWORK was cut that way.
 
 ---
 
@@ -215,3 +224,76 @@ The bed is a slower Cm9 pad with nine long sub notes on section changes
 and no percussion at all — the first film's hats would have fought this
 edit. Master: **−14.5 LUFS, −0.88 dBTP**, no clipped samples; the voice
 sits roughly 8 dB over the ducked bed while speaking.
+
+
+---
+
+# 3 · FOOTWORK FOR SEPARATION — 25s
+
+Final render: **`out/footwork-separation.mp4`** · source in `src/footwork/`
+
+CROSSOVER's tempo, kept as-is. What changed is where the pictures come
+from.
+
+## The constraint
+
+The clips supplied for this film are byte-identical to the ones the first
+two were cut from — the same four files. So rather than reach for the same
+seconds again, this edit was built against a ledger of what had already
+been used (`docs/footage-ledger.md`) and takes, wherever possible, only
+what had not:
+
+| Shot | Source | Status |
+|---|---|---|
+| hook — guarded, going nowhere | x2 `0–62` | **never used** — the seconds before the shot goes up |
+| hands on the ball | c1, punched to the hands | **framing never used** — earlier cuts only ever went to the feet |
+| one move, one advantage | x1 `236–330` | **never used** — the walk-off |
+| against a defender | x1 `30–163` | seen before, but full frame, full speed, no graphics — the plainest shot in the film |
+| CTA, part 1 | x2 `205–350` | **never used** — the arena still going |
+| CTA, part 2 | x1 `296–348` | **never used** — closes on a player in uniform |
+
+The hooded portrait that ended both earlier films is **not used at all**.
+
+Everything else is drawn.
+
+## Clips built in Remotion
+
+A different board from CROSSOVER's: that film looked down on a half court,
+this one works at floor level, close enough that a single plant reads
+(`src/footwork/Floor.tsx`, `Diagrams.tsx`).
+
+**⬛ What moves what (5.3s → 6.9s).** The script turns on one comparison,
+so it gets one frame: the ball travels and the defender doesn't; the feet
+travel and he has to.
+
+**⬛ The floor (6.9s → 12.4s).** Four beats on one piece of hardwood — a
+stride in, a foot into the floor, a half second in which the only thing
+that moves is a weight bar sliding off his centre, and the way out. It
+ends with the gap measured, because separation is the thing being taught.
+
+**⬛ The drill is not the finish line (14.8s → 17.5s).** The cone is struck
+out and a live defender takes its place, one beat before the film cuts to
+real footage of exactly that.
+
+The half-second freeze is deliberately *not* drawn the way CROSSOVER drew
+it. There it was a timer bar; here it is the defender's weight leaving,
+which is the reason the freeze works at all.
+
+## Voiceover
+
+Recovered offline the same way, and this one came back clean — no
+low-confidence lines:
+
+> If you can't create separation, this is probably why. You're trying to
+> beat defenders with your hands instead of your feet. Watch this: attack
+> hard, plant, freeze them for half a second, then explode the opposite
+> way. One move, one advantage. When you train it, don't stop at the
+> drill — use it against a defender. Follow now, because every video here
+> is designed to make you harder to guard.
+
+## Sound
+
+Third film, third piece: D minor, and the moving part is a muted pluck
+figure rather than a pad swell, so it is audibly a different track from
+the other two while sitting in the same restrained place in the mix.
+Master: **−14.3 LUFS, −0.94 dBTP**, no clipped samples.
