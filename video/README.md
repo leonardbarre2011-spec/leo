@@ -8,12 +8,14 @@ Two vertical shorts, both `1080 × 1920 · 9:16 · 60 fps · H.264`, mastered to
 | **FIRST STEP** | `FirstStep` | `out/first-step-basketball.mp4` | 25.0s |
 | **CROSSOVER** | `Crossover` | `out/crossover-tips.mp4` | 23.1s |
 | **FOOTWORK** | `Footwork` | `out/footwork-separation.mp4` | 25.1s |
+| **BEAT THE DEFENDER** | `Defender` | `out/beat-the-defender.mp4` | 24.1s |
 
 ```bash
 node tools/render.mjs out/first-step-basketball.mp4 16
 COMP=Crossover node tools/render.mjs out/crossover-tips.mp4 16
 COMP=Footwork  node tools/render.mjs out/footwork-separation.mp4 16
-COMP=Footwork  node tools/qc.mjs 200 430 900   # stills for frame review
+COMP=Defender  node tools/render.mjs out/beat-the-defender.mp4 16
+COMP=Defender  node tools/qc.mjs 150 620 960   # stills for frame review
 ```
 
 ## One footage library, three films
@@ -21,7 +23,7 @@ COMP=Footwork  node tools/qc.mjs 200 430 900   # stills for frame review
 All three were cut from the same four source clips. `docs/footage-ledger.md`
 tracks which seconds of each clip every film has used, so a new edit can be
 built from what is still untouched rather than from the same handful of
-seconds. FOOTWORK was cut that way.
+seconds. FOOTWORK and BEAT THE DEFENDER were cut that way.
 
 ---
 
@@ -297,3 +299,70 @@ Third film, third piece: D minor, and the moving part is a muted pluck
 figure rather than a pad swell, so it is audibly a different track from
 the other two while sitting in the same restrained place in the mix.
 Master: **−14.3 LUFS, −0.94 dBTP**, no clipped samples.
+
+
+---
+
+# 4 · BEAT THE DEFENDER — 24s
+
+Final render: **`out/beat-the-defender.mp4`** · source in `src/defender/`
+
+Same tempo as the previous two. The hook is what changed.
+
+## The hook
+
+The three earlier films all opened the same way: one slow-motion shot, a
+caption fading in as a whole line, holding. Calm, and soft. This one keeps
+the calm and adds three things, and only three:
+
+1. **It opens at real speed.** The first second moves at 1.0×; slow motion
+   arrives later, as a consequence rather than a default.
+2. **The number lands first.** The script opens with "99%", so 99% is on
+   screen by frame 4, set larger than anything else in the film. A number
+   stops a thumb faster than a sentence does.
+3. **One hard beat.** On the word *mistake* the picture freezes, on the
+   frame where the drive dies in the defender's chest, and a single red
+   crosshair marks the spot. That is the entire accent budget — no shake,
+   no flash, no strobe. It holds for a beat and the film goes back to calm.
+
+There is one more freeze later, on "Never do that": the frame drains to
+mono, one red line crosses it, and the words land. Two freezes in
+twenty-four seconds, both earned by the script.
+
+## Clips built in Remotion
+
+**⬛ Where to aim (7.7s → 11.2s).** Both stances on the floor — his feet
+and yours — because the target here is a part of his body, not a
+direction. The top foot gets a ring, the jab gets one short arrow that
+stops *at* the foot rather than past it, and a shoulder bar tilts through
+the gap.
+
+**⬛ Two choices (12.9s → 16.2s).** A fork. He opens his hips and you take
+the angle, or he stays square and you take the lane; his feet turn and
+square back on the same board, and both routes are left drawn at the end,
+which is the point of the line.
+
+## Footage
+
+`y1` is new material and carries the film almost end to end, in order,
+with no section used twice. The CTA borrows the one stretch of `x1` that
+no earlier film had touched (163–236) and closes on it.
+
+## Voiceover
+
+> 99% of players make the same mistake when they drive. They attack the
+> defender's chest. Never do that. Attack the top foot. One hard jab, drop
+> your shoulder, then explode past it. Now the defender has two choices:
+> open their hips, or give you the lane. Do this until it becomes
+> automatic. Follow now, because every video here is designed to make you
+> harder to guard.
+
+One word is lower confidence — "lane" at 15.87s, where ASR heard "wing".
+It is isolated in `COPY` in `src/defender/timing.ts`; changing that string
+updates both places it appears and nothing else moves.
+
+## Sound
+
+Fourth piece: A minor, sparser than the others, with the pluck used as
+punctuation rather than a running figure and two swells placed either side
+of the freeze. Master: **−14.4 LUFS, −0.97 dBTP**, no clipped samples.

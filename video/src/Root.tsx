@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { Main } from "./Main";
 import { Crossover } from "./crossover/Main";
 import { Footwork } from "./footwork/Main";
+import { Defender } from "./defender/Main";
 import {
   FPS as XFPS,
   HEIGHT as XH,
@@ -15,6 +16,12 @@ import {
   TOTAL as WTOTAL,
   WIDTH as WW,
 } from "./footwork/timing";
+import {
+  FPS as DFPS,
+  HEIGHT as DH,
+  TOTAL as DTOTAL,
+  WIDTH as DW,
+} from "./defender/timing";
 import { FPS, HEIGHT, TOTAL, WIDTH } from "./timing";
 import "./index.css";
 
@@ -28,6 +35,14 @@ export const RemotionRoot: React.FC = () => {
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}
+      />
+      <Composition
+        id="Defender"
+        component={Defender}
+        durationInFrames={DTOTAL}
+        fps={DFPS}
+        width={DW}
+        height={DH}
       />
       <Composition
         id="Footwork"

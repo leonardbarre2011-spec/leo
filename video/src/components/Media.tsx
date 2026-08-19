@@ -98,7 +98,7 @@ export const GradeWash: React.FC<{ grade: Grade; opacity?: number }> = ({
  * ------------------------------------------------------------------ */
 export const Clip: React.FC<
   CamProps & {
-    src: "c1" | "c2" | "c3" | "c4" | "x1" | "x2";
+    src: "c1" | "c2" | "c3" | "c4" | "x1" | "x2" | "y1";
     /** source frame to start from (60fps proxies) */
     trimBefore?: number;
     playbackRate?: number;
@@ -121,7 +121,8 @@ export const Clip: React.FC<
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const p = durationInFrames <= 1 ? 0 : frame / (durationInFrames - 1);
-  const srcH = src === "c4" || src === "x1" || src === "x2" ? 1920 : 2336;
+  const srcH =
+    src === "c4" || src === "x1" || src === "x2" || src === "y1" ? 1920 : 2336;
   const b = pick(blur, p, cam.ease ?? true);
   return (
     <AbsoluteFill style={{ overflow: "hidden", ...style }}>
@@ -154,7 +155,10 @@ export type StillName =
   | "fz_make"
   | "fz_cta"
   | "xz_freeze"
-  | "xz_cta";
+  | "xz_cta"
+  | "dz_152"
+  | "dz_192"
+  | "dz_walk";
 
 const STILL_H: Record<StillName, number> = {
   fz_hook: 2336,
@@ -166,6 +170,9 @@ const STILL_H: Record<StillName, number> = {
   fz_cta: 2336,
   xz_freeze: 1920,
   xz_cta: 2336,
+  dz_152: 1920,
+  dz_192: 1920,
+  dz_walk: 1920,
 };
 
 export const Freeze: React.FC<
