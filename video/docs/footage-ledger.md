@@ -15,23 +15,25 @@ Three films, one library. All sources are 60fps proxies in
 
 ## Used by
 
-| clip | FIRST STEP | CROSSOVER | FOOTWORK | BEAT THE DEFENDER |
-|---|---|---|---|---|
-| `c1` | 0–56, 68–121 — feet and wides, red / grayscale "wrong" | — | 18–70 **punched to the hands** | — |
-| `c2` | 0–92 — CTA | 0–92 — CTA | — *(retired: it had closed two films)* | — |
-| `c3` | 0–196 — drill and proof | — | — | — |
-| `c4` | 26–133 — the fix | — | — | — |
-| `x1` | — | 0–133 hook and steps, 133–236 payoff | 30–163 *(re-treated: full frame, full speed)*, **236–330**, **296–348** | **163–236** — the landing, and the frame it closes on |
-| `x2` | — | 62–200 — CTA | **0–62**, **205–350** | — |
-| `y1` | — | — | — | **22–261**, whole clip, in order, nothing twice |
+| clip | FIRST STEP | CROSSOVER | FOOTWORK | BEAT THE DEFENDER | JUMPER |
+|---|---|---|---|---|---|
+| `c1` | 0–56, 68–121 — feet and wides, red / grayscale "wrong" | — | 18–70 **punched to the hands** | — | — |
+| `c2` | 0–92 — CTA | 0–92 — CTA | — *(retired: it had closed two films)* | — | — |
+| `c3` | 0–196 — drill and proof | — | — | — | 26–70 drill 4, 86–121 drill 5, 162–196 the make |
+| `c4` | 26–133 — the fix | — | — | — | 28–115 drill 1, 92–~120 drill 2, **133–192** drill 3, 150+ hook |
+| `x1` | — | 0–133 hook and steps, 133–236 payoff | 30–163 *(re-treated: full frame, full speed)*, **236–330**, **296–348** | **163–236** — the landing, and the frame it closes on | — |
+| `x2` | — | 62–200 — CTA | **0–62**, **205–350** | — | — |
+| `y1` | — | — | — | **22–261**, whole clip, in order, nothing twice | — |
 
 **Bold** = first time on screen.
 
 ## Still untouched
 
 - `x2` 0–20 crowd-only frames, and the last few frames after 350
-- `c4` 0–26 and 133–192 — the catch before the drop, and the landing
-- `c1`, `c3`, `x1` and `y1` are effectively consumed
+- `c4` 0–26 — the catch before the dip
+- everything else is consumed
 
-A fifth film will need new footage, or will have to lean further on the
-drawn boards. Update this table when it does.
+**The library is out.** JUMPER already ran on drawn cards for roughly half
+its length because there was nothing left that fitted the script. A sixth
+film needs new clips — ideally a shooting rep from the side, and any
+footage of a real training session, which nothing in this library has.

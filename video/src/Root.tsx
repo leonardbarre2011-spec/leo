@@ -4,6 +4,7 @@ import { Main } from "./Main";
 import { Crossover } from "./crossover/Main";
 import { Footwork } from "./footwork/Main";
 import { Defender } from "./defender/Main";
+import { Jumper } from "./jumper/Main";
 import {
   FPS as XFPS,
   HEIGHT as XH,
@@ -22,6 +23,12 @@ import {
   TOTAL as DTOTAL,
   WIDTH as DW,
 } from "./defender/timing";
+import {
+  FPS as JFPS,
+  HEIGHT as JH,
+  TOTAL as JTOTAL,
+  WIDTH as JW,
+} from "./jumper/timing";
 import { FPS, HEIGHT, TOTAL, WIDTH } from "./timing";
 import "./index.css";
 
@@ -35,6 +42,14 @@ export const RemotionRoot: React.FC = () => {
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}
+      />
+      <Composition
+        id="Jumper"
+        component={Jumper}
+        durationInFrames={JTOTAL}
+        fps={JFPS}
+        width={JW}
+        height={JH}
       />
       <Composition
         id="Defender"

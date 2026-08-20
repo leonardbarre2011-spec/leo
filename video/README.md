@@ -9,13 +9,15 @@ Two vertical shorts, both `1080 × 1920 · 9:16 · 60 fps · H.264`, mastered to
 | **CROSSOVER** | `Crossover` | `out/crossover-tips.mp4` | 23.1s |
 | **FOOTWORK** | `Footwork` | `out/footwork-separation.mp4` | 25.1s |
 | **BEAT THE DEFENDER** | `Defender` | `out/beat-the-defender.mp4` | 24.1s |
+| **IMPROVE YOUR JUMPER** | `Jumper` | `out/improve-your-jumper.mp4` | 30.1s |
 
 ```bash
 node tools/render.mjs out/first-step-basketball.mp4 16
 COMP=Crossover node tools/render.mjs out/crossover-tips.mp4 16
 COMP=Footwork  node tools/render.mjs out/footwork-separation.mp4 16
 COMP=Defender  node tools/render.mjs out/beat-the-defender.mp4 16
-COMP=Defender  node tools/qc.mjs 150 620 960   # stills for frame review
+COMP=Jumper    node tools/render.mjs out/improve-your-jumper.mp4 16
+COMP=Jumper    node tools/qc.mjs 150 620 960   # stills for frame review
 ```
 
 ## One footage library, three films
@@ -366,3 +368,68 @@ updates both places it appears and nothing else moves.
 Fourth piece: A minor, sparser than the others, with the pluck used as
 punctuation rather than a running figure and two swells placed either side
 of the freeze. Master: **−14.4 LUFS, −0.97 dBTP**, no clipped samples.
+
+
+---
+
+# 5 · IMPROVE YOUR JUMPER — 30s
+
+Final render: **`out/improve-your-jumper.mp4`** · source in `src/jumper/`
+
+The first four were problem → fix. This script is a **workout**, and it
+ends by asking people to save it — so the edit is built for saving rather
+than for explaining.
+
+## What "more viral" meant here
+
+Not more motion. The three things that actually move a list video:
+
+1. **The promise up front.** All five drills appear as a card at 3.1s,
+   before any of them are taught. People stay for the one they want.
+2. **A completion counter.** A `1/5 … 5/5` bar runs the entire list and
+   never leaves the frame. Knowing how many are left is what stops
+   someone bailing at three.
+3. **A frame worth screenshotting.** The last seven seconds are one clean
+   recap card — all five, numbered, each with the reason it exists —
+   held long enough to actually capture. The script says "save this
+   workout"; this is the thing being saved.
+
+Plus a hook built on a number that climbs: a shot counter running to 500
+while the caption reads *stop just taking more shots*, then a red line
+through it. Reps without a plan, drawn.
+
+Pace steps up — drills land every ~3.3s against 2.3s in the last three —
+but the rules that made those readable still hold: whole-line captions, one
+motion per beat, no shake, no flashes. The only recurring motion is the
+chapter number, which lands big on each spoken count and settles into the
+corner as the drill name arrives.
+
+## Footage
+
+No clips came with this script and the library is spent, so this film uses
+the two clips that are actually *about shooting* — the warm-up jumper
+(`c4`) and the pull-up (`c3`). Neither has been touched since the first
+film, five videos ago, and `c4` 133–192 — the held follow-through — had
+never been used at all. It carries drill 3, which is the follow-through
+drill. Everything else is drawn.
+
+## Voiceover
+
+> Want a better jumper? Stop just taking more shots. Do these five
+> exercises instead. One: form shots — build perfect mechanics. Two:
+> one-hand shots — fix your release. Three: wall shooting — sharpen your
+> wrist and follow-through. Four: catch-and-shoot sprints — train your
+> shot when you're tired. Five: game-speed pull-ups. Because practice only
+> matters if it transfers to games. Save this workout, do it consistently,
+> and follow for more drills that actually make you a better scorer.
+
+Recovered offline as before; clean read, nothing flagged. **No rep counts
+or set numbers appear on screen** — the script doesn't state any, and
+inventing prescriptions for a training video is not a design decision to
+make on the creator's behalf.
+
+## Sound
+
+Fifth piece: G minor, with the pluck moved onto the spoken counts so the
+list has a pulse under it. Master: **−14.4 LUFS, −0.84 dBTP**, no clipped
+samples; speech sits 4.8 dB over the ducked bed.
