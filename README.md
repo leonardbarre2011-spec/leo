@@ -12,10 +12,10 @@ original export wasted.
 
 | | Original | Upgraded |
 |---|---|---|
-| Frame usage | 1080×1164 of footage, ~756px of pure black bars | full frame: blurred court backdrop, headline zone, caption band, CTA bar |
-| On-screen text | none | hook headline track + word-by-word captions |
-| B-roll | none | 9 graphic modules pinned to the voice-over |
-| CTA | spoken only ("link in my bio") | escalating bar: sound-on → offer → pulsing "LINK IN BIO" |
+| Frame usage | 1080×1164 of footage, ~756px of pure black bars | full frame: blurred court backdrop, hook zone, big caption band |
+| On-screen text | none | one opening hook + one- and two-word karaoke captions |
+| B-roll | none | 9 graphic modules pinned to the voice-over, at half footprint |
+| UI chrome | none | none — no pills, badges, sound-on prompts or icon bars |
 | Audio | voice-over | same voice-over + subtle synthesised whooshes/impacts |
 
 ## How the voice-over was mapped
@@ -50,20 +50,28 @@ mouth.
 
 1. **Dead space → working space.** The source is 16:9-ish footage letterboxed
    into 9:16. Those bands are now a blurred, drifting blow-up of the clip itself,
-   plus a headline zone and a caption/CTA band. The footage itself still renders
-   1:1 at its native 1080×1164 — nothing is upscaled or cropped away.
-2. **A hook on frame 1.** The spoken opener is a slow build; on screen the reel
-   now opens with *"IF YOU TRAIN ALONE, WATCH THIS."* before the first word lands.
-3. **Word-by-word captions.** Most short-form views start muted, so the pitch is
-   only received if it is readable. The active word is highlighted and pops.
-4. **B-roll that argues the offer.** Problem (training alone, random drills) →
-   filter (only for the best) → product (12 weeks × your position) → contents
-   (drills + advice) → proof (beta-tested, now out) → action (link in bio).
-5. **Punch-ins on the existing cuts.** Scene cuts were detected with ffmpeg;
+   plus a hook zone and a big caption band. The footage itself still renders 1:1
+   at its native 1080×1164 — nothing is upscaled or cropped away.
+2. **A hook on frame 1, then silence.** The spoken opener is a slow build, so the
+   reel opens with *"IF YOU TRAIN ALONE, WATCH THIS."* before the first word
+   lands — and that is the only line of copy that isn't the voice-over itself.
+3. **Captions are the loudest thing on screen.** One or two words at a time (49
+   cards over 26s), 96–128px, the active word in a filled orange block, and the
+   words that carry the offer (*alone, TikTok, 12-week, position, loved,
+   officially, bio*) coloured even before they are spoken. Most short-form views
+   start muted, so this is where the pitch actually lands.
+4. **B-roll that argues the offer, at half footprint.** Problem (training alone,
+   random drills) → filter (only for the best) → product (12 weeks × your
+   position) → contents (drills + advice) → proof (beta-tested, now out) →
+   action (link in bio). Every module is drawn at 0.7 linear scale — about half
+   the area — and pinned to the bottom edge of the footage card, so it sits over
+   the floor and the basketball action stays visible behind it.
+5. **No UI chrome.** No badges, kickers, sound-on prompts or CTA pills: the only
+   persistent element is a hairline progress bar. The CTA is carried by the
+   voice-over, the captions and the bio-link module.
+6. **Punch-ins on the existing cuts.** Scene cuts were detected with ffmpeg;
    each new clip gets a 14-frame push-in and the loudest six get a light flash,
    so the edit has energy without any footage being replaced.
-6. **An escalating CTA** instead of one spoken mention, plus a progress line that
-   keeps viewers moving toward it.
 7. **Subtle sound design.** Whooshes/impacts/riser synthesised offline into
    `public/sfx` (no third-party audio), mixed at 0.13–0.22 so the voice-over
    stays dominant. Turn them off with the `sfx` prop.
@@ -116,5 +124,8 @@ ffmpeg -i source/original.mov -vn -c:a libmp3lame -b:a 192k public/audio.mp3
 - The end-card variant vs. the default cut (completion rate vs. click-through).
 - Swapping the opening hook line in `src/data/script.ts` — it is one string, and
   it is the single highest-leverage variable in the whole reel.
+- `BROLL_SCALE` in `src/components/BrollStage.tsx` sets how much of the frame the
+  b-roll is allowed to take (0.7 = half the area); each beat's `originX` in
+  `src/data/script.ts` decides which corner it hugs.
 - If a real screenshot of the bio/link page is available, dropping it into the
   `bio` module in place of the mock will lift click-through further.

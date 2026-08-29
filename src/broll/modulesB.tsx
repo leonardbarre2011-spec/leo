@@ -214,7 +214,7 @@ export const DrillsBroll: React.FC<ModuleProps> = ({local, fps}) => {
                 {i + 1}
               </div>
               <div style={{display: 'flex', flexDirection: 'column', gap: 8}}>
-                <div style={{fontFamily: FONTS.ui, fontWeight: 800, fontSize: 24, color: COLORS.cream, letterSpacing: 1.4}}>
+                <div style={{fontFamily: FONTS.ui, fontWeight: 800, fontSize: 28, color: COLORS.cream, letterSpacing: 1.4}}>
                   {c.toUpperCase()}
                 </div>
                 <Bar w={190} h={9} />
@@ -232,7 +232,7 @@ export const DrillsBroll: React.FC<ModuleProps> = ({local, fps}) => {
           }}
         >
           <Check size={30} progress={interpolate(local, [36, 50], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})} />
-          <Label size={21} color={COLORS.green}>
+          <Label size={25} color={COLORS.green}>
             + coaching advice
           </Label>
         </div>
@@ -453,7 +453,7 @@ export const BioBroll: React.FC<ModuleProps> = ({local, fps}) => {
               style={{
                 fontFamily: FONTS.ui,
                 fontWeight: 800,
-                fontSize: 30,
+                fontSize: 34,
                 letterSpacing: 1.2,
                 color: COLORS.cream,
               }}

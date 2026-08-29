@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig} from 'remotion';
 import {BEATS, type BrollKind} from '../data/script';
-import {sec} from '../theme';
+import {CARD_BOTTOM, sec} from '../theme';
 import {windowOpacity} from './anim';
 import {AloneBroll, FunnelBroll, ProfileBroll, TikTokBroll} from '../broll/modulesA';
 import {BioBroll, DrillsBroll, ProgramBroll, ProofBroll, YouBroll} from '../broll/modulesB';
@@ -19,11 +19,24 @@ const MODULES: Record<BrollKind, React.FC<ModuleProps>> = {
   bio: BioBroll,
 };
 
-const Window: React.FC<{dur: number; children: (p: ModuleProps) => React.ReactNode}> = ({dur, children}) => {
+/** Half-area footprint, pinned to the bottom edge of the footage card. */
+export const BROLL_SCALE = 0.7;
+
+const Window: React.FC<{
+  dur: number;
+  originX: number;
+  children: (p: ModuleProps) => React.ReactNode;
+}> = ({dur, originX, children}) => {
   const local = useCurrentFrame();
   const {fps} = useVideoConfig();
   return (
-    <AbsoluteFill style={{opacity: windowOpacity(local, dur, 6, 8)}}>
+    <AbsoluteFill
+      style={{
+        opacity: windowOpacity(local, dur, 6, 8),
+        transform: `scale(${BROLL_SCALE})`,
+        transformOrigin: `${originX}px ${CARD_BOTTOM - 24}px`,
+      }}
+    >
       {children({local, dur, fps})}
     </AbsoluteFill>
   );
@@ -43,7 +56,9 @@ export const BrollStage: React.FC = () => (
       const Mod = MODULES[b.kind];
       return (
         <Sequence key={`${b.kind}-${from}`} from={from} durationInFrames={dur} layout="none">
-          <Window dur={dur}>{(p) => <Mod {...p} />}</Window>
+          <Window dur={dur} originX={b.originX}>
+            {(p) => <Mod {...p} />}
+          </Window>
         </Sequence>
       );
     })}
@@ -60,7 +75,7 @@ export const heroDim = (frame: number) => {
     if (frame < from - 8 || frame > to + 8) continue;
     const inA = Math.min(1, Math.max(0, (frame - from + 8) / 14));
     const outA = Math.min(1, Math.max(0, (to + 8 - frame) / 14));
-    dim = Math.max(dim, 0.42 * Math.min(inA, outA));
+    dim = Math.max(dim, 0.24 * Math.min(inA, outA));
   }
   return dim;
 };

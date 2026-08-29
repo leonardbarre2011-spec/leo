@@ -32,7 +32,7 @@ export const ProfileBroll: React.FC<ModuleProps> = ({local, fps}) => {
               background: COLORS.orange,
               fontFamily: FONTS.ui,
               fontWeight: 800,
-              fontSize: 17,
+              fontSize: 21,
               letterSpacing: 1.6,
               color: COLORS.ink,
             }}
@@ -164,7 +164,7 @@ export const AloneBroll: React.FC<ModuleProps> = ({local, fps}) => {
       </div>
 
       <div style={{position: 'absolute', left: 28, bottom: 22}}>
-        <Label size={19} color="rgba(247,244,238,0.5)">
+        <Label size={23} color="rgba(247,244,238,0.5)">
           No coach. No plan.
         </Label>
       </div>
@@ -288,7 +288,7 @@ export const TikTokBroll: React.FC<ModuleProps> = ({local, fps}) => {
             border: `2px solid ${COLORS.red}`,
           }}
         >
-          <Label size={20} color={COLORS.red}>
+          <Label size={24} color={COLORS.red}>
             No structure
           </Label>
         </div>
@@ -310,9 +310,11 @@ export const FunnelBroll: React.FC<ModuleProps> = ({local, fps}) => {
   return (
     <Panel style={{left: 64, top: 1064, width: 952, height: 386, transform: `translateY(${y}px)`}}>
       <div style={{padding: '26px 34px 0', display: 'flex', alignItems: 'baseline', gap: 18}}>
-        <Label color={COLORS.amber}>The filter</Label>
-        <Label size={20} color="rgba(247,244,238,0.42)">
-          Built for the ones who actually put in the work
+        <Label color={COLORS.amber} style={{whiteSpace: 'nowrap'}}>
+          The filter
+        </Label>
+        <Label size={24} color="rgba(247,244,238,0.42)" style={{whiteSpace: 'nowrap'}}>
+          For the ones who put in the work
         </Label>
       </div>
 

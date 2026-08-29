@@ -8,7 +8,7 @@ import {FootageCard} from './components/FootageCard';
 import {BrollStage, heroDim} from './components/BrollStage';
 import {Captions} from './components/Captions';
 import {Headline} from './components/Headline';
-import {BottomBar, FlashOn, ProgressBar} from './components/Chrome';
+import {FlashOn, ProgressBar} from './components/Chrome';
 import {Sfx} from './components/Sfx';
 import {EndCard} from './components/EndCard';
 
@@ -33,7 +33,6 @@ export const UpgradedReel: React.FC<UpgradedProps> = ({sfx, endCardFrames}) => {
         <Headline />
         <Captions />
         <ProgressBar />
-        <BottomBar />
         <FlashOn cuts={ACCENT_CUTS} />
         <Grain />
       </Sequence>
