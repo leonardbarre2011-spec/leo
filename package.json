@@ -1,0 +1,31 @@
+{
+  "name": "hoops-broll-upgrade",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render Upgraded out/upgraded.mp4 && node scripts/fix-audio-sync.mjs out/upgraded.mp4",
+    "render:endcard": "remotion render UpgradedWithEndCard out/upgraded-endcard.mp4 && node scripts/fix-audio-sync.mjs out/upgraded-endcard.mp4",
+    "render:original": "remotion render Original out/original-reference.mp4",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.518",
+    "@remotion/fonts": "^4.0.518",
+    "@remotion/media-utils": "^4.0.518",
+    "@remotion/renderer": "^4.0.518",
+    "@remotion/transitions": "^4.0.518",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "remotion": "^4.0.518"
+  },
+  "devDependencies": {
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "ffmpeg-static": "^5.3.0",
+    "typescript": "^7.0.2"
+  },
+  "description": "Remotion upgrade of a 25.9s vertical basketball reel: b-roll, captions and CTA layered on top of the original clips."
+}
