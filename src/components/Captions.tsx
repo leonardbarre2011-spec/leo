@@ -82,8 +82,18 @@ export const Captions: React.FC = () => {
         opacity,
       }}
     >
+      {/* Soft scrim: the captions now sit over the play, and gym floors are bright. */}
       <div
         style={{
+          position: 'absolute',
+          inset: '-40px 0',
+          background:
+            'radial-gradient(58% 52% at 50% 50%, rgba(7,9,12,0.62) 0%, rgba(7,9,12,0.34) 55%, rgba(7,9,12,0) 100%)',
+        }}
+      />
+      <div
+        style={{
+          position: 'relative',
           display: 'flex',
           flexDirection: stacked ? 'column' : 'row',
           gap: stacked ? 8 : 26,

@@ -1,9 +1,13 @@
 import React from 'react';
 import {useCurrentFrame, useVideoConfig, interpolate} from 'remotion';
-import {CARD_BOTTOM, COLORS, WIDTH} from '../theme';
+import {COLORS, WIDTH} from '../theme';
 import {EASE_OUT} from './anim';
 
-/** Thin "how much is left" line. The only piece of persistent UI on the reel. */
+/**
+ * Thin "how much is left" line, parked above the hook where nothing else lives -
+ * the band under the footage card now belongs to the b-roll. The only piece of
+ * persistent UI on the reel.
+ */
 export const ProgressBar: React.FC = () => {
   const frame = useCurrentFrame();
   const {durationInFrames} = useVideoConfig();
@@ -12,10 +16,10 @@ export const ProgressBar: React.FC = () => {
     <div
       style={{
         position: 'absolute',
-        top: CARD_BOTTOM + 18,
-        left: 70,
-        width: WIDTH - 140,
-        height: 6,
+        top: 108,
+        left: 90,
+        width: WIDTH - 180,
+        height: 5,
         borderRadius: 999,
         background: 'rgba(247,244,238,0.16)',
         overflow: 'hidden',

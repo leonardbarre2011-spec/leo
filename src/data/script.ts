@@ -41,10 +41,12 @@ export type Beat = {
   hero?: boolean;
   /**
    * Every module is drawn at half its natural footprint (0.7 linear = ~50% of
-   * the area) and pinned to the bottom edge of the footage card, so the b-roll
-   * lives over the floor and the basketball action stays visible.
+   * the area). `originX` is the horizontal point it hugs; `dy` drops it into
+   * the band below the footage card so the captions own the centre of the
+   * frame and the basketball action is never covered.
    */
   originX: number;
+  dy?: number;
 };
 
 /**
@@ -56,12 +58,12 @@ export const BEATS: Beat[] = [
   {kind: 'profile', from: 0.15, to: 2.55, originX: 96}, // "since I started this account"
   {kind: 'alone', from: 2.75, to: 4.95, originX: 984}, // "young ballers... train alone"
   {kind: 'tiktok', from: 4.95, to: 7.45, originX: 984}, // "...with some TikTok workout"
-  {kind: 'funnel', from: 7.7, to: 10.6, originX: 540}, // "but only for the best"
-  {kind: 'program', from: 11.05, to: 14.05, hero: true, originX: 540}, // the offer
-  {kind: 'drills', from: 14.15, to: 17.85, originX: 540}, // "specialized drills and advice"
+  {kind: 'funnel', from: 7.7, to: 10.6, originX: 540, dy: 396}, // "but only for the best"
+  {kind: 'program', from: 11.05, to: 14.05, hero: true, originX: 540, dy: 438}, // the offer
+  {kind: 'drills', from: 14.15, to: 17.85, originX: 540, dy: 396}, // "specialized drills"
   {kind: 'proof', from: 17.9, to: 21.95, originX: 540}, // "beta testers loved it"
-  {kind: 'you', from: 22.0, to: 23.25, originX: 540}, // "so if you want one"
-  {kind: 'bio', from: 23.3, to: 25.9, hero: true, originX: 540}, // "link in my bio"
+  {kind: 'you', from: 22.0, to: 23.25, originX: 540, dy: 445}, // "so if you want one"
+  {kind: 'bio', from: 23.3, to: 25.9, hero: true, originX: 540, dy: 471}, // "link in my bio"
 ];
 
 export type Headline = {from: number; to: number; lines: string[]};

@@ -44,7 +44,7 @@ export const ZONES = {
   cardTop: 320,
   /** Native size of the cropped source (1080x1164) - rendered 1:1. */
   cardHeight: 1164,
-  captionCenter: 1655,
+  captionCenter: 960,
   ctaTop: 1790,
   safeBottom: 1846,
 } as const;

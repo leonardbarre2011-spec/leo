@@ -12,8 +12,8 @@ original export wasted.
 
 | | Original | Upgraded |
 |---|---|---|
-| Frame usage | 1080×1164 of footage, ~756px of pure black bars | full frame: blurred court backdrop, hook zone, big caption band |
-| On-screen text | none | one opening hook + one- and two-word karaoke captions |
+| Frame usage | 1080×1164 of footage, ~756px of pure black bars | full frame: blurred court backdrop, hook zone, centred captions, b-roll band |
+| On-screen text | none | one opening hook + one- and two-word karaoke captions, centred |
 | B-roll | none | 9 graphic modules pinned to the voice-over, at half footprint |
 | UI chrome | none | none — no pills, badges, sound-on prompts or icon bars |
 | Audio | voice-over | same voice-over + subtle synthesised whooshes/impacts |
@@ -56,18 +56,19 @@ mouth.
    reel opens with *"IF YOU TRAIN ALONE, WATCH THIS."* before the first word
    lands — and that is the only line of copy that isn't the voice-over itself.
 3. **Captions are the loudest thing on screen.** One or two words at a time (49
-   cards over 26s), 96–128px, the active word in a filled orange block, and the
-   words that carry the offer (*alone, TikTok, 12-week, position, loved,
-   officially, bio*) coloured even before they are spoken. Most short-form views
-   start muted, so this is where the pitch actually lands.
+   cards over 26s), 96–128px, dead centre of the 9:16 frame over the play, the
+   active word in a filled orange block, and the words that carry the offer
+   (*alone, TikTok, 12-week, position, loved, officially, bio*) coloured even
+   before they are spoken. A soft radial scrim keeps them readable over bright
+   gyms. Most short-form views start muted, so this is where the pitch lands.
 4. **B-roll that argues the offer, at half footprint.** Problem (training alone,
    random drills) → filter (only for the best) → product (12 weeks × your
    position) → contents (drills + advice) → proof (beta-tested, now out) →
    action (link in bio). Every module is drawn at 0.7 linear scale — about half
-   the area — and pinned to the bottom edge of the footage card, so it sits over
-   the floor and the basketball action stays visible behind it.
+   the area — and dropped into the band below the footage card, so the captions
+   own the centre of the frame and the basketball action is never covered.
 5. **No UI chrome.** No badges, kickers, sound-on prompts or CTA pills: the only
-   persistent element is a hairline progress bar. The CTA is carried by the
+   persistent element is a hairline progress bar, parked above the hook. The CTA is carried by the
    voice-over, the captions and the bio-link module.
 6. **Punch-ins on the existing cuts.** Scene cuts were detected with ffmpeg;
    each new clip gets a 14-frame push-in and the loudest six get a light flash,
@@ -125,7 +126,8 @@ ffmpeg -i source/original.mov -vn -c:a libmp3lame -b:a 192k public/audio.mp3
 - Swapping the opening hook line in `src/data/script.ts` — it is one string, and
   it is the single highest-leverage variable in the whole reel.
 - `BROLL_SCALE` in `src/components/BrollStage.tsx` sets how much of the frame the
-  b-roll is allowed to take (0.7 = half the area); each beat's `originX` in
-  `src/data/script.ts` decides which corner it hugs.
+  b-roll is allowed to take (0.7 = half the area); each beat's `originX` and `dy`
+  in `src/data/script.ts` decide where it sits. `ZONES.captionCenter` in
+  `src/theme.ts` is the caption's vertical anchor (960 = centre of frame).
 - If a real screenshot of the bio/link page is available, dropping it into the
   `bio` module in place of the mock will lift click-through further.
