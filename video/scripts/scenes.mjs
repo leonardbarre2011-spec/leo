@@ -26,3 +26,26 @@ export const SCENES = [
 ];
 
 export const sceneAt = (id) => SCENES.find((s) => s.id === id);
+
+/**
+ * The short cut. Fourteen scenes in 37.75 s — a beat turns over every 2.7 s
+ * on average, and the voice starts on frame 1 with no runway.
+ */
+export const VIRAL_SCENES = [
+  { id: 'hook', from: 0.0, to: 4.44 },
+  { id: 'same', from: 4.44, to: 6.86 },
+  { id: 'five', from: 6.86, to: 9.51 },
+  { id: 'two', from: 9.51, to: 12.06 },
+  { id: 'read', from: 12.06, to: 15.04 },
+  { id: 'air', from: 15.04, to: 17.03 },
+  { id: 'help', from: 17.03, to: 19.57 },
+  { id: 'diff', from: 19.57, to: 21.0 },
+  { id: 'drills', from: 21.0, to: 22.5 },
+  { id: 'flat', from: 22.5, to: 24.3 },
+  { id: 'turn', from: 24.3, to: 28.48 },
+  { id: 'climb', from: 28.48, to: 31.41 },
+  { id: 'cardio', from: 31.41, to: 34.06 },
+  { id: 'end', from: 34.06, to: 37.75 },
+];
+
+export const viralSceneAt = (id) => VIRAL_SCENES.find((s) => s.id === id);

@@ -12,8 +12,8 @@ export type Phrase = {
   caption: CaptionLine[];
   accent: string[];
 };
-export type Scene = { id: SceneId; from: number; to: number };
 export type SceneId = 'hook' | 'loop' | 'wait' | 'scale' | 'stress' | 'twohundred' | 'smooth' | 'positions' | 'sameplan' | 'read' | 'air' | 'help' | 'differentjob' | 'samedrills' | 'nothing' | 'turn' | 'diverge' | 'cardio' | 'end';
+export type Scene = { id: SceneId; from: number; to: number };
 
 export const FPS = 30;
 export const DURATION = 52.85;

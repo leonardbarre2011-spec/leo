@@ -227,3 +227,131 @@ export const SEGMENTS = [
 ];
 
 export const TAIL = 1.6; // end-card breathing room after the last word
+
+/* ===================================================================== *
+ * THE SHORT CUT
+ *
+ * v1 ran 52.85 s. For a cold account that is a long way to ask someone to
+ * stay, and completion rate is what decides whether the post gets shown to
+ * anyone else. This cut drops two whole threads —
+ *
+ *   B  "you just wait for reps to make you better"   (says what C says)
+ *   D/E/F  the handle / two hundred dribbles / smoothing block
+ *
+ * — which loses no step of the argument: it now runs straight from "reps
+ * make you more of what you already are" into "nobody trains you for your
+ * actual position". It also splits O so the 0.75 s rhetorical pause inside
+ * "twelve weeks … built around everything" can come down to 0.20 s, and it
+ * starts the voice on frame 1 with no runway.
+ * ===================================================================== */
+
+export const VIRAL_COLD_OPEN = 0;
+export const VIRAL_TAIL = 0.9;
+
+export const VIRAL = [
+  {
+    src: 'A',
+    gapAfter: 0.26,
+    caption: [['YOU CAN TRAIN', 0], ['EVERY DAY', 5], ['AND STILL STAY', 6], ['THE SAME PLAYER', 9]],
+    accent: ['same', 'player'],
+  },
+  {
+    src: 'C',
+    gapAfter: 0.24,
+    caption: [['REPS MAKE YOU MORE', 0], ['OF WHAT YOU', 4], ['ALREADY ARE', 7]],
+    accent: ['already', 'are'],
+  },
+  {
+    src: 'G',
+    gapAfter: 0.22,
+    caption: [['NOBODY TRAINS YOU', 1], ['FOR YOUR ACTUAL', 4], ['POSITION', 7]],
+    accent: ['position'],
+  },
+  {
+    src: 'H',
+    gapAfter: 0.14,
+    caption: [['SAME WORKOUT', 0], ['FOR THE GUARD', 2], ['AND THE BIG', 5]],
+    accent: ['guard', 'big'],
+  },
+  {
+    src: 'I',
+    gapAfter: 0.14,
+    caption: [['THE POINT GUARD', 0], ['MAKES A READ', 4], ['IN HALF A SECOND', 7]],
+    accent: ['half', 'second'],
+  },
+  {
+    src: 'J',
+    gapAfter: 0.16,
+    caption: [['THE BIG?', 0], ['THE PASS IS STILL', 2], ['IN THE AIR', 6]],
+    accent: ['air'],
+  },
+  {
+    src: 'K',
+    gapAfter: 0.26,
+    caption: [['READ THE HELP', 1], ['BEFORE HE CATCHES IT', 5]],
+    accent: ['help'],
+  },
+  { src: 'L', gapAfter: 0.26, caption: [['DIFFERENT JOB', 0]], accent: ['different'] },
+  { src: 'M', gapAfter: 0.24, caption: [['SAME DRILLS', 0]], accent: ['same'] },
+  {
+    src: 'N',
+    gapAfter: 0.3,
+    caption: [["THAT'S WHY", 0], ['NOTHING CHANGES', 2]],
+    accent: ['nothing', 'changes'],
+  },
+  {
+    src: 'O',
+    id: 'O1',
+    start: 43.08,
+    end: 43.92,
+    gapAfter: 0.2,
+    caption: [['TWELVE WEEKS', 0]],
+    accent: ['twelve', 'weeks'],
+  },
+  {
+    src: 'O',
+    id: 'O2',
+    start: 44.62,
+    end: 47.46,
+    gapAfter: 0.3,
+    caption: [['BUILT AROUND', 0], ['EVERYTHING YOUR', 2], ['POSITION NEEDS', 4], ['TO BE BETTER', 6]],
+    accent: ['position'],
+  },
+  {
+    src: 'P',
+    gapAfter: 0.18,
+    caption: [['TWELVE WEEKS FROM NOW', 0], ["YOU'RE A DIFFERENT", 4], ['PLAYER', 7]],
+    accent: ['different', 'player'],
+  },
+  {
+    src: 'Q',
+    gapAfter: 0.28,
+    caption: [['OR THE SAME ONE', 0], ['WITH BETTER CARDIO', 4]],
+    accent: ['cardio'],
+  },
+  {
+    src: 'R',
+    gapAfter: 0,
+    caption: [['COMMENT “GAME”', 0], ["I'LL SEND THE LINK", 3]],
+    accent: ['game'],
+  },
+];
+
+/** Expands a cut definition into full segments, reusing the master word data. */
+export function expand(cut) {
+  const master = Object.fromEntries(SEGMENTS.map((s) => [s.id, s]));
+  return cut.map((c) => {
+    const m = master[c.src];
+    const start = c.start ?? m.start;
+    const end = c.end ?? m.end;
+    return {
+      id: c.id ?? c.src,
+      start,
+      end,
+      gapAfter: c.gapAfter,
+      caption: c.caption,
+      accent: c.accent,
+      words: m.words.filter(([, t]) => t >= start - 0.03 && t <= end + 0.02),
+    };
+  });
+}

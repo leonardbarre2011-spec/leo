@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Builds the two audio stems the film plays:
+ * Builds the audio stems for both cuts of the film:
  *
- *   public/vo.mp3   the voice-over with its dead air removed
- *   public/sfx.mp3  a synthesised sound-design stem, baked to the same clock
+ *   public/vo.mp3        · public/sfx.mp3        the 52.85 s director's cut
+ *   public/vo-viral.mp3  · public/sfx-viral.mp3  the 37.75 s short cut
  *
- * and emits src/generated/timeline.ts so the React side animates against the
- * exact numbers the audio was cut with.
+ * and emits src/generated/timeline.ts and timeline-viral.ts so the React side
+ * animates against the exact numbers the audio was cut with.
  *
  *   npm run audio
  */
@@ -16,74 +16,72 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ffmpegPath from 'ffmpeg-static';
 
-import { SEGMENTS, COLD_OPEN, TAIL } from './vo-data.mjs';
+import {
+  SEGMENTS, COLD_OPEN, TAIL,
+  VIRAL, VIRAL_COLD_OPEN, VIRAL_TAIL, expand,
+} from './vo-data.mjs';
 import { buildTimeline } from './timeline-core.mjs';
-import { SCENES } from './scenes.mjs';
-import { buildCues } from './cues.mjs';
+import { SCENES, VIRAL_SCENES } from './scenes.mjs';
+import { buildCues, buildViralCues } from './cues.mjs';
 import * as dsp from './dsp.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const tmp = path.join(root, '.audio-build');
 const pub = path.join(root, 'public');
+const gen = path.join(root, 'src', 'generated');
+const SRC = path.join(root, 'assets', 'vo-source.mp3');
+const SOURCE_LENGTH = 57.57;
+
 fs.mkdirSync(tmp, { recursive: true });
 fs.mkdirSync(pub, { recursive: true });
+fs.mkdirSync(gen, { recursive: true });
 
 const ff = (args) => execFileSync(ffmpegPath, ['-hide_banner', '-loglevel', 'error', '-y', ...args]);
 
 /* ------------------------------------------------------------------ *
  * 1. Trim the voice-over
  * ------------------------------------------------------------------ */
-const SRC = path.join(root, 'assets', 'vo-source.mp3');
-const tl = buildTimeline();
-
-console.log('· trimming voice-over');
-const parts = [];
-SEGMENTS.forEach((seg, i) => {
-  const out = path.join(tmp, `seg-${seg.id}.wav`);
-  const dur = seg.end - seg.start;
-  // 12 ms ramps at each edge: the joins have to be inaudible
-  ff([
-    '-ss', String(seg.start), '-t', String(dur), '-i', SRC,
-    '-af', `afade=t=in:st=0:d=0.012,afade=t=out:st=${(dur - 0.012).toFixed(4)}:d=0.012`,
-    '-ar', '44100', '-ac', '1', out,
-  ]);
-  parts.push(out);
-  const gap = i === SEGMENTS.length - 1 ? TAIL : seg.gapAfter;
-  if (gap > 0) {
-    const sil = path.join(tmp, `sil-${seg.id}.wav`);
-    ff(['-f', 'lavfi', '-i', `anullsrc=r=44100:cl=mono`, '-t', String(gap), sil]);
-    parts.push(sil);
+function trimVoice(name, segments, coldOpen, tail, outFile) {
+  const parts = [];
+  segments.forEach((seg, i) => {
+    const out = path.join(tmp, `${name}-${seg.id}.wav`);
+    const dur = seg.end - seg.start;
+    // 12 ms ramps at each edge: the joins have to be inaudible
+    ff([
+      '-ss', String(seg.start), '-t', String(dur), '-i', SRC,
+      '-af', `afade=t=in:st=0:d=0.012,afade=t=out:st=${(dur - 0.012).toFixed(4)}:d=0.012`,
+      '-ar', '44100', '-ac', '1', out,
+    ]);
+    parts.push(out);
+    const gap = i === segments.length - 1 ? tail : seg.gapAfter;
+    if (gap > 0) {
+      const sil = path.join(tmp, `${name}-sil-${seg.id}.wav`);
+      ff(['-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono', '-t', String(gap), sil]);
+      parts.push(sil);
+    }
+  });
+  if (coldOpen > 0) {
+    const head = path.join(tmp, `${name}-head.wav`);
+    ff(['-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono', '-t', String(coldOpen), head]);
+    parts.unshift(head);
   }
-});
-const head = path.join(tmp, 'head.wav');
-ff(['-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono', '-t', String(COLD_OPEN), head]);
-parts.unshift(head);
 
-const listFile = path.join(tmp, 'concat.txt');
-fs.writeFileSync(listFile, parts.map((p) => `file '${p}'`).join('\n'));
-ff([
-  '-f', 'concat', '-safe', '0', '-i', listFile,
-  // light broadcast polish so the voice sits forward against the sound design
-  '-af', 'highpass=f=85,acompressor=threshold=-17dB:ratio=2.6:attack=6:release=140:makeup=2,alimiter=limit=0.95',
-  '-ar', '44100', '-ac', '2', '-b:a', '192k',
-  path.join(pub, 'vo.mp3'),
-]);
+  const listFile = path.join(tmp, `${name}-concat.txt`);
+  fs.writeFileSync(listFile, parts.map((p) => `file '${p}'`).join('\n'));
+  ff([
+    '-f', 'concat', '-safe', '0', '-i', listFile,
+    // light broadcast polish so the voice sits forward against the sound design
+    '-af', 'highpass=f=85,acompressor=threshold=-17dB:ratio=2.6:attack=6:release=140:makeup=2,alimiter=limit=0.95',
+    '-ar', '44100', '-ac', '2', '-b:a', '192k', outFile,
+  ]);
 
-const removed = SEGMENTS.reduce((acc, s, i) => {
-  const next = SEGMENTS[i + 1];
-  return next ? acc + (next.start - s.end - s.gapAfter) : acc;
-}, 0);
-console.log(
-  `  source 57.57s → ${tl.voDuration.toFixed(2)}s voice + ${TAIL}s tail  (${removed.toFixed(2)}s of dead air removed)`
-);
+  const speech = segments.reduce((a, s) => a + (s.end - s.start), 0);
+  return speech;
+}
 
 /* ------------------------------------------------------------------ *
  * 2. Bake the sound-design stem
  * ------------------------------------------------------------------ */
-console.log('· synthesising sound design');
-const cues = buildCues(tl);
-const mixer = dsp.createMixer(tl.duration + 0.5);
-
 const make = {
   bounce: (c) => dsp.bounce({ pitch: c.pitch ?? 1, decay: c.decay ?? 0.26 }),
   dribble: (c) => dsp.dribble(c.pitch ?? 1),
@@ -98,32 +96,33 @@ const make = {
   blip: (c) => dsp.blip(c.freq ?? 660),
   stamp: () => dsp.stamp(),
   drone: (c) => dsp.drone(c.dur, c.root ?? 55),
-  impact: () =>
-    (() => {
-      const a = dsp.sub({ from: 110, to: 34, decay: 0.55 });
-      const b = dsp.click({ freq: 1100, decay: 0.05, level: 0.9 });
-      const out = new Float32Array(Math.max(a.length, b.length));
-      for (let i = 0; i < a.length; i++) out[i] += a[i];
-      for (let i = 0; i < b.length; i++) out[i] += b[i] * 0.8;
-      return out;
-    })(),
+  impact: () => {
+    const a = dsp.sub({ from: 110, to: 34, decay: 0.55 });
+    const b = dsp.click({ freq: 1100, decay: 0.05, level: 0.9 });
+    const out = new Float32Array(Math.max(a.length, b.length));
+    for (let i = 0; i < a.length; i++) out[i] += a[i];
+    for (let i = 0; i < b.length; i++) out[i] += b[i] * 0.8;
+    return out;
+  },
 };
 
-for (const cue of cues) {
-  const gen = make[cue.kind];
-  if (!gen) throw new Error(`unknown cue: ${cue.kind}`);
-  mixer.place(gen(cue), cue.t, { level: cue.level ?? 1, pan: cue.pan ?? 0 });
+function bakeSfx(name, cues, duration, outFile) {
+  const mixer = dsp.createMixer(duration + 0.5);
+  for (const cue of cues) {
+    const gen = make[cue.kind];
+    if (!gen) throw new Error(`unknown cue: ${cue.kind}`);
+    mixer.place(gen(cue), Math.max(0, cue.t), { level: cue.level ?? 1, pan: cue.pan ?? 0 });
+  }
+  const wav = path.join(tmp, `${name}-sfx.wav`);
+  fs.writeFileSync(wav, dsp.encodeWav(mixer.render()));
+  ff(['-i', wav, '-af', 'alimiter=limit=0.92', '-ar', '44100', '-b:a', '192k', outFile]);
 }
-
-const wav = path.join(tmp, 'sfx.wav');
-fs.writeFileSync(wav, dsp.encodeWav(mixer.render()));
-ff(['-i', wav, '-af', 'alimiter=limit=0.92', '-ar', '44100', '-b:a', '192k', path.join(pub, 'sfx.mp3')]);
-console.log(`  ${cues.length} cues baked`);
 
 /* ------------------------------------------------------------------ *
  * 3. Emit the shared timeline
  * ------------------------------------------------------------------ */
-const ts = `// GENERATED by scripts/build-audio.mjs — do not edit by hand.
+function emitTimeline(file, tl, scenes) {
+  const ts = `// GENERATED by scripts/build-audio.mjs — do not edit by hand.
 // Seconds on the trimmed timeline. Run \`npm run audio\` to regenerate.
 
 export type Word = { w: string; t: number };
@@ -137,15 +136,15 @@ export type Phrase = {
   caption: CaptionLine[];
   accent: string[];
 };
+export type SceneId = ${scenes.map((s) => `'${s.id}'`).join(' | ')};
 export type Scene = { id: SceneId; from: number; to: number };
-export type SceneId = ${SCENES.map((s) => `'${s.id}'`).join(' | ')};
 
 export const FPS = 30;
 export const DURATION = ${tl.duration};
 export const DURATION_IN_FRAMES = ${Math.round(tl.duration * 30)};
 export const COLD_OPEN = ${tl.coldOpen};
 
-export const SCENES: Scene[] = ${JSON.stringify(SCENES, null, 2)};
+export const SCENES: Scene[] = ${JSON.stringify(scenes, null, 2)};
 
 export const PHRASES: Phrase[] = ${JSON.stringify(tl.phrases, null, 2)};
 
@@ -165,9 +164,48 @@ export const CAPTIONS: (CaptionLine & { phrase: string; accent: string[]; out: n
     p.caption.map((c) => ({ ...c, phrase: p.id, accent: p.accent, out: p.out }))
   );
 `;
-fs.mkdirSync(path.join(root, 'src', 'generated'), { recursive: true });
-fs.writeFileSync(path.join(root, 'src', 'generated', 'timeline.ts'), ts);
+  fs.writeFileSync(path.join(gen, file), ts);
+}
+
+/* ------------------------------------------------------------------ *
+ * Build both cuts
+ * ------------------------------------------------------------------ */
+function build({ label, segments, coldOpen, tail, scenes, cueFn, suffix }) {
+  const tl = buildTimeline(segments, coldOpen, tail);
+  console.log(`· ${label}`);
+  const speech = trimVoice(suffix || 'film', segments, coldOpen, tail, path.join(pub, `vo${suffix}.mp3`));
+  console.log(
+    `  source ${SOURCE_LENGTH}s → ${speech.toFixed(2)}s speech + ${(tl.voDuration - speech - coldOpen).toFixed(2)}s of breaths` +
+      `  (${(SOURCE_LENGTH - speech).toFixed(2)}s of the source dropped)`
+  );
+  const cues = cueFn(tl);
+  bakeSfx(suffix || 'film', cues, tl.duration, path.join(pub, `sfx${suffix}.mp3`));
+  emitTimeline(`timeline${suffix}.ts`, tl, scenes);
+  console.log(
+    `  ${cues.length} cues · 1080×1920 · 30fps · ${Math.round(tl.duration * 30)} frames (${tl.duration}s)`
+  );
+  return tl;
+}
+
+build({
+  label: "director's cut",
+  segments: SEGMENTS,
+  coldOpen: COLD_OPEN,
+  tail: TAIL,
+  scenes: SCENES,
+  cueFn: buildCues,
+  suffix: '',
+});
+
+build({
+  label: 'short cut',
+  segments: expand(VIRAL),
+  coldOpen: VIRAL_COLD_OPEN,
+  tail: VIRAL_TAIL,
+  scenes: VIRAL_SCENES,
+  cueFn: buildViralCues,
+  suffix: '-viral',
+});
 
 fs.rmSync(tmp, { recursive: true, force: true });
-console.log(`· wrote public/vo.mp3, public/sfx.mp3, src/generated/timeline.ts`);
-console.log(`  composition: 1080×1920 · 30fps · ${Math.round(tl.duration * 30)} frames (${tl.duration}s)`);
+console.log('· done');

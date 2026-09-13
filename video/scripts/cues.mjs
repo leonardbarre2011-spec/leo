@@ -1,4 +1,4 @@
-import { sceneAt } from './scenes.mjs';
+import { sceneAt, viralSceneAt } from './scenes.mjs';
 
 /**
  * The sound-design sheet. Every cue is authored against the same trimmed
@@ -147,6 +147,107 @@ export function buildCues(tl) {
   at(wordT('R', 7), 'latch', { level: 0.6 }); // "link"
   at(51.35, 'bounce', { pitch: 0.9, level: 0.55 });
   at(51.36, 'swish', { level: 0.4 });
+
+  return cues.sort((a, b) => a.t - b.t);
+}
+
+/**
+ * Cue sheet for the short cut. Same kit, tighter placement: with the runway
+ * gone the film has to land a physical hit on frame 1, and every scene change
+ * carries an impact so the edit reads as fast even on a phone speaker.
+ */
+export function buildViralCues(tl) {
+  const cues = [];
+  const at = (t, kind, opts = {}) => cues.push({ t, kind, ...opts });
+  const S = (id) => viralSceneAt(id);
+  const wordT = (id, i) => tl.byId[id].words[i].t;
+
+  at(0.0, 'drone', { dur: 24.6, root: 51, level: 0.9 });
+  at(S('turn').from - 0.3, 'drone', { dur: 14.0, root: 68, level: 1.25 });
+
+  /* --- the ball hits the floor on frame one ---------------------------- */
+  at(0.0, 'impact', { level: 1.0 });
+  at(0.0, 'bounce', { pitch: 0.9, level: 0.9 });
+  at(0.02, 'swish', { level: 0.45 });
+  // the counter spinning under the first line
+  for (let i = 0; i < 22; i++) at(0.24 + i * 0.062, 'click', { freq: 2900 + (i % 4) * 240, decay: 0.007, level: 0.13 });
+  at(1.52, 'bounce', { pitch: 1.02, level: 0.32, pan: -0.1 });
+  at(2.2, 'bounce', { pitch: 1.02, level: 0.32, pan: 0.09 });
+  at(wordT('A', 10), 'stamp', { level: 0.6 }); // "same"
+
+  /* --- C: more of the same, scaled up ---------------------------------- */
+  at(S('same').from, 'whoosh', { dur: 0.4, dir: 1, level: 0.5 });
+  [4.51, 4.94, 5.4, 5.8].forEach((t, i) =>
+    at(t, 'stamp', { level: 0.36 + i * 0.16, pan: i % 2 ? 0.14 : -0.14 })
+  );
+  at(wordT('C', 8), 'sub', { from: 58, to: 32, decay: 0.5, level: 0.6 });
+
+  /* --- G: five positions ------------------------------------------------ */
+  at(S('five').from, 'whoosh', { dur: 0.5, dir: 1, level: 0.65 });
+  [7.1, 7.24, 7.38, 7.52, 7.66].forEach((t, i) =>
+    at(t, 'blip', { freq: 420 + i * 90, level: 0.6, pan: -0.35 + i * 0.175 })
+  );
+  at(wordT('G', 7), 'stamp', { level: 0.9 }); // "position"
+
+  /* --- H: one workout, two bodies --------------------------------------- */
+  at(S('two').from, 'paper', { dur: 0.5, level: 0.65 });
+  at(wordT('H', 4), 'stamp', { level: 0.75, pan: -0.3 }); // "guard"
+  at(wordT('H', 7), 'stamp', { level: 0.75, pan: 0.3 }); // "big"
+  [10.7, 10.82, 10.94, 11.06].forEach((t) => at(t, 'click', { freq: 2400, decay: 0.008, level: 0.15 }));
+
+  /* --- I: half a second -------------------------------------------------- */
+  at(S('read').from, 'whoosh', { dur: 0.5, dir: 1, level: 0.6 });
+  at(S('read').from + 0.06, 'squeak', { dur: 0.15, level: 0.3, pan: -0.2 });
+  for (let i = 0; i < 10; i++) at(12.9 + i * 0.13, 'click', { freq: 3000, decay: 0.006, level: 0.21 });
+  at(wordT('I', 6), 'blip', { freq: 880, level: 0.85 }); // "read"
+  at(wordT('I', 10), 'click', { freq: 1300, decay: 0.03, level: 0.55 }); // "second"
+
+  /* --- J/K: the pass, and the read under it ------------------------------ */
+  at(S('air').from - 0.04, 'swish', { level: 0.75 });
+  at(S('air').from, 'whoosh', { dur: 0.85, dir: 1, level: 0.5 });
+  at(wordT('K', 4), 'blip', { freq: 700, level: 0.75 }); // "help"
+  at(wordT('K', 7), 'bounce', { pitch: 0.92, level: 1.0 }); // "catches"
+  at(wordT('K', 7) + 0.01, 'squeak', { dur: 0.14, level: 0.28, pan: 0.25 });
+
+  /* --- L/M: different job / same drills ----------------------------------- */
+  at(S('diff').from, 'whoosh', { dur: 0.3, dir: -1, level: 0.65 });
+  at(wordT('L', 0), 'impact', { level: 0.8 });
+  at(S('drills').from, 'whoosh', { dur: 0.28, dir: -1, level: 0.65 });
+  at(wordT('M', 0), 'stamp', { level: 1.0 });
+  at(wordT('M', 1), 'stamp', { level: 0.8 });
+
+  /* --- N: nothing changes -------------------------------------------------- */
+  at(S('flat').from, 'sub', { from: 52, to: 24, decay: 1.1, level: 0.75 });
+  at(wordT('N', 3), 'click', { freq: 700, decay: 0.05, level: 0.5 });
+
+  /* --- the turn ------------------------------------------------------------ */
+  at(S('turn').from - 0.8, 'riser', { dur: 0.86, level: 0.85 });
+  at(S('turn').from, 'impact', { level: 1.1 });
+  at(S('turn').from + 0.02, 'swish', { level: 0.55 });
+  for (let i = 0; i < 12; i++) {
+    at(24.62 + i * 0.072, 'latch', { level: 0.32 + i * 0.028, pan: -0.3 + (i / 11) * 0.6 });
+  }
+  at(25.52, 'paper', { dur: 0.7, level: 0.8 });
+  at(25.6, 'whoosh', { dur: 0.45, dir: -1, level: 0.42 });
+  [26.14, 26.5, 26.86, 27.22].forEach((t, i) => at(t, 'blip', { freq: 560 + i * 70, level: 0.6 }));
+  at(27.62, 'latch', { level: 0.65 });
+
+  /* --- P: the climb --------------------------------------------------------- */
+  at(S('climb').from, 'whoosh', { dur: 0.5, dir: 1, level: 0.55 });
+  at(wordT('P', 6), 'blip', { freq: 940, level: 0.75 });
+  for (let i = 0; i < 7; i++) at(29.1 + i * 0.2, 'click', { freq: 2600, decay: 0.007, level: 0.14 });
+
+  /* --- Q: the punchline ------------------------------------------------------ */
+  at(S('cardio').from, 'whoosh', { dur: 0.38, dir: -1, level: 0.5 });
+  [31.8, 32.3, 32.8].forEach((t, i) => at(t, 'bounce', { pitch: 1.0, level: 0.4 - i * 0.04, pan: -0.2 }));
+  at(wordT('Q', 6), 'blip', { freq: 380, level: 0.65 }); // "cardio", deadpan
+
+  /* --- R: end card, and the hand-off back to frame one ----------------------- */
+  at(S('end').from, 'whoosh', { dur: 0.55, dir: 1, level: 0.55 });
+  'GAME'.split('').forEach((_, i) => at(34.5 + i * 0.09, 'click', { freq: 3100, decay: 0.007, level: 0.28 }));
+  at(wordT('R', 7), 'latch', { level: 0.65 });
+  // the loop: this bounce is the same hit the film opens on
+  at(37.3, 'bounce', { pitch: 0.9, level: 0.6 });
 
   return cues.sort((a, b) => a.t - b.t);
 }

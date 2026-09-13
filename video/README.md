@@ -1,16 +1,50 @@
 # SAME PLAYER — 9:16 motion piece
 
-A 52.85 s vertical film for a position-specific basketball training program,
-built in Remotion. 1080×1920, 30 fps, 1586 frames.
+A vertical film for a position-specific basketball training program, built in
+Remotion. 1080×1920, 30 fps. Two cuts ship from one codebase:
 
-**Render:** `render/same-player.mp4`
+| Composition | Length | Render | For |
+| --- | --- | --- | --- |
+| `SamePlayerShort` | **37.75 s** · 1133 frames | `render/same-player-short.mp4` | the feed |
+| `SamePlayer` | 52.85 s · 1586 frames | `render/same-player.mp4` | the long version |
 
 ```bash
 npm install
-npm run audio    # trims the voice-over + bakes the sound-design stem
-npm start        # Remotion Studio
-npm run render   # → render/same-player.mp4
+npm run audio        # trims both voice-over cuts + bakes both sound stems
+npm start            # Remotion Studio
+npm run render       # → render/same-player-short.mp4
+npm run render:long  # → render/same-player.mp4
 ```
+
+## What the short cut changes, and why
+
+The long cut is the better film. The short cut is the one built to survive a
+feed, and the differences are all retention mechanics rather than taste:
+
+- **37.75 s instead of 52.85 s.** Completion rate is the signal that decides
+  whether a post gets shown past its first test batch, and every second is a
+  chance to lose it. Two threads came out — the redundant "you just wait for
+  reps" line and the whole handle / two-hundred-dribbles / smoothing block —
+  and the argument is sharper without them: it now runs straight from "reps
+  make you more of what you already are" into "nobody trains you for your
+  actual position".
+- **The voice starts on frame 1.** v1 opened on a 1.05 s silent runway. That
+  is the most expensive second in the video and it was spent on nothing.
+- **Frame 1 is finished, not fading in.** The ball is already hitting the
+  floor, the title already reads `365 DAYS OF WORK / 0.0% BETTER`, the counter
+  already shows 41,260. Nothing about the first frame is mid-animation.
+- **Captions are 118 px and centre-frame** instead of 86 px down in the strip
+  the app covers with its own UI, with one accent word per line knocked out of
+  a solid block. Most of the audience watches muted; the captions are the
+  video for them.
+- **It loops.** The last 0.4 s dissolves into the film's own first frame, which
+  is pixel-matched — a replay is invisible and costs the viewer nothing.
+- **A push-in on every scene**, so no frame is ever static, and the ask is
+  on screen as a chip from the turn onward rather than only in the last
+  three seconds.
+
+A caveat worth stating plainly: none of this creates views. Distribution does.
+A cut like this only changes what happens to the views you already get.
 
 ---
 
@@ -60,15 +94,18 @@ quarterly reviews, cohorts with limited spots.
 dead air. `scripts/vo-data.mjs` holds one entry per kept slice, plus the
 word-level timings produced by forced-aligning the transcript against the source
 (CMU pocketsphinx aligner). `npm run audio` cuts the slices with 12 ms edge
-ramps, replaces each gap with a hand-picked breath, and concatenates:
+ramps, replaces each gap with a hand-picked breath, and concatenates.
 
-**57.57 s → 51.25 s of voice. 7.37 s of dead air removed**, with the rhetorical
-pauses deliberately kept — the beat before "reps make you more of what you
-already are" still lands, the one between "different job" and "same drills"
-still stings.
+| Cut | Speech kept | Breaths | Dropped from source |
+| --- | --- | --- | --- |
+| director's | 45.62 s | 4.58 s | 11.95 s |
+| short | 33.67 s | 3.18 s | 23.90 s |
 
-A 1.05 s silent runway is prepended so the visual hook plays before the first
-word, and 1.6 s of tail is added for the end card.
+Both keep the rhetorical pauses on purpose — the beat before "reps make you
+more of what you already are" still lands, the one between "different job" and
+"same drills" still stings. The short cut additionally splits segment `O` so
+the 0.75 s pause inside "twelve weeks … built around everything" comes down to
+0.20 s without touching the delivery either side of it.
 
 ### Sound design
 
@@ -78,10 +115,12 @@ sines, a state-variable filter, envelopes — that generates every sound:
 `bounce` · `dribble` · `click` · `latch` · `paper` · `whoosh` · `swish` ·
 `squeak` · `sub` · `riser` · `blip` · `stamp` · `drone`
 
-`scripts/cues.mjs` places 197 of them against the same trimmed clock the
-animation reads, and the whole thing is mixed offline into one stem. That means
-perfect sync by construction, and only two `<Audio>` tags at render time instead
-of two hundred.
+`scripts/cues.mjs` places them against the same trimmed clock the animation
+reads — 197 cues for the long cut, 119 for the short one — and each is mixed
+offline into a single stem. That means perfect sync by construction, and only
+two `<Audio>` tags at render time instead of two hundred. The short cut's sheet
+opens with a floor impact on frame 1, since with the runway gone the film has
+to land a physical hit before the first word.
 
 ---
 
@@ -89,26 +128,32 @@ of two hundred.
 
 ```
 scripts/
-  vo-data.mjs       kept slices + forced-aligned word timings
-  scenes.mjs        the cut — 19 scene windows
-  timeline-core.mjs collapses vo-data into the trimmed timeline
-  cues.mjs          the sound-design sheet
+  vo-data.mjs       kept slices + forced-aligned word timings, for both cuts
+  scenes.mjs        the shot lists — 19 windows long, 14 short
+  timeline-core.mjs collapses a set of slices into a trimmed timeline
+  cues.mjs          the sound-design sheets
   dsp.mjs           synthesis kit + mixer
-  build-audio.mjs   → public/vo.mp3, public/sfx.mp3, src/generated/timeline.ts
+  build-audio.mjs   → both vo/sfx pairs + both generated timelines
 src/
-  Film.tsx          the shot list; one clock, hard cuts on impacts
-  theme.ts          palette and type, borrowed from the product
+  theme.ts          palette and type, borrowed from the product (C = long, V = short)
   elements/
     Ball.tsx        seams as real curves on a sphere, rotated in 3D
     Court.tsx       FIBA half court in centimetres, laid down in perspective
+    Tactical.tsx    court camera constants, upright labels, ball-on-plane
     Trace.tsx       the handle as an instrument reads it
     Captions.tsx    word-synced, one line at a time
     Ui.tsx          tags, rules, panels, meters, pins, odometer
+  Film.tsx          the long cut's shot list
   scenes/Act1–4.tsx
+  viral/
+    Film.tsx        the short cut's shot list
+    Captions.tsx    the big centre-frame caption system
+    scenes.tsx      the short cut's scenes
 ```
 
-`src/generated/timeline.ts` is written by `npm run audio` and committed, so the
-project renders without re-running the audio build.
+`src/generated/timeline.ts` and `timeline-viral.ts` are written by
+`npm run audio` and committed, so the project renders without re-running the
+audio build.
 
 ### The ball
 
@@ -124,7 +169,8 @@ still bouncing in place at the end, and the mark on the program document.
 Scenes mount only inside their own window. No SVG filters anywhere — shadows
 and glows are CSS gradients. The grain is a fixed noise field offset per frame
 rather than a regenerated one. Audio is two stems, not a stack of cues. Full
-1080×1920 render of all 1586 frames takes about 3½ minutes at concurrency 4.
+1080×1920 renders take about 2 minutes (short cut) and 3½ minutes (long cut)
+at concurrency 4.
 
 ---
 

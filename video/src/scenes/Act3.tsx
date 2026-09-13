@@ -1,45 +1,17 @@
 import React from 'react';
 import { C, F } from '../theme';
-import { Ball } from '../elements/Ball';
 import { CourtPlane, SPOTS } from '../elements/Court';
 import { Display, Rule, Tag, Wire } from '../elements/Ui';
+import {
+  BallOnPlane,
+  COURT_STRONG,
+  COURT_STROKE,
+  CourtLabel,
+  LEAN,
+  ZOOM,
+} from '../elements/Tactical';
 import { clamp, EASE, mix, prog, pulse, ramp, track } from '../lib/anim';
 import { S, W } from '../generated/timeline';
-
-const LEAN = 52;
-const ZOOM = 1.58;
-/** text on the plane has to be stretched back out or the perspective eats it */
-const UPRIGHT = `scale(1, ${(1 / Math.cos((LEAN * Math.PI) / 180)).toFixed(3)})`;
-/** court centimetres → screen pixels, matching CourtPlane's viewBox mapping */
-const CM = (1080 / 1580) * ZOOM;
-
-const CourtLabel: React.FC<{
-  x: number;
-  y: number;
-  children: React.ReactNode;
-  size?: number;
-  color?: string;
-  opacity?: number;
-  anchor?: 'middle' | 'start' | 'end';
-  weight?: number;
-  mono?: boolean;
-}> = ({ x, y, children, size = 40, color = C.text, opacity = 1, anchor = 'middle', weight = 700, mono }) => (
-  <g transform={`translate(${x} ${y}) ${UPRIGHT}`} opacity={opacity}>
-    <text
-      x={0}
-      y={0}
-      textAnchor={anchor}
-      fontFamily={mono ? F.mono : F.display}
-      fontWeight={weight}
-      fontSize={size}
-      fill={color}
-      letterSpacing={mono ? 3 : 0.5}
-      style={{ textTransform: 'uppercase' }}
-    >
-      {children}
-    </text>
-  </g>
-);
 
 /* =====================================================================
  * 07 · FIVE POSITIONS — five jobs on one floor, and a single program wired
@@ -66,8 +38,8 @@ export const Positions: React.FC<{ t: number }> = ({ t }) => {
         zoom={ramp(t, s.from, s.to, ZOOM * 1.04, ZOOM * 1.12, EASE.out)}
         y={ramp(t, s.from, s.from + 0.6, -170, -250, EASE.out)}
         lineOpacity={clamp(prog(t, s.from, s.from + 0.5))}
-        stroke="rgba(236,231,223,0.20)"
-        strong="rgba(236,231,223,0.34)"
+        stroke={COURT_STROKE}
+        strong={COURT_STRONG}
         czoom={0.66}
         panY={700}
       >
@@ -80,7 +52,7 @@ export const Positions: React.FC<{ t: number }> = ({ t }) => {
             height={210}
             rx={18}
             fill={C.surface}
-            stroke="rgba(236,231,223,0.34)"
+            stroke={COURT_STRONG}
             strokeWidth={4}
           />
           <CourtLabel x={750} y={1228} size={86} color={C.text}>
@@ -398,8 +370,8 @@ export const Possession: React.FC<{ t: number }> = ({ t }) => {
         turn={turn}
         zoom={ZOOM}
         y={yOff}
-        stroke="rgba(236,231,223,0.20)"
-        strong="rgba(236,231,223,0.34)"
+        stroke={COURT_STROKE}
+        strong={COURT_STRONG}
         czoom={czoom}
         panX={panX}
         panY={panY}
@@ -584,30 +556,6 @@ export const Possession: React.FC<{ t: number }> = ({ t }) => {
           opacity: pulse(t, tCatch, 0.04, 0.3) * 0.07,
         }}
       />
-    </div>
-  );
-};
-
-/** Places a real (shaded, spinning) ball at a court coordinate, above the plane. */
-const BallOnPlane: React.FC<{
-  x: number;
-  y: number;
-  height: number;
-  czoom: number;
-  panX: number;
-  panY: number;
-  yOff: number;
-  spin: number;
-}> = ({ x, y, height, czoom, panX, panY, yOff, spin }) => {
-  // court cm → screen px, matching CourtPlane's viewBox mapping and lean
-  const k = CM * czoom;
-  const lean = Math.cos((LEAN * Math.PI) / 180);
-  const sx = 540 + (x - panX) * k;
-  const sy = 960 + yOff + (y - panY) * k * lean - height * k * 0.62;
-  const size = 104 * czoom * (1 + height / 1400);
-  return (
-    <div style={{ position: 'absolute', left: sx - size / 2, top: sy - size / 2 }}>
-      <Ball size={size} spin={spin} tumble={spin * 0.3} tilt={0.3} />
     </div>
   );
 };

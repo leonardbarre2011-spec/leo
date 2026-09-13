@@ -1,13 +1,13 @@
-import { SEGMENTS, COLD_OPEN, TAIL } from './vo-data.mjs';
+import { SEGMENTS, COLD_OPEN, TAIL, VIRAL, VIRAL_COLD_OPEN, VIRAL_TAIL, expand } from './vo-data.mjs';
 
 /**
- * Collapses the source voice-over into its trimmed timeline.
+ * Collapses a set of kept slices into its trimmed timeline.
  * Pure function of vo-data.mjs, so the audio renderer, the SFX cue sheet and
  * the React scenes all read exactly the same numbers.
  */
-export function buildTimeline() {
-  let cursor = COLD_OPEN;
-  const phrases = SEGMENTS.map((seg) => {
+export function buildTimeline(segments = SEGMENTS, coldOpen = COLD_OPEN, tail = TAIL) {
+  let cursor = coldOpen;
+  const phrases = segments.map((seg) => {
     const offset = cursor - seg.start;
     const words = seg.words.map(([w, t]) => ({ w, t: +(t + offset).toFixed(4) }));
     const real = words.filter((x) => x.w !== '·');
@@ -29,11 +29,14 @@ export function buildTimeline() {
   });
 
   const byId = Object.fromEntries(phrases.map((p) => [p.id, p]));
-  const voDuration = +(cursor - SEGMENTS[SEGMENTS.length - 1].gapAfter).toFixed(4);
-  const duration = +(voDuration + TAIL).toFixed(4);
+  const voDuration = +(cursor - segments[segments.length - 1].gapAfter).toFixed(4);
+  const duration = +(voDuration + tail).toFixed(4);
 
-  return { coldOpen: COLD_OPEN, phrases, byId, voDuration, duration };
+  return { coldOpen, phrases, byId, voDuration, duration };
 }
+
+export const buildViralTimeline = () =>
+  buildTimeline(expand(VIRAL), VIRAL_COLD_OPEN, VIRAL_TAIL);
 
 /** word start time, by phrase id + word index */
 export function w(tl, id, i) {

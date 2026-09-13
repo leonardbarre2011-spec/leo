@@ -7,9 +7,10 @@
     "audio": "node scripts/build-audio.mjs",
     "start": "remotion studio",
     "studio": "remotion studio",
-    "render": "remotion render SamePlayer render/same-player.mp4 --concurrency=4 --crf=17",
+    "render": "remotion render SamePlayerShort render/same-player-short.mp4 --concurrency=4 --crf=17",
     "still": "remotion still SamePlayer",
-    "upgrade": "remotion upgrade"
+    "upgrade": "remotion upgrade",
+    "render:long": "remotion render SamePlayer render/same-player.mp4 --concurrency=4 --crf=17"
   },
   "dependencies": {
     "@remotion/cli": "4.0.410",
