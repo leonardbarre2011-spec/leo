@@ -661,6 +661,68 @@
    "place": "summit",
    "anim": "Wave",
    "cam": "close"
+  },
+  {
+   "start": 39.678625,
+   "end": 42.775666666666666,
+   "label": null,
+   "emoji": null,
+   "words": [
+    {
+     "w": "Follow",
+     "s": 39.678625,
+     "e": 39.998625
+    },
+    {
+     "w": "if",
+     "s": 39.998625,
+     "e": 40.218624999999996
+    },
+    {
+     "w": "you're",
+     "s": 40.218624999999996,
+     "e": 40.358624999999996
+    },
+    {
+     "w": "ready",
+     "s": 40.358624999999996,
+     "e": 40.578624999999995
+    },
+    {
+     "w": "to",
+     "s": 40.578624999999995,
+     "e": 40.738625
+    },
+    {
+     "w": "change.",
+     "s": 40.738625,
+     "e": 40.978624999999994
+    },
+    {
+     "w": "Part",
+     "s": 41.718624999999996,
+     "e": 41.718624999999996
+    },
+    {
+     "w": "two",
+     "s": 41.718624999999996,
+     "e": 42.098625
+    },
+    {
+     "w": "is",
+     "s": 42.098625,
+     "e": 42.258624999999995
+    },
+    {
+     "w": "coming.",
+     "s": 42.258624999999995,
+     "e": 42.538624999999996
+    }
+   ],
+   "text": "Follow if you're ready to change. Part two is coming.",
+   "place": "summit",
+   "anim": "Wave",
+   "cam": "cta"
   }
  ],
  "caption": "You're not lazy. Your brain is just overstimulated \ud83e\udde0 Save this and start tomorrow morning. #selfimprovement #discipline #dopaminedetox #motivation #mindset #productivity #fyp"
