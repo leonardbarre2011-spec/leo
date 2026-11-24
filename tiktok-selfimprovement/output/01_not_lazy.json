@@ -22,7 +22,10 @@
      "e": 0.75
     }
    ],
-   "text": "You're not lazy."
+   "text": "You're not lazy.",
+   "place": "room",
+   "anim": "Sitting",
+   "cam": "close"
   },
   {
    "start": 1.4547083333333333,
@@ -66,7 +69,10 @@
      "e": 3.2947083333333333
     }
    ],
-   "text": "Your brain is addicted to cheap dopamine."
+   "text": "Your brain is addicted to cheap dopamine.",
+   "place": "room",
+   "anim": "Sitting",
+   "cam": "orbit"
   },
   {
    "start": 4.065625,
@@ -105,7 +111,10 @@
      "e": 6.665625
     }
    ],
-   "text": "Every scroll. Every notification. Every snack."
+   "text": "Every scroll. Every notification. Every snack.",
+   "place": "room",
+   "anim": "Sitting",
+   "cam": "side"
   },
   {
    "start": 7.218999999999999,
@@ -169,7 +178,10 @@
      "e": 11.199
     }
    ],
-   "text": "It raises your baseline. So hard things start to feel impossible."
+   "text": "It raises your baseline. So hard things start to feel impossible.",
+   "place": "room",
+   "anim": "No",
+   "cam": "front"
   },
   {
    "start": 11.830166666666667,
@@ -218,7 +230,10 @@
      "e": 13.470166666666668
     }
    ],
-   "text": "Here's how to reset it in thirty days."
+   "text": "Here's how to reset it in thirty days.",
+   "place": "room",
+   "anim": "Standing",
+   "cam": "close"
   },
   {
    "start": 14.025708333333334,
@@ -297,7 +312,10 @@
      "e": 18.005708333333335
     }
    ],
-   "text": "Days one to seven. No phone for the first hour after you wake up."
+   "text": "Days one to seven. No phone for the first hour after you wake up.",
+   "place": "path",
+   "anim": "Walking",
+   "cam": "front"
   },
   {
    "start": 18.453458333333334,
@@ -366,7 +384,10 @@
      "e": 22.853458333333336
     }
    ],
-   "text": "Days eight to fourteen. Do the hardest task first. Before anything fun."
+   "text": "Days eight to fourteen. Do the hardest task first. Before anything fun.",
+   "place": "path",
+   "anim": "Running",
+   "cam": "side"
   },
   {
    "start": 23.330791666666666,
@@ -450,7 +471,10 @@
      "e": 28.73079166666667
     }
    ],
-   "text": "Days fifteen to thirty. Get bored on purpose. Walk without music. Eat without a screen."
+   "text": "Days fifteen to thirty. Get bored on purpose. Walk without music. Eat without a screen.",
+   "place": "path",
+   "anim": "Walking",
+   "cam": "back"
   },
   {
    "start": 29.278541666666666,
@@ -499,7 +523,10 @@
      "e": 32.23854166666666
     }
    ],
-   "text": "After thirty days, discipline stops feeling like pain."
+   "text": "After thirty days, discipline stops feeling like pain.",
+   "place": "summit",
+   "anim": "Yes",
+   "cam": "orbit"
   },
   {
    "start": 32.83445833333333,
@@ -543,7 +570,10 @@
      "e": 34.47445833333333
     }
    ],
-   "text": "It starts feeling like who you are."
+   "text": "It starts feeling like who you are.",
+   "place": "summit",
+   "anim": "Dance",
+   "cam": "drone"
   },
   {
    "start": 34.888041666666666,
@@ -627,7 +657,10 @@
      "e": 39.16804166666667
     }
    ],
-   "text": "And if you're still scrolling right now, that's exactly why you needed to hear this."
+   "text": "And if you're still scrolling right now, that's exactly why you needed to hear this.",
+   "place": "summit",
+   "anim": "Wave",
+   "cam": "close"
   }
  ],
  "caption": "You're not lazy. Your brain is just overstimulated \ud83e\udde0 Save this and start tomorrow morning. #selfimprovement #discipline #dopaminedetox #motivation #mindset #productivity #fyp"
