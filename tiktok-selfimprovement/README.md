@@ -13,17 +13,30 @@ Des vidéos faceless en anglais, avec une voix IA, des sous-titres animés mot p
 
 ## Le monde 3D
 
+**Tout ce qui est à l'écran est en 3D, sauf les sous-titres.** Il n'y a pas d'emoji, de titre ni de barre de progression. Les sous-titres sont sobres : blancs, avec une ombre douce, en bas de l'écran.
+
 Chaque vidéo raconte une transformation en 3 décors :
 
-1. **`room`** : une chambre sombre la nuit. Le robot est affalé sur le canapé, téléphone en main, entouré de notifications (❤️🔔💬).
-2. **`path`** : un sentier à l'aube, avec des collines, des sapins et des lanternes. Le robot marche et court, et des chiffres 3D (« 1-7 », « 2 »…) flottent au-dessus de lui.
-3. **`summit`** : un sommet au lever du soleil, au-dessus d'une mer de nuages, avec un drapeau. Le robot danse ou lève le pouce.
+1. **`room`**, une chambre la nuit :
+   - un canapé, un lit, un bureau avec un écran allumé, une bibliothèque, un tapis, une plante et des cadres ;
+   - un ruban LED de la couleur de la vidéo ;
+   - une vraie ville 3D derrière la fenêtre, avec la lune et des étoiles ;
+   - le robot affalé sur le canapé, téléphone allumé en main.
+2. **`path`**, un sentier à l'aube :
+   - des cerisiers avec des pétales qui tombent et un lac animé ;
+   - des portails torii qu'on traverse, des lanternes en pierre et un chemin de pierres ;
+   - des fleurs, des lucioles, des oiseaux, des nuages et des montagnes enneigées.
+3. **`summit`**, un sommet au lever du soleil :
+   - une mer de nuages qui dérive ;
+   - des cristaux flottants, un cairn, un drapeau qui ondule et des pics enneigés.
+
+**Appel à l'action en 3D** : le dernier plan (`cam: "cta"`) fait monter un texte doré « FOLLOW FOR MORE » dans le ciel. Pendant ce temps, le robot fait coucou et la caméra recule.
 
 Chaque phrase du script est un plan. Dans `scripts.py`, chaque segment précise :
 
 - le décor (`place`) ;
-- l'animation (`anim`) : `Idle`, `Walking`, `Running`, `Dance`, `Sitting`, `Standing`, `Death`, `Jump`, `Yes`, `No`, `Wave`, `Punch`, `ThumbsUp` ;
-- le cadrage (`cam`) : `front`, `close`, `side`, `back`, `orbit`, `drone`.
+- l'animation (`anim`) : `Idle`, `Walking`, `Running`, `Dance`, `Sitting`, `Standing`, `Jump`, `Yes`, `No`, `Wave`, `Punch`, `ThumbsUp` ;
+- le cadrage (`cam`) : `front`, `close`, `side`, `back`, `orbit`, `drone`, `cta`.
 
 `MODE=2d python make_video.py` revient à l'ancien style, avec un fond animé plat.
 

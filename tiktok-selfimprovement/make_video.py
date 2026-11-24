@@ -226,7 +226,7 @@ def init_worker(job):
     G["emojis"] = [emoji_img(s["emoji"], 250) if s["emoji"] else None for s in G["segs"]]
     G["groups"] = []
     for s in G["segs"]:
-        for g in group_words(s["words"]):
+        for g in (group_words(s["words"], max_words=7, max_chars=34) if G.get("bg3d") else group_words(s["words"])):
             G["groups"].append(g)
     for i, g in enumerate(G["groups"]):
         nxt = G["groups"][i + 1][0]["s"] if i + 1 < len(G["groups"]) else g[-1]["e"] + 0.8
@@ -261,6 +261,37 @@ def render_caption(group, t, hue):
         d.text((x, 40), w, font=f, fill=col, stroke_width=11, stroke_fill=(0, 0, 0), anchor="lt")
         x += wd + sp
     return im
+
+
+FONT_SOBER = "/usr/share/fonts/opentype/inter/InterDisplay-SemiBold.otf"
+
+
+def render_caption_sober(group):
+    """Clean, minimal caption: sentence case, white, soft shadow, max 2 lines."""
+    text = " ".join(w["w"] for w in group)
+    f = font(FONT_SOBER, 60)
+    words, lines, cur = text.split(), [], ""
+    for w in words:
+        trial = (cur + " " + w).strip()
+        if f.getlength(trial) > 880 and cur:
+            lines.append(cur); cur = w
+        else:
+            cur = trial
+    lines.append(cur)
+    lh = 76
+    pad = 40
+    wmax = int(max(f.getlength(l) for l in lines)) + pad * 2
+    hh = lh * len(lines) + pad * 2
+    shadow = Image.new("RGBA", (wmax, hh), (0, 0, 0, 0))
+    ds = ImageDraw.Draw(shadow)
+    txt = Image.new("RGBA", (wmax, hh), (0, 0, 0, 0))
+    dt = ImageDraw.Draw(txt)
+    for i, l in enumerate(lines):
+        y = pad + i * lh + lh / 2
+        ds.text((wmax / 2, y + 3), l, font=f, fill=(0, 0, 0, 200), anchor="mm")
+        dt.text((wmax / 2, y), l, font=f, fill=(255, 255, 255, 255), anchor="mm")
+    shadow = shadow.filter(ImageFilter.GaussianBlur(7))
+    return Image.alpha_composite(shadow, txt)
 
 
 def frame(fi):
@@ -331,6 +362,20 @@ def render_2d_background(fi, t, si, seg, since, hue):
 
 
 def draw_overlays(pil, fi, t, si, since, hue):
+    if G.get("bg3d"):  # 3D mode: only sober captions on top, everything else is in the 3D scene
+        for g in G["groups"]:
+            if g[0]["s"] - 0.05 <= t < g[-1]["g_end"]:
+                key = id(g)
+                cache = G.setdefault("capcache", {})
+                if key not in cache:
+                    cache.clear(); cache[key] = render_caption_sober(g)
+                cap = cache[key]
+                a = min(1, (t - g[0]["s"] + 0.05) / 0.12) * min(1, (g[-1]["g_end"] - t) / 0.1)
+                if a < 1:
+                    cap = cap.copy(); cap.putalpha(cap.getchannel("A").point(lambda v: int(v * a)))
+                pil.alpha_composite(cap, (int(W / 2 - cap.width / 2), int(G.get("cap_y", 1060) - cap.height / 2)))
+                break
+        return pil
     # captions
     for g in G["groups"]:
         if g[0]["s"] - 0.04 <= t < g[-1]["g_end"]:
@@ -358,6 +403,10 @@ def draw_overlays(pil, fi, t, si, since, hue):
 
 def finish(pil, fi, since, si):
     arr = np.asarray(pil.convert("RGB")).astype(np.float32)
+    if G.get("bg3d"):  # cinematic finish only: light vignette + fine grain
+        arr *= (0.55 + 0.45 * G["vig"])
+        arr += np.repeat(np.repeat(G["grain"][fi % 6] * 0.6, 2, 0), 2, 1)[..., None]
+        return np.clip(arr, 0, 255).astype(np.uint8).tobytes()
     # zoom punch on cuts (the 3D camera already does its own FOV punch)
     z = 1 + (0.012 if G.get("bg3d") else 0.035) * math.exp(-max(0, since) * 7)
     if z > 1.002:
@@ -406,7 +455,7 @@ def make(key):
     if MODE == "3d":
         frames_dir = os.path.join(OUT, f"_frames_{key}")
         shutil.rmtree(frames_dir, ignore_errors=True)
-        job3d = {"page": "world.html", "segs": [{k: x.get(k) for k in ("start", "label", "emoji", "place", "anim", "cam")} for x in segs],
+        job3d = {"page": "world.html", "segs": [{k: x.get(k) for k in ("start", "label", "place", "anim", "cam")} for x in segs],
                  "hue": list(hue), "dur": nframes / FPS, "fps": FPS, "w": 720, "h": 1280, "seed": sum(map(ord, key))}
         jp = os.path.join(OUT, f"_job_{key}.json")
         with open(jp, "w") as fh:
@@ -414,7 +463,7 @@ def make(key):
         print(f"[{key}] rendering 3D environment...", flush=True)
         subprocess.run(["node", os.path.join(HERE, "scene3d", "render3d.js"), jp, frames_dir, str(os.cpu_count())], check=True)
         job["bg3d"] = frames_dir
-        job["cap_y"] = 560
+        job["cap_y"] = 1330
     with Pool(os.cpu_count(), initializer=init_worker, initargs=(job,)) as pool:
         for b in pool.imap(frame, range(nframes), chunksize=6):
             ff.stdin.write(b)

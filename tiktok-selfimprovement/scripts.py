@@ -19,6 +19,7 @@ VIDEOS = {
             ("After thirty days, discipline stops feeling like pain.", None, "🔥", {"place": "summit", "anim": "Yes", "cam": "orbit"}),
             ("It starts feeling like who you are.", None, "👑", {"place": "summit", "anim": "Dance", "cam": "drone"}),
             ("And if you're still scrolling right now, that's exactly why you needed to hear this.", None, "👀", {"place": "summit", "anim": "Wave", "cam": "close"}),
+            ("Follow if you're ready to change. Part two is coming.", None, None, {"place": "summit", "anim": "Wave", "cam": "cta"}),
         ],
         "caption": "You're not lazy. Your brain is just overstimulated 🧠 Save this and start tomorrow morning. "
                    "#selfimprovement #discipline #dopaminedetox #motivation #mindset #productivity #fyp",
@@ -37,6 +38,7 @@ VIDEOS = {
             ("Because your future does.", None, "🎯", {"place": "summit", "anim": "Idle", "cam": "drone"}),
             ("Most people will wait for January. You'll already be five weeks ahead.", None, "🏁", {"place": "summit", "anim": "Dance", "cam": "orbit"}),
             ("Save this, and start tonight.", None, "✅", {"place": "summit", "anim": "ThumbsUp", "cam": "close"}),
+            ("Follow, and I'll keep you on track until 2027.", None, None, {"place": "summit", "anim": "Wave", "cam": "cta"}),
         ],
         "caption": "Don't wait for January. Which one are you starting tonight? 👇 "
                    "#selfimprovement #2027 #newyearnewme #discipline #glowup #mindset #motivation #fyp",
@@ -55,6 +57,7 @@ VIDEOS = {
             ("Give yourself permission to do it badly. Perfectionism is just fear wearing a nice suit.", None, "🎭", {"place": "path", "anim": "No", "cam": "front"}),
             ("You can't fix a blank page. But you can fix a bad one.", None, "📄", {"place": "summit", "anim": "Idle", "cam": "drone"}),
             ("Now stop watching, and go do the thing.", None, "👊", {"place": "summit", "anim": "Punch", "cam": "close"}),
+            ("Follow for more tricks your brain doesn't want you to know.", None, None, {"place": "summit", "anim": "Wave", "cam": "cta"}),
         ],
         "caption": "Trick #3 changed everything for me 📝 Send this to someone who needs it. "
                    "#procrastination #psychology #selfimprovement #productivity #studytips #mindset #fyp",

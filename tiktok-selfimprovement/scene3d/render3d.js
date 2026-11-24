@@ -7,7 +7,8 @@ const [jobPath, outDir, workersArg] = process.argv.slice(2);
 const job = JSON.parse(fs.readFileSync(jobPath, 'utf8'));
 const ROOT = __dirname;
 const WORKERS = parseInt(workersArg || '4');
-const N = Math.floor(job.dur * job.fps);
+const TIMES = job.times || null;
+const N = TIMES ? TIMES.length : Math.floor(job.dur * job.fps);
 fs.mkdirSync(outDir, { recursive: true });
 
 const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.json': 'application/json' };
@@ -28,7 +29,7 @@ async function worker(wi) {
   for (let f = wi; f < N; f += WORKERS) {
     const file = path.join(outDir, String(f).padStart(5, '0') + '.jpg');
     if (fs.existsSync(file)) continue;
-    await page.evaluate(t => window.renderAt(t), f / job.fps);
+    await page.evaluate(t => window.renderAt(t), TIMES ? TIMES[f] : f / job.fps);
     await canvas.screenshot({ path: file, type: 'jpeg', quality: 93 });
     if (wi === 0 && f % 120 === 0) console.log(`  3d frame ${f}/${N}`);
   }
