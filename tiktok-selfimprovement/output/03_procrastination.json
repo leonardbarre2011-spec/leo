@@ -644,6 +644,73 @@
    "place": "summit",
    "anim": "Punch",
    "cam": "close"
+  },
+  {
+   "start": 36.55020833333333,
+   "end": 39.71995833333333,
+   "label": null,
+   "emoji": null,
+   "words": [
+    {
+     "w": "Follow",
+     "s": 36.55020833333333,
+     "e": 36.79020833333333
+    },
+    {
+     "w": "for",
+     "s": 36.79020833333333,
+     "e": 37.05020833333333
+    },
+    {
+     "w": "more",
+     "s": 37.05020833333333,
+     "e": 37.23020833333333
+    },
+    {
+     "w": "tricks",
+     "s": 37.23020833333333,
+     "e": 37.59020833333333
+    },
+    {
+     "w": "your",
+     "s": 37.59020833333333,
+     "e": 38.03020833333333
+    },
+    {
+     "w": "brain",
+     "s": 38.03020833333333,
+     "e": 38.35020833333333
+    },
+    {
+     "w": "doesn't",
+     "s": 38.35020833333333,
+     "e": 38.83020833333333
+    },
+    {
+     "w": "want",
+     "s": 38.83020833333333,
+     "e": 39.03020833333333
+    },
+    {
+     "w": "you",
+     "s": 39.03020833333333,
+     "e": 39.19020833333333
+    },
+    {
+     "w": "to",
+     "s": 39.19020833333333,
+     "e": 39.29020833333333
+    },
+    {
+     "w": "know.",
+     "s": 39.29020833333333,
+     "e": 39.53020833333333
+    }
+   ],
+   "text": "Follow for more tricks your brain doesn't want you to know.",
+   "place": "summit",
+   "anim": "Wave",
+   "cam": "cta"
   }
  ],
  "caption": "Trick #3 changed everything for me \ud83d\udcdd Send this to someone who needs it. #procrastination #psychology #selfimprovement #productivity #studytips #mindset #fyp"
