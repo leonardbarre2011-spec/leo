@@ -8,7 +8,24 @@ Des vidéos faceless en anglais, avec une voix IA, des sous-titres animés mot p
 | Voix IA | [Kokoro TTS](https://github.com/thewh1teagle/kokoro-onnx) (open source, Apache 2.0) | Voix off naturelle d'un homme américain (`am_michael`) |
 | Synchro des mots | [faster-whisper](https://github.com/SYSTRAN/faster-whisper) | Calcule l'instant de chaque mot pour des sous-titres karaoké |
 | Musique et SFX | Générés en Python (numpy) | Nappe sombre, battement de cœur et whoosh à chaque cut, **sans aucun risque de copyright** |
-| Image | Pillow + ffmpeg | 1080x1920, 30 fps, grain, vignette, zoom-punch et flash à chaque cut |
+| **Monde 3D + personnage** | [Three.js](https://threejs.org) (open source) rendu dans Chromium sans écran | Un robot 3D animé ([RobotExpressive](https://github.com/mrdoob/three.js/tree/dev/examples/models/gltf/RobotExpressive), licence CC0) joue l'histoire dans 3 décors |
+| Montage | Pillow + ffmpeg | 1080x1920, 30 fps, sous-titres nets par-dessus la 3D, flash à chaque cut |
+
+## Le monde 3D
+
+Chaque vidéo raconte une transformation en 3 décors :
+
+1. **`room`** : une chambre sombre la nuit. Le robot est affalé sur le canapé, téléphone en main, entouré de notifications (❤️🔔💬).
+2. **`path`** : un sentier à l'aube, avec des collines, des sapins et des lanternes. Le robot marche et court, et des chiffres 3D (« 1-7 », « 2 »…) flottent au-dessus de lui.
+3. **`summit`** : un sommet au lever du soleil, au-dessus d'une mer de nuages, avec un drapeau. Le robot danse ou lève le pouce.
+
+Chaque phrase du script est un plan. Dans `scripts.py`, chaque segment précise :
+
+- le décor (`place`) ;
+- l'animation (`anim`) : `Idle`, `Walking`, `Running`, `Dance`, `Sitting`, `Standing`, `Death`, `Jump`, `Yes`, `No`, `Wave`, `Punch`, `ThumbsUp` ;
+- le cadrage (`cam`) : `front`, `close`, `side`, `back`, `orbit`, `drone`.
+
+`MODE=2d python make_video.py` revient à l'ancien style, avec un fond animé plat.
 
 ## Les 3 vidéos prêtes (`output/`)
 
@@ -37,7 +54,8 @@ La description et les hashtags de chaque vidéo sont dans `output/*_caption.txt`
 2. Lancez :
 
 ```bash
-pip install kokoro-onnx soundfile faster-whisper numpy pillow
+pip install kokoro-onnx soundfile faster-whisper numpy pillow playwright
+(cd scene3d && npm install)   # Three.js
 mkdir -p models && cd models
 curl -LO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
 curl -LO https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
@@ -46,7 +64,7 @@ python make_video.py 01_not_lazy         # une seule
 VOICE=bm_george python make_video.py     # voix britannique grave
 ```
 
-Il faut aussi `ffmpeg`. La police utilisée est Inter Display Black ; changez les chemins `FONT_*` sur Windows ou Mac.
+Il faut aussi `ffmpeg` et Chromium. Chromium s'installe avec `npx playwright install chromium`. La police utilisée est Inter Display Black ; changez les chemins `FONT_*` sur Windows ou Mac.
 
 **Règles d'écriture d'un bon script**, adaptées de ce qui marche dans la niche :
 

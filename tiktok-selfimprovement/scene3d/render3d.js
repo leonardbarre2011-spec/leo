@@ -21,7 +21,7 @@ async function worker(wi) {
     if (!p.startsWith(ROOT) || !fs.existsSync(p)) return route.fulfill({ status: 404 });
     route.fulfill({ body: fs.readFileSync(p), contentType: MIME[path.extname(p)] || 'application/octet-stream' });
   });
-  await page.goto('http://scene.local/scene.html');
+  await page.goto('http://scene.local/' + (job.page || 'scene.html'));
   await page.waitForFunction(() => window.ready === true);
   await page.evaluate(j => window.init(j), job);
   const canvas = await page.$('canvas');

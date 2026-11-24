@@ -84,7 +84,9 @@ def build_voice(cfg):
     asr = WhisperModel("base.en", device="cpu", compute_type="int8")
     pieces, segs, t = [], [], 0.25  # small lead-in so the first word lands on frame ~8
     pieces.append(np.zeros(int(0.25 * SR), np.float32))
-    for i, (text, label, emoji) in enumerate(cfg["segments"]):
+    for i, seg_def in enumerate(cfg["segments"]):
+        text, label, emoji = seg_def[:3]
+        direction = seg_def[3] if len(seg_def) > 3 else {}
         audio, sr = tts.create(text, voice=VOICE, speed=SPEED, lang="en-us")
         assert sr == SR
         audio = trim(audio.astype(np.float32))
@@ -95,7 +97,7 @@ def build_voice(cfg):
         heard = [w for s in result for w in s.words]
         dur = len(audio) / SR
         words = align(text.split(), heard, dur, t)
-        segs.append({"start": t, "end": t + dur, "label": label, "emoji": emoji, "words": words, "text": text})
+        segs.append({"start": t, "end": t + dur, "label": label, "emoji": emoji, "words": words, "text": text, **direction})
         pieces.append(audio)
         gap = 0.22 if i < len(cfg["segments"]) - 1 else 0.6
         pieces.append(np.zeros(int(gap * SR), np.float32))
@@ -337,7 +339,7 @@ def draw_overlays(pil, fi, t, si, since, hue):
             s = 0.82 + 0.18 * ease_out_back(k)
             if s != 1:
                 cap = cap.resize((int(cap.width * s), int(cap.height * s)), Image.BILINEAR)
-            pil.alpha_composite(cap, (int(W / 2 - cap.width / 2), int(1060 - cap.height / 2)))
+            pil.alpha_composite(cap, (int(W / 2 - cap.width / 2), int(G.get("cap_y", 1060) - cap.height / 2)))
             break
 
     # title pill + progress bar (top, below TikTok's UI)
@@ -404,7 +406,7 @@ def make(key):
     if MODE == "3d":
         frames_dir = os.path.join(OUT, f"_frames_{key}")
         shutil.rmtree(frames_dir, ignore_errors=True)
-        job3d = {"segs": [{"start": x["start"], "label": x["label"], "emoji": x["emoji"]} for x in segs],
+        job3d = {"page": "world.html", "segs": [{k: x.get(k) for k in ("start", "label", "emoji", "place", "anim", "cam")} for x in segs],
                  "hue": list(hue), "dur": nframes / FPS, "fps": FPS, "w": 720, "h": 1280, "seed": sum(map(ord, key))}
         jp = os.path.join(OUT, f"_job_{key}.json")
         with open(jp, "w") as fh:
@@ -412,6 +414,7 @@ def make(key):
         print(f"[{key}] rendering 3D environment...", flush=True)
         subprocess.run(["node", os.path.join(HERE, "scene3d", "render3d.js"), jp, frames_dir, str(os.cpu_count())], check=True)
         job["bg3d"] = frames_dir
+        job["cap_y"] = 560
     with Pool(os.cpu_count(), initializer=init_worker, initargs=(job,)) as pool:
         for b in pool.imap(frame, range(nframes), chunksize=6):
             ff.stdin.write(b)
