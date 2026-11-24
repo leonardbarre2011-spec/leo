@@ -62,7 +62,10 @@
      "e": 5.33
     }
    ],
-   "text": "Do these five things before 2027, and nobody will recognize you."
+   "text": "Do these five things before 2027, and nobody will recognize you.",
+   "place": "room",
+   "anim": "Sitting",
+   "cam": "close"
   },
   {
    "start": 5.6354999999999995,
@@ -131,7 +134,10 @@
      "e": 8.7955
     }
    ],
-   "text": "One. Wake up at the same time every day. Even on weekends."
+   "text": "One. Wake up at the same time every day. Even on weekends.",
+   "place": "room",
+   "anim": "Standing",
+   "cam": "front"
   },
   {
    "start": 9.573458333333333,
@@ -155,7 +161,10 @@
      "e": 11.233458333333333
     }
    ],
-   "text": "Consistency beats motivation."
+   "text": "Consistency beats motivation.",
+   "place": "path",
+   "anim": "Walking",
+   "cam": "front"
   },
   {
    "start": 11.849916666666667,
@@ -234,7 +243,10 @@
      "e": 16.549916666666668
     }
    ],
-   "text": "Two. Train your body before you train your mind. Thirty minutes. Every single day."
+   "text": "Two. Train your body before you train your mind. Thirty minutes. Every single day.",
+   "place": "path",
+   "anim": "Running",
+   "cam": "side"
   },
   {
    "start": 16.9615,
@@ -298,7 +310,10 @@
      "e": 20.2215
     }
    ],
-   "text": "Three. Read ten pages a day. That's twelve books a year."
+   "text": "Three. Read ten pages a day. That's twelve books a year.",
+   "place": "path",
+   "anim": "Walking",
+   "cam": "back"
   },
   {
    "start": 20.63325,
@@ -352,7 +367,10 @@
      "e": 23.63325
     }
    ],
-   "text": "Four. Stop telling people your plans. Show them results."
+   "text": "Four. Stop telling people your plans. Show them results.",
+   "place": "path",
+   "anim": "No",
+   "cam": "front"
   },
   {
    "start": 24.353291666666667,
@@ -411,7 +429,10 @@
      "e": 27.45329166666667
     }
    ],
-   "text": "Five. Protect your mornings like your life depends on it."
+   "text": "Five. Protect your mornings like your life depends on it.",
+   "place": "path",
+   "anim": "Punch",
+   "cam": "side"
   },
   {
    "start": 27.704875,
@@ -440,7 +461,10 @@
      "e": 28.844875000000002
     }
    ],
-   "text": "Because your future does."
+   "text": "Because your future does.",
+   "place": "summit",
+   "anim": "Idle",
+   "cam": "drone"
   },
   {
    "start": 29.382291666666667,
@@ -509,7 +533,10 @@
      "e": 33.40229166666667
     }
    ],
-   "text": "Most people will wait for January. You'll already be five weeks ahead."
+   "text": "Most people will wait for January. You'll already be five weeks ahead.",
+   "place": "summit",
+   "anim": "Dance",
+   "cam": "orbit"
   },
   {
    "start": 33.825916666666664,
@@ -543,7 +570,10 @@
      "e": 35.12591666666666
     }
    ],
-   "text": "Save this, and start tonight."
+   "text": "Save this, and start tonight.",
+   "place": "summit",
+   "anim": "ThumbsUp",
+   "cam": "close"
   }
  ],
  "caption": "Don't wait for January. Which one are you starting tonight? \ud83d\udc47 #selfimprovement #2027 #newyearnewme #discipline #glowup #mindset #motivation #fyp"
