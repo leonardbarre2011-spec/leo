@@ -7,7 +7,7 @@
 
 Usage:  python make_video.py [video_key ...]     (default: all videos in scripts.py)
 """
-import math, os, random, subprocess, sys, json
+import math, os, random, shutil, subprocess, sys, json
 from multiprocessing import Pool
 
 import numpy as np
@@ -22,6 +22,7 @@ W, H, FPS = 1080, 1920, 30
 SR = 24000
 VOICE = os.environ.get("VOICE", "am_michael")
 SPEED = float(os.environ.get("SPEED", "1.05"))
+MODE = os.environ.get("MODE", "3d")  # "3d" = Three.js environment, "2d" = flat animated background
 FONT_BLACK = "/usr/share/fonts/opentype/inter/InterDisplay-Black.otf"
 FONT_BOLD = "/usr/share/fonts/opentype/inter/InterDisplay-Bold.otf"
 FONT_EMOJI = "/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf"
@@ -270,6 +271,16 @@ def frame(fi):
     seg = segs[si]
     since = t - (seg["start"] - 0.12)
 
+    if G.get("bg3d"):
+        bg = Image.open(os.path.join(G["bg3d"], f"{fi:05d}.jpg")).convert("RGB").resize((W, H), Image.LANCZOS)
+        pil = bg.convert("RGBA")
+    else:
+        pil = render_2d_background(fi, t, si, seg, since, hue)
+    pil = draw_overlays(pil, fi, t, si, since, hue)
+    return finish(pil, fi, since, si)
+
+
+def render_2d_background(fi, t, si, seg, since, hue):
     img = G["base"].copy()
     # moving glow, alternating side per segment, punch on cut
     gl = G["glow"]
@@ -314,7 +325,10 @@ def frame(fi):
         e2 = em.resize((max(1, int(em.width * s)), max(1, int(em.height * s))), Image.BILINEAR) if s != 1 else em
         ey = 690 + 14 * math.sin(t * 2.2)
         pil.alpha_composite(e2, (int(W / 2 - e2.width / 2), int(ey - e2.height / 2)))
+    return pil
 
+
+def draw_overlays(pil, fi, t, si, since, hue):
     # captions
     for g in G["groups"]:
         if g[0]["s"] - 0.04 <= t < g[-1]["g_end"]:
@@ -337,10 +351,13 @@ def frame(fi):
     prog = min(1, t / G["dur"])
     d2.rectangle((0, 0, W, 12), fill=(30, 30, 36))
     d2.rectangle((0, 0, int(W * prog), 12), fill=tuple(int(c) for c in hue))
+    return pil
 
+
+def finish(pil, fi, since, si):
     arr = np.asarray(pil.convert("RGB")).astype(np.float32)
-    # zoom punch on cuts
-    z = 1 + 0.035 * math.exp(-max(0, since) * 7)
+    # zoom punch on cuts (the 3D camera already does its own FOV punch)
+    z = 1 + (0.012 if G.get("bg3d") else 0.035) * math.exp(-max(0, since) * 7)
     if z > 1.002:
         im2 = Image.fromarray(arr.astype(np.uint8))
         cw, ch = int(W / z), int(H / z)
@@ -384,6 +401,17 @@ def make(key):
         "-c:v", "libx264", "-preset", "slow", "-crf", "21", "-maxrate", "5M", "-bufsize", "10M", "-pix_fmt", "yuv420p",
         "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-shortest", "-movflags", "+faststart", mp4,
     ], stdin=subprocess.PIPE)
+    if MODE == "3d":
+        frames_dir = os.path.join(OUT, f"_frames_{key}")
+        shutil.rmtree(frames_dir, ignore_errors=True)
+        job3d = {"segs": [{"start": x["start"], "label": x["label"], "emoji": x["emoji"]} for x in segs],
+                 "hue": list(hue), "dur": nframes / FPS, "fps": FPS, "w": 720, "h": 1280, "seed": sum(map(ord, key))}
+        jp = os.path.join(OUT, f"_job_{key}.json")
+        with open(jp, "w") as fh:
+            json.dump(job3d, fh)
+        print(f"[{key}] rendering 3D environment...", flush=True)
+        subprocess.run(["node", os.path.join(HERE, "scene3d", "render3d.js"), jp, frames_dir, str(os.cpu_count())], check=True)
+        job["bg3d"] = frames_dir
     with Pool(os.cpu_count(), initializer=init_worker, initargs=(job,)) as pool:
         for b in pool.imap(frame, range(nframes), chunksize=6):
             ff.stdin.write(b)
@@ -393,6 +421,8 @@ def make(key):
     with open(os.path.join(OUT, f"{key}_caption.txt"), "w") as fh:
         fh.write(cfg["caption"] + "\n")
     os.remove(wav)
+    if MODE == "3d":
+        shutil.rmtree(frames_dir, ignore_errors=True); os.remove(jp)
     print(f"[{key}] done -> {mp4}", flush=True)
 
 
