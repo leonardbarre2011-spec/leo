@@ -574,6 +574,63 @@
    "place": "summit",
    "anim": "ThumbsUp",
    "cam": "close"
+  },
+  {
+   "start": 35.59320833333333,
+   "end": 39.16270833333333,
+   "label": null,
+   "emoji": null,
+   "words": [
+    {
+     "w": "Follow,",
+     "s": 35.59320833333333,
+     "e": 35.91320833333333
+    },
+    {
+     "w": "and",
+     "s": 36.19320833333333,
+     "e": 36.253208333333326
+    },
+    {
+     "w": "I'll",
+     "s": 36.253208333333326,
+     "e": 36.39320833333333
+    },
+    {
+     "w": "keep",
+     "s": 36.39320833333333,
+     "e": 36.59320833333333
+    },
+    {
+     "w": "you",
+     "s": 36.59320833333333,
+     "e": 36.77320833333333
+    },
+    {
+     "w": "on",
+     "s": 36.77320833333333,
+     "e": 36.91320833333333
+    },
+    {
+     "w": "track",
+     "s": 36.91320833333333,
+     "e": 37.23320833333333
+    },
+    {
+     "w": "until",
+     "s": 37.23320833333333,
+     "e": 37.573208333333326
+    },
+    {
+     "w": "2027.",
+     "s": 37.573208333333326,
+     "e": 38.95320833333333
+    }
+   ],
+   "text": "Follow, and I'll keep you on track until 2027.",
+   "place": "summit",
+   "anim": "Wave",
+   "cam": "cta"
   }
  ],
  "caption": "Don't wait for January. Which one are you starting tonight? \ud83d\udc47 #selfimprovement #2027 #newyearnewme #discipline #glowup #mindset #motivation #fyp"
