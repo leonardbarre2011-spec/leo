@@ -57,7 +57,10 @@
      "e": 4.39
     }
    ],
-   "text": "Three psychology tricks that will make you stop procrastinating. Today."
+   "text": "Three psychology tricks that will make you stop procrastinating. Today.",
+   "place": "room",
+   "anim": "Sitting",
+   "cam": "close"
   },
   {
    "start": 4.933625,
@@ -96,7 +99,10 @@
      "e": 6.613625
     }
    ],
-   "text": "Trick one. The five second rule."
+   "text": "Trick one. The five second rule.",
+   "place": "room",
+   "anim": "Sitting",
+   "cam": "orbit"
   },
   {
    "start": 7.0696666666666665,
@@ -180,7 +186,10 @@
      "e": 11.489666666666666
     }
    ],
-   "text": "When you feel the urge to delay, count. Five. Four. Three. Two. One. And move."
+   "text": "When you feel the urge to delay, count. Five. Four. Three. Two. One. And move.",
+   "place": "room",
+   "anim": "Standing",
+   "cam": "front"
   },
   {
    "start": 12.051541666666665,
@@ -224,7 +233,10 @@
      "e": 14.031541666666666
     }
    ],
-   "text": "Your brain can't build excuses that fast."
+   "text": "Your brain can't build excuses that fast.",
+   "place": "path",
+   "anim": "Running",
+   "cam": "side"
   },
   {
    "start": 14.628958333333332,
@@ -263,7 +275,10 @@
      "e": 16.06895833333333
     }
    ],
-   "text": "Trick two. The two minute start."
+   "text": "Trick two. The two minute start.",
+   "place": "path",
+   "anim": "Walking",
+   "cam": "front"
   },
   {
    "start": 16.482958333333332,
@@ -372,7 +387,10 @@
      "e": 22.842958333333332
     }
    ],
-   "text": "Don't commit to the whole task. Commit to two minutes. Starting is the hardest part, and momentum does the rest."
+   "text": "Don't commit to the whole task. Commit to two minutes. Starting is the hardest part, and momentum does the rest.",
+   "place": "path",
+   "anim": "Running",
+   "cam": "back"
   },
   {
    "start": 23.357416666666666,
@@ -406,7 +424,10 @@
      "e": 24.577416666666664
     }
    ],
-   "text": "Trick three. Make it ugly."
+   "text": "Trick three. Make it ugly.",
+   "place": "path",
+   "anim": "Yes",
+   "cam": "orbit"
   },
   {
    "start": 25.122833333333332,
@@ -490,7 +511,10 @@
      "e": 30.02283333333333
     }
    ],
-   "text": "Give yourself permission to do it badly. Perfectionism is just fear wearing a nice suit."
+   "text": "Give yourself permission to do it badly. Perfectionism is just fear wearing a nice suit.",
+   "place": "path",
+   "anim": "No",
+   "cam": "front"
   },
   {
    "start": 30.417541666666665,
@@ -564,7 +588,10 @@
      "e": 33.67754166666666
     }
    ],
-   "text": "You can't fix a blank page. But you can fix a bad one."
+   "text": "You can't fix a blank page. But you can fix a bad one.",
+   "place": "summit",
+   "anim": "Idle",
+   "cam": "drone"
   },
   {
    "start": 34.02504166666667,
@@ -613,7 +640,10 @@
      "e": 36.105041666666665
     }
    ],
-   "text": "Now stop watching, and go do the thing."
+   "text": "Now stop watching, and go do the thing.",
+   "place": "summit",
+   "anim": "Punch",
+   "cam": "close"
   }
  ],
  "caption": "Trick #3 changed everything for me \ud83d\udcdd Send this to someone who needs it. #procrastination #psychology #selfimprovement #productivity #studytips #mindset #fyp"
