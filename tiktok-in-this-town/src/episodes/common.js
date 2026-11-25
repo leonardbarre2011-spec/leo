@@ -203,5 +203,143 @@ export function lib(A) {
     return s;
   };
 
+  // ---------------------------------------------------------------- cow (blocky). pivot = back hips so it can stand up
+  L.cow = () => {
+    const c = { g: prop(new THREE.Group()) }; scene.add(c.g);
+    const white = M('#f7f5f0'), black = M('#262626'), pink = M('#f7a8b8'), horn = M('#f3e6c4');
+    c.body = new THREE.Group(); c.body.position.set(0, 2.0, -1.4); c.g.add(c.body);
+    const inner = new THREE.Group(); inner.position.set(0, -2.0, 1.4); c.body.add(inner);
+    mesh(rb(2.6, 2.2, 4.2, 0.45), white, 0, 3.0, 0, inner);
+    for (const [x, y, z, w, h, d] of [[1.31, 3.3, 0.6, 0.06, 1.0, 1.3], [1.31, 2.6, -1.1, 0.06, 0.8, 0.9], [-1.31, 3.2, -0.4, 0.06, 1.1, 1.5], [-1.31, 2.4, 1.2, 0.06, 0.7, 0.8], [0.4, 4.11, -0.8, 1.0, 0.06, 1.2], [-0.5, 4.11, 1.0, 0.9, 0.06, 0.9], [0, 3.4, -2.11, 1.0, 0.8, 0.06]]) mesh(rb(w, h, d, 0.02), black, x, y, z, inner);
+    c.head = new THREE.Group(); c.head.position.set(0, 3.8, 2.0); inner.add(c.head);
+    mesh(rb(1.8, 1.65, 1.7, 0.45), white, 0, 0, 0.45, c.head);
+    mesh(rb(1.7, 0.9, 0.7, 0.28), pink, 0, -0.42, 1.3, c.head);
+    for (const sx of [-0.38, 0.38]) mesh(rb(0.2, 0.14, 0.05, 0.03), M('#7a3045'), sx, -0.3, 1.66, c.head);
+    c.mouth = mesh(rb(0.8, 0.12, 0.05, 0.03), M('#5a1018'), 0, -0.68, 1.66, c.head);
+    for (const sx of [-0.45, 0.45]) { mesh(rb(0.3, 0.42, 0.05, 0.1), black, sx, 0.25, 1.31, c.head); mesh(rb(0.1, 0.12, 0.05, 0.03), M('#ffffff'), sx - 0.06, 0.36, 1.34, c.head); }
+    for (const sx of [-1, 1]) { const h = mesh(new THREE.ConeGeometry(0.17, 0.75, 8), horn, sx * 0.6, 1.05, 0.3, c.head); h.rotation.z = -sx * 0.55; const e = mesh(rb(0.75, 0.28, 0.45, 0.1), pink, sx * 1.1, 0.45, 0.25, c.head); e.rotation.z = -sx * 0.3; }
+    mesh(rb(0.9, 0.5, 0.9, 0.2), pink, 0, 1.75, -0.6, inner);
+    c.tail = mesh(rb(0.18, 1.6, 0.18, 0.06), white, 0, 3.0, -2.25, inner); c.tail.rotation.x = 0.25; mesh(rb(0.35, 0.45, 0.35, 0.12), black, 0, -0.9, 0, c.tail);
+    c.legs = [];
+    for (const [x, z] of [[-0.8, 1.4], [0.8, 1.4], [-0.8, -1.4], [0.8, -1.4]]) {
+      const lg = new THREE.Group(); lg.position.set(x, 2.0, z); inner.add(lg); c.legs.push(lg);
+      mesh(rb(0.72, 2.0, 0.72, 0.15), white, 0, -1.0, 0, lg); mesh(rb(0.78, 0.38, 0.78, 0.1), black, 0, -1.85, 0, lg);
+    }
+    // o: {pos, yaw, pitch, roll, t, walk, flail, stand, mouth, scale, look}
+    c.pose = (o = {}) => {
+      c.g.visible = true; c.g.position.set(...(o.pos || [0, 0, 0])); c.g.rotation.set(o.pitch || 0, o.yaw || 0, o.roll || 0, 'YXZ');
+      c.g.scale.setScalar(o.scale || 1);
+      c.body.rotation.set(0, 0, 0); c.head.rotation.set(o.look || 0, o.turn || 0, 0); c.legs.forEach(l => l.rotation.set(0, 0, 0));
+      c.mouth.scale.y = 1 + (o.mouth || 0) * 4; c.mouth.position.y = -0.68 - (o.mouth || 0) * 0.12;
+      const t = o.t || 0;
+      if (o.walk) { const s = Math.sin(t * o.walk * 2 * Math.PI) * 0.6; c.legs[0].rotation.x = s; c.legs[3].rotation.x = s; c.legs[1].rotation.x = -s; c.legs[2].rotation.x = -s; }
+      if (o.flail) c.legs.forEach((l, i) => { l.rotation.x = Math.sin(t * 16 + i * 1.7) * 0.9; l.rotation.z = Math.cos(t * 13 + i) * 0.4; });
+      if (o.stand) {
+        const k = o.stand; c.body.rotation.x = -1.5 * k; c.head.rotation.x += 1.35 * k;
+        c.legs[2].rotation.x += 1.5 * k; c.legs[3].rotation.x += 1.5 * k;
+        c.legs[0].rotation.x += 0.4 * k; c.legs[1].rotation.x += 0.4 * k;
+        if (o.wave) c.legs[1].rotation.x += -1.6 + Math.sin(t * 12) * 0.4;
+      }
+      c.tail.rotation.z = Math.sin(t * 5) * 0.3;
+    };
+    return c;
+  };
+
+  // steel umbrella, parented to a character's body; holdUmb() raises the arm and shows it
+  L.umbrella = (char, side = 1, col = '#a9b4bf') => {
+    const g = prop(new THREE.Group()); char.body.add(g); g.position.set(1.5 * side, 2.9, 1.45);
+    const steel = M(col, { metalness: 0.3, roughness: 0.3 });
+    mesh(new THREE.CylinderGeometry(0.09, 0.09, 5.8, 8), M('#555', { metalness: 0.6, roughness: 0.4 }), 0, 2.9, 0, g);
+    const can = mesh(new THREE.ConeGeometry(3.3, 1.4, 12, 1, true), new THREE.MeshStandardMaterial({ color: col, metalness: 0.3, roughness: 0.3, side: THREE.DoubleSide, emissive: col, emissiveIntensity: 0.12 }), 0, 6.1, 0, g);
+    for (let k = 0; k < 12; k++) { const r = mesh(new THREE.BoxGeometry(0.08, 0.1, 3.5), M('#8a949e', { metalness: 0.3 }), Math.sin(k / 12 * Math.PI * 2) * 1.6, 6.05, Math.cos(k / 12 * Math.PI * 2) * 1.6, g); r.rotation.y = k / 12 * Math.PI * 2; r.rotation.x = 0.4; }
+    mesh(new THREE.CylinderGeometry(0.12, 0.05, 0.7, 8), steel, 0, 7.1, 0, g);
+    g.side = side; g.char = char;
+    return g;
+  };
+  L.holdUmb = (u) => { u.visible = true; const a = u.side > 0 ? u.char.armR : u.char.armL; a.rotation.x = -1.0; a.rotation.z = 0; };
+
+  // banana (character-sized, with a face). acc: { tophat, hair, cap }
+  const banGeo = new THREE.TorusGeometry(3, 0.95, 12, 28, 2.1);
+  const banMat = M('#ffd93b', { emissive: '#6b5200', emissiveIntensity: 0.12 });
+  L.banana = (acc = {}) => {
+    const b = { g: prop(new THREE.Group()) }; scene.add(b.g);
+    b.inner = new THREE.Group(); b.inner.position.y = 3.6; b.g.add(b.inner);
+    const m = mesh(banGeo, banMat, 0, 0, 0, b.inner); m.rotation.z = -1.05; m.position.x = -3;
+    const tip = (a) => [3 * Math.cos(a) - 3, 3 * Math.sin(a)];
+    const [tx, ty] = tip(1.05), [bx, by] = tip(-1.05);
+    mesh(new THREE.SphereGeometry(0.95, 14, 10), banMat, tx, ty, 0, b.inner);
+    mesh(new THREE.SphereGeometry(0.95, 14, 10), banMat, bx, by, 0, b.inner);
+    const st = mesh(new THREE.CylinderGeometry(0.3, 0.42, 1.1, 10), M('#6b4a1f'), tx - 0.35, ty + 0.85, 0, b.inner); st.rotation.z = 0.5;
+    mesh(new THREE.SphereGeometry(0.42, 10, 8), M('#3a2a14'), bx - 0.4, by - 0.55, 0, b.inner);
+    b.faceMat = new THREE.MeshStandardMaterial({ map: A.faceTex('shock'), transparent: true, roughness: 0.6, polygonOffset: true, polygonOffsetFactor: -2 });
+    const f = mesh(new THREE.PlaneGeometry(1.5, 1.5), b.faceMat, 0.15, 0.35, 0.97, b.inner); f.castShadow = false;
+    b.face = 'shock';
+    b.setFace = (t) => { if (t !== b.face) { b.face = t; b.faceMat.map = A.faceTex(t); b.faceMat.needsUpdate = true; } };
+    const hx = tx + 0.25, hy = ty + 0.3;
+    if (acc.tophat) { const h = new THREE.Group(); h.position.set(hx + 0.4, hy - 0.4, 0); h.rotation.z = -0.4; b.inner.add(h); mesh(new THREE.CylinderGeometry(0.95, 0.95, 0.08, 20), M('#151515'), 0, 0, 0, h); mesh(new THREE.CylinderGeometry(0.58, 0.6, 1.1, 20), M('#151515'), 0, 0.58, 0, h); mesh(new THREE.CylinderGeometry(0.61, 0.61, 0.2, 20), M('#c0392b'), 0, 0.13, 0, h); }
+    if (acc.hair) { const h = mesh(rb(1.6, 0.5, 1.6, 0.2), M(acc.hair), hx + 0.35, hy - 0.55, 0, b.inner); h.rotation.z = -0.5; }
+    if (acc.cap) { const h = new THREE.Group(); h.position.set(hx + 0.35, hy - 0.5, 0); h.rotation.z = -0.5; b.inner.add(h); mesh(rb(1.6, 0.6, 1.6, 0.25), M(acc.cap), 0, 0, 0, h); mesh(rb(1.4, 0.12, 0.9, 0.05), M(acc.cap), 0, -0.2, 0.9, h); }
+    if (acc.bun) { const h = mesh(new THREE.SphereGeometry(0.6, 12, 10), M(acc.bun), hx + 0.2, hy - 0.2, -0.3, b.inner); }
+    if (acc.mic) { const mg = new THREE.Group(); mg.position.set(1.2, -0.3, 0.6); mg.rotation.z = 0.3; b.inner.add(mg); mesh(new THREE.CylinderGeometry(0.12, 0.1, 1.2, 8), M('#222'), 0, 0, 0, mg); mesh(new THREE.SphereGeometry(0.28, 10, 8), M('#444'), 0, 0.7, 0, mg); }
+    // pop-in: k=time since pop
+    b.set = (pos, yaw = 0, k = 9, t = 0, face) => {
+      b.g.visible = true; b.g.position.set(...pos); b.g.rotation.set(0, yaw, Math.sin(t * 3 + pos[0]) * 0.06);
+      const s = k < 0 ? 0 : 1 + Math.sin(Math.min(k, 0.5) * Math.PI * 4) * Math.exp(-k * 6) * 0.6;
+      b.g.scale.setScalar(s * (b.scale || 1));
+      if (face) b.setFace(face);
+    };
+    return b;
+  };
+  L.bananaPile = (n = 24) => {
+    const g = prop(new THREE.Group()); scene.add(g); const r = rand(31);
+    for (let i = 0; i < n; i++) { const m = mesh(banGeo, banMat, (r() - 0.5) * 3, 0.3 + (i % 4) * 0.35, (r() - 0.5) * 1.6, g); m.scale.setScalar(0.12); m.rotation.set(Math.PI / 2 + (r() - 0.5) * 0.3, 0, r() * 6); }
+    return g;
+  };
+
+  // generic billboard panel with custom canvas drawing
+  L.board = (w, h, draw, px = 512) => {
+    const mat = L.label(px, Math.round(px * h / w), draw);
+    const m = prop(mesh(new THREE.BoxGeometry(w, h, 0.25), [M('#333'), M('#333'), M('#333'), M('#333'), mat, M('#333')]));
+    scene.add(m); return m;
+  };
+
+  L.podium = (text = 'MAYOR') => {
+    const g = prop(new THREE.Group()); scene.add(g);
+    mesh(rb(3.2, 3.6, 1.8, 0.2), M('#8a5a2b'), 0, 1.8, 0, g);
+    const lab = mesh(new THREE.PlaneGeometry(2.6, 1.0), L.label(256, 100, (c) => { c.fillStyle = '#e8c547'; c.fillRect(0, 0, 256, 100); c.fillStyle = '#3b2412'; c.font = '700 64px Fredoka'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(text, 128, 54); }), 0, 2.4, 0.91, g); lab.castShadow = false;
+    const st = mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.6, 6), M('#222'), 0, 4.2, 0.3, g); st.rotation.x = 0.5;
+    mesh(new THREE.SphereGeometry(0.28, 10, 8), M('#333'), 0, 4.9, 0.72, g);
+    return g;
+  };
+
+  L.tv = (draw) => {
+    const g = prop(new THREE.Group()); scene.add(g);
+    mesh(rb(6, 3.8, 0.8, 0.2), M('#1d1d1d'), 0, 0, 0, g);
+    g.tex = canvasTex(512, 300, draw);
+    const s = mesh(new THREE.PlaneGeometry(5.4, 3.2), new THREE.MeshBasicMaterial({ map: g.tex }), 0, 0, 0.41, g); s.castShadow = false;
+    mesh(new THREE.BoxGeometry(0.4, 1.4, 0.4), M('#333'), 0, -2.5, 0, g); mesh(rb(2.4, 0.3, 1.2, 0.1), M('#333'), 0, -3.2, 0, g);
+    return g;
+  };
+
+  L.boxes = () => {
+    const g = prop(new THREE.Group()); scene.add(g); const r = rand(77);
+    for (let i = 0; i < 7; i++) { const s = 1.2 + r() * 0.6; const b = mesh(rb(s, s * 0.8, s, 0.08), M('#c8955a'), (i % 4) * 1.6 - 2.4 + r() * 0.3, s * 0.4 + (i > 3 ? 1.3 : 0), (r() - 0.5) * 1.2, g); b.rotation.y = r() * 0.6; mesh(new THREE.BoxGeometry(s * 1.01, 0.12, 0.3), M('#d9c27a'), 0, s * 0.4, 0, b); }
+    return g;
+  };
+
+  L.catapult = () => {
+    const g = prop(new THREE.Group()); scene.add(g); const wood = M('#8a5a2b');
+    mesh(rb(5, 1, 8, 0.2), wood, 0, 1.4, 0, g);
+    for (const [x, z] of [[-2.7, 2.8], [2.7, 2.8], [-2.7, -2.8], [2.7, -2.8]]) { const w = mesh(new THREE.CylinderGeometry(1.1, 1.1, 0.5, 16), M('#4a3020'), x, 1.1, z, g); w.rotation.z = Math.PI / 2; }
+    for (const x of [-1.6, 1.6]) mesh(rb(0.6, 4.5, 0.6, 0.1), wood, x, 4, 1.5, g);
+    mesh(rb(4, 0.6, 0.6, 0.1), wood, 0, 6, 1.5, g);
+    g.arm = new THREE.Group(); g.arm.position.set(0, 2.2, 1.2); g.add(g.arm);
+    const a = mesh(rb(0.7, 0.7, 10, 0.15), wood, 0, 0, -4.2, g.arm);
+    g.cup = new THREE.Group(); g.cup.position.set(0, 0.4, -8.8); g.arm.add(g.cup);
+    mesh(new THREE.CylinderGeometry(1.8, 1.2, 0.9, 16, 1, true), new THREE.MeshStandardMaterial({ color: '#6b4226', side: THREE.DoubleSide }), 0, 0.3, 0, g.cup);
+    mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.2, 16), M('#6b4226'), 0, -0.1, 0, g.cup);
+    return g;
+  };
+
   return L;
 }

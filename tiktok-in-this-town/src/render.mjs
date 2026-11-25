@@ -32,14 +32,25 @@ const EP = process.env.EP || 'sun';
 const EPB = path.join(BUILD, EP);
 const data = JSON.parse(fs.readFileSync(path.join(EPB, 'words.json'), 'utf8'));
 const info = await page.evaluate(d => window.init(d), data);
-console.log('init', info);
+console.log('init', info.shots, info.duration);
+fs.writeFileSync(path.join(EPB, 'shots.json'), JSON.stringify(info.starts));
 
 async function frame(t, q = 0.92) {
   const url = await page.evaluate(([t, q]) => { window.renderAt(t); return window.grab(q); }, [t, q]);
   return Buffer.from(url.split(',')[1], 'base64');
 }
 
-if (mode === 'preview') {
+if (mode === 'sheet') {
+  // one frame per shot at 45% of its length -> build/$EP/sheet/NNN.jpg
+  const dir = path.join(EPB, 'sheet'); fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
+  const st = info.starts, end = data.duration + 0.8; const only = rest.length ? rest.map(Number) : null;
+  for (let i = 0; i < st.length; i++) {
+    if (only && !only.includes(i)) continue;
+    const t = st[i] + ((st[i + 1] ?? end) - st[i]) * parseFloat(process.env.AT || '0.45');
+    fs.writeFileSync(path.join(dir, String(i).padStart(3, '0') + '.jpg'), await frame(t, 0.8));
+  }
+  console.log('sheet', st.length);
+} else if (mode === 'preview') {
   for (const s of rest) {
     const t0 = Date.now();
     const buf = await frame(parseFloat(s), 0.85);

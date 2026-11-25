@@ -12,8 +12,15 @@ et pitchée, une coupe toutes les 1-2 s.
 | La gravité s'arrête à midi | `output/in-this-town-gravity.mp4` | 48 s |
 | Il neige sur une seule maison | `output/in-this-town-snow.mp4` | 42 s |
 | Un vœu pour tes 10 ans | `output/in-this-town-wish.mp4` | 47 s |
+| Il pleut des vaches le vendredi (montage rapide) | `output/in-this-town-cows.mp4` | 40 s |
+| Dis « banana » et tu deviens une banane (montage rapide) | `output/in-this-town-banana.mp4` | 38 s |
 
-### Musique de fond (épisodes 2 à 4)
+### Montage rapide (épisodes 5-6)
+~1 plan toutes les 0,75-0,9 s (46 et 52 plans), zoom d'impact + petit décalage caméra à chaque coupe,
+swish sur chaque coupe, flash + secousse sur les moments forts. Vérifier tous les plans d'un coup :
+`EP=cows node src/render.mjs sheet && src/sheet.sh cows` → `build/cows/sheet_1.jpg`.
+
+### Musique de fond (épisodes 2 à 6)
 Le morceau utilisé par la vidéo de référence est **« Numbers » de TEMPOREX**
 (identifié par reconnaissance audio). Il est protégé par le droit d'auteur, donc il
 n'est pas intégré aux fichiers : les vidéos 2-4 contiennent voix + bruitages, et la
@@ -50,7 +57,7 @@ In this town, one old man controls the sun ☀️🔌 #roblox #inthistown #roblo
 ```bash
 npm install                      # three.js
 pip install edge-tts numpy
-EP=gravity                                   # sun | gravity | snow | wish
+EP=gravity                                   # sun | gravity | snow | wish | cows | banana
 python3 src/voice.py $EP                     # voix + timings -> build/$EP/voice.wav, words.json
 python3 src/sfx.py $EP                       # bruitages + mix -> build/$EP/mix.wav
 EP=$EP node src/render.mjs preview 1 10      # aperçus -> build/$EP/preview_*.jpg

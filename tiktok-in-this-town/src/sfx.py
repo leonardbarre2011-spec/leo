@@ -88,6 +88,24 @@ def pop():
 def snore(d=1.4):
     t = T(d); return smooth(noise(d), 30) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.9 * t)) ** 2 * 1.5
 
+def moo(d=1.1):
+    t = T(d); f = np.interp(t, [0, 0.15, d * 0.7, d], [120, 150, 135, 95])
+    ph = 2 * np.pi * np.cumsum(f) / SR
+    x = sum(np.sin(k * ph) / k * (1.8 if 400 < k * 135 < 900 else 1) for k in range(1, 12))
+    return np.tanh(x * 0.9) * np.minimum(1, t / 0.08) * np.minimum(1, (d - t) / 0.2) * 0.6
+def bigpop():
+    n = int(0.35 * SR); x = np.zeros(n); p = pop(); x[:len(p)] += p
+    b = smooth(noise(0.33), 4) * env(T(0.33), 0.001, 0.06); i = int(0.02 * SR); x[i:i + len(b)] += b[: n - i] * 0.8
+    return x
+def clang():
+    t = T(1.0); return sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t / dd) for f, a, dd in [(523, 1, 0.5), (1312, 0.6, 0.3), (2170, 0.4, 0.2), (3020, 0.3, 0.12)]) * env(t, 0.001, 9) * 0.5
+def boing(d=0.6):
+    t = T(d); f = 180 + 260 * t / d + 40 * np.sin(2 * np.pi * 14 * t) * np.exp(-t * 4); return osc(f) * env(t, 0.002, 0.25) * 0.8
+def scratch():
+    t = T(0.35); return (slide(1400, 180, 0.35) + smooth(noise(0.35), 2) * 0.4) * np.sin(np.pi * t / 0.35)
+def swish():
+    t = T(0.22); x = smooth(noise(0.22), 3) - smooth(noise(0.22), 18); return x * np.sin(np.pi * t / 0.22) ** 2
+
 
 C = {}
 C["gravity"] = lambda: [
@@ -123,8 +141,42 @@ C["wish"] = lambda: [
     (jet(1.9), tw(20), 0.6), (jet(1.6), tw(20) + 0.2, 0.4), (jet(1.6), tw(21), 0.4), (splash(), tw(21) + 0.5, 0.4), (cheer(1.5), tw(21) + 0.3, 0.35),
 ]
 
+C["cows"] = lambda: [
+    (moo(1.0), tw(0, 5) - 0.05, 0.5), (whoosh(0.8), 0.0, 0.4), (bell(880, 0.8), tw(0, 7), 0.25),
+    (slide(1500, 300, 0.7), tw(1), 0.25), (boom(), tw(1, 4) + 0.15, 1.0), (moo(0.9), tw(1, 4) + 0.25, 0.45),
+    (plink(), tw(2, 5), 0.3), (moo(0.8), tw(2, 10), 0.55),
+    (clang(), tw(3) + 0.33, 0.45), (clang(), tw(3, 3) + 0.2, 0.7), (moo(0.7), tw(3, 3) + 0.25, 0.35),
+    (clang(), tw(4, 3) + 0.2, 0.55), (clang(), tw(4, 3) + 0.32, 0.5),
+    (knock(), tw(5, 6) + 0.18, 1.0), (boom(), tw(5, 6) + 0.18, 0.5),
+    (boing(), tw(6, 4) + 0.05, 0.6), (boing(), tw(6, 4) + 0.5, 0.5), (boing(), tw(6, 4) + 0.95, 0.4),
+    (crickets(1.6), tw(7), 0.8), (trombone(), tw(8, 3) + 0.1, 0.35),
+    (slide(300, 900, 0.9), tw(10), 0.25), (moo(0.6), tw(10, 3) + 0.1, 0.4),
+    (whoosh(1.0), tw(11), 0.5), (boom(), tw(11, 7) + 0.12, 1.0), (whoosh(0.6), tw(11, 7) + 0.1, 0.6),
+    (shimmer(1.2), tw(12, 3), 0.35), (cheer(1.8), tw(15), 0.55), (kaching(), tw(15, 2), 0.5),
+    (moo(0.9), tw(16, 4), 0.3), (knock(), tw(17, 3) + 0.35, 1.0), (bell(660, 0.8), tw(17, 3) + 0.36, 0.3),
+    (whoosh(1.4), tw(18), 0.45), (cheer(1.4), tw(18, 5), 0.3), (boing(), tw(18, 6) + 0.25, 0.5),
+    (trombone(), tw(19) + 0.25, 0.5),
+]
+C["banana"] = lambda: [
+    (bigpop(), tw(0, 9) + 0.06, 0.9), (shimmer(0.9), tw(0, 12), 0.25),
+    (bigpop(), tw(1, 3) + 0.05, 0.9), (plink(), tw(2, 7), 0.4),
+    (scratch(), tw(4, 5) + 0.1, 0.6), (crickets(1.0), tw(4, 7), 0.9),
+    (cheer(1.2), tw(5), 0.55), (whoosh(0.5), tw(5), 0.4), (plink(), tw(6, 3), 0.5), (whoosh(0.7), tw(6, 4), 0.3),
+    (bell(990, 0.6), tw(8, 4), 0.25), (scratch(), tw(9, 2), 0.35),
+    (bigpop(), tw(10) + 0.05, 1.0), (trombone(), tw(11) + 0.1, 0.3),
+    (cheer(1.0), tw(12), 0.35), (bigpop(), tw(13) + 0.05, 1.0), (bigpop(), tw(15) + 0.05, 1.0),
+    (bigpop(), tw(17, 0) + 0.04, 0.9), (bigpop(), tw(17, 1) + 0.04, 0.9), (bigpop(), tw(17, 2) + 0.04, 0.9), (bigpop(), tw(17, 3) + 0.04, 0.9), (bigpop(), tw(17, 4) + 0.04, 1.0),
+    (crickets(1.6), tw(18), 0.8), (bell(520, 1.2), tw(18, 5), 0.2),
+    (slide(300, 700, 0.4), tw(19, 2), 0.3), (bell(1200, 0.5), tw(19, 2), 0.2), (trombone(), tw(19, 7) + 0.3, 0.4),
+]
+
 for sig, t, g in C[EP]():
     add(np.asarray(sig, dtype=float), t, g)
+# light swish on every cut (fast-cut episodes)
+SJ = os.path.join(B, "shots.json")
+if EP in ("cows", "banana") and os.path.exists(SJ):
+    for i, st in enumerate(json.load(open(SJ))[1:]):
+        add(swish(), st - 0.08, 0.16 + 0.04 * (i % 2))
 out /= max(1.0, np.max(np.abs(out)))
 with wave.open(os.path.join(B, "sfx.wav"), "wb") as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)

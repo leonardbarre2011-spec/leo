@@ -594,7 +594,7 @@ window.renderAt = function (t) {
   drawCaption(t);
   return true;
 };
-window.grab = (q = 0.9) => out.toDataURL('image/jpeg', q);
+window.__cam = camera; window.grab = (q = 0.9) => out.toDataURL('image/jpeg', q);
 
 window.init = async function (data) {
   DATA = data;
@@ -624,5 +624,5 @@ window.init = async function (data) {
     hall, clockFace, camera, SHOTS, PRESETS, allChars, faceTex, renderer };
   const r = mod.default(A);
   EMPH = new Set(r.emph || []);
-  return { shots: SHOTS.length, duration: DATA.duration };
+  return { shots: SHOTS.length, duration: DATA.duration, starts: SHOTS.map(s => s.start) };
 };
