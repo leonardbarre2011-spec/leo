@@ -19,7 +19,9 @@ export type Look = {
   pants: string;
   shoes?: string;
   hair?: string;
-  hairStyle?: "short" | "long" | "spiky" | "cap" | "bald" | "bun";
+  hairStyle?: "short" | "long" | "spiky" | "cap" | "capBack" | "bald" | "bun";
+  mustache?: string;
+  headset?: boolean;
   capColor?: string;
   beard?: string;
   backpack?: string;
@@ -194,6 +196,15 @@ const Hair: React.FC<{ look: Look }> = ({ look }) => {
           </mesh>
         </>
       );
+    case "capBack":
+      return (
+        <>
+          <Box s={[1.32, 0.3, 0.3]} p={[0, 0.3, 0.55]} c={h} />
+          <Box s={[1.34, 0.4, 1.34]} p={[0, 0.58, 0]} c={look.capColor ?? "#d23c3c"} />
+          <Box s={[1.2, 0.08, 0.6]} p={[0, 0.42, -0.9]} c={look.capColor ?? "#d23c3c"} />
+          <Box s={[0.5, 0.12, 0.05]} p={[0, 0.62, 0.68]} c="#ffffff" />
+        </>
+      );
     case "cap":
       return (
         <>
@@ -279,6 +290,16 @@ export const Character: React.FC<{
           <Box s={[1.25, 1.25, 1.25]} c={look.skin} />
           <FaceFeatures face={look.zombie ? "zombie" : face} />
           <Hair look={look} />
+          {look.mustache ? <Box s={[0.6, 0.14, 0.08]} p={[0, -0.13, 0.65]} c={look.mustache} /> : null}
+          {look.headset ? (
+            <>
+              <Box s={[1.45, 0.12, 0.3]} p={[0, 0.72, 0]} c="#222" />
+              <Box s={[0.14, 0.5, 0.5]} p={[-0.68, 0, 0]} c="#222" />
+              <Box s={[0.14, 0.5, 0.5]} p={[0.68, 0, 0]} c="#222" />
+              <Box s={[0.06, 0.06, 0.6]} p={[-0.6, -0.3, 0.35]} c="#222" />
+              <Box s={[0.12, 0.12, 0.12]} p={[-0.45, -0.32, 0.66]} c="#111" e="#ff2a1a" ei={1.5} />
+            </>
+          ) : null}
           {look.beard ? (
             <>
               <Box s={[1.28, 0.45, 0.2]} p={[0, -0.45, 0.58]} c={look.beard} />
@@ -301,3 +322,8 @@ export const breathe = (t: number, amp = 0.03): Pose => ({
   armR: -Math.sin(t * 2) * amp,
   headX: Math.sin(t * 1.3) * amp,
 });
+
+export const wave = (t: number, arm: "L" | "R" = "R"): Pose =>
+  arm === "R"
+    ? { armR: -2.8, armRz: -0.35 + Math.sin(t * 9) * 0.35 }
+    : { armL: -2.8, armLz: 0.35 + Math.sin(t * 9) * 0.35 };

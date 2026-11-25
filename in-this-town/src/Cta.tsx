@@ -5,7 +5,12 @@ import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } fr
 
 // End card: the monster's eyes open in the dark, a question that loops the
 // viewer back, then a "Follow for Part 2" button that gets tapped.
-export const Cta: React.FC = () => {
+export const Cta: React.FC<{ question?: string; sub?: string; button?: string; motif?: "eyes" | "rec" }> = ({
+  question = "What was outside?",
+  sub = "Part 2 is coming.",
+  button = "+ Follow for Part 2",
+  motif = "eyes",
+}) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const c = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -23,6 +28,12 @@ export const Cta: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: "#050505", fontFamily, opacity: fadeOut }}>
       {/* eyes */}
       <AbsoluteFill style={{ alignItems: "center", paddingTop: 470 }}>
+        {motif === "rec" ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 28, opacity: eyes, marginTop: 20 }}>
+            <div style={{ width: 70, height: 70, borderRadius: 999, background: "#ff2a1a", boxShadow: "0 0 50px 14px rgba(255,40,20,0.55)", opacity: Math.floor(f / 12) % 2 ? 0.25 : 1 }} />
+            <div style={{ color: "#fff", fontWeight: 900, fontSize: 70, letterSpacing: 6 }}>REC</div>
+          </div>
+        ) : (
         <div style={{ display: "flex", gap: 150, opacity: eyes }}>
           {[0, 1].map((i) => (
             <div
@@ -37,6 +48,7 @@ export const Cta: React.FC = () => {
             />
           ))}
         </div>
+        )}
       </AbsoluteFill>
       <AbsoluteFill style={{ alignItems: "center", paddingTop: 760 }}>
         <div
@@ -51,7 +63,7 @@ export const Cta: React.FC = () => {
             maxWidth: 900,
           }}
         >
-          What was outside?
+          {question}
         </div>
         <div
           style={{
@@ -62,7 +74,7 @@ export const Cta: React.FC = () => {
             opacity: q,
           }}
         >
-          Part 2 is coming.
+          {sub}
         </div>
         <div style={{ marginTop: 90, position: "relative", transform: `scale(${btn * press})` }}>
           <div
@@ -88,7 +100,7 @@ export const Cta: React.FC = () => {
               gap: 20,
             }}
           >
-            {tap ? "✓ Following" : "+ Follow for Part 2"}
+            {tap ? "✓ Following" : button}
           </div>
         </div>
       </AbsoluteFill>

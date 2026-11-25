@@ -1,6 +1,6 @@
 // Merge whisper sub-tokens and punctuation into whole words; strip quotes.
 import fs from "fs";
-const raw = JSON.parse(fs.readFileSync("public/captions.raw.json", "utf8"));
+const raw = JSON.parse(fs.readFileSync(process.env.IN ?? "public/captions.raw.json", "utf8"));
 const out = [];
 let spaceNext = false;
 for (const c of raw) {
@@ -16,5 +16,5 @@ for (const c of raw) {
 }
 out[0].text = out[0].text.trimStart();
 for (const w of out) if (/[.!?]$/.test(w.text)) w.pageBreakAfter = true;
-fs.writeFileSync("public/captions.json", JSON.stringify(out, null, 1));
+fs.writeFileSync(process.env.OUT ?? "public/captions.json", JSON.stringify(out, null, 1));
 console.log(out.map(c => `${(c.startMs/1000).toFixed(2)} ${c.text}${c.pageBreakAfter ? " |" : ""}`).join("\n"));
