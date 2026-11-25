@@ -1,0 +1,10 @@
+import path from "path";
+import fs from "fs";
+import {downloadWhisperModel, installWhisperCpp, transcribe, toCaptions} from "@remotion/install-whisper-cpp";
+const to = path.join(process.env.WHISPER_DIR);
+await installWhisperCpp({to, version: "1.5.5"});
+await downloadWhisperModel({model: "medium.en", folder: to});
+const out = await transcribe({model: "medium.en", whisperPath: to, whisperCppVersion: "1.5.5", inputPath: process.argv[2], tokenLevelTimestamps: true});
+const {captions} = toCaptions({whisperCppOutput: out});
+fs.writeFileSync("public/captions.json", JSON.stringify(captions, null, 2));
+console.log(captions.map(c=>`${c.startMs}-${c.endMs}:${c.text}`).join("\n"));
