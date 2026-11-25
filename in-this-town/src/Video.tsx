@@ -21,19 +21,19 @@ const ShotCanvas: React.FC<{ index: number; dur: number }> = ({ index, dur }) =>
 
 type Sfx = { src: string; at: number; vol?: number };
 const SFX: Sfx[] = [
-  { src: "siren", at: 0.55, vol: 0.55 },
+  { src: "siren", at: 0.55, vol: 0.4 },
   { src: "clang", at: 4.62, vol: 0.7 },
   { src: "knock", at: 8.42, vol: 1 },
   { src: "knock", at: 20.43, vol: 1 },
   { src: "knock", at: 20.89, vol: 1 },
   { src: "knock", at: 21.3, vol: 1 },
   { src: "creak", at: 22.05, vol: 0.6 },
-  { src: "boom", at: 22.68, vol: 0.9 },
+  { src: "boom", at: 22.68, vol: 0.6 },
   { src: "thud", at: 24.92, vol: 0.9 },
   { src: "whoosh", at: 28.18, vol: 0.45 },
-  { src: "boom", at: 29.42, vol: 0.5 },
-  { src: "rumble", at: 32.7, vol: 0.9 },
-  { src: "sniff", at: 33.3, vol: 0.55 },
+  { src: "boom", at: 29.42, vol: 0.25 },
+  { src: "rumble", at: 32.7, vol: 0.15 },
+  { src: "sniff", at: 33.3, vol: 0.3 },
   { src: "whoosh", at: VOICE_END + 0.1, vol: 0.4 },
   { src: "pop", at: VOICE_END + 66 / 30, vol: 0.35 },
 ];
@@ -69,14 +69,15 @@ export const TheKnocking: React.FC = () => {
       </Sequence>
 
       {/* audio */}
-      <Audio src={staticFile("voiceover.mp3")} />
+      <Audio src={staticFile("voiceover-norm.mp3")} />
       <Audio
         src={staticFile("sfx/drone.wav")}
         volume={(f) => {
           const s = f / fps;
           if (s > 22.3 && s < 22.66) return 0.05; // silence before the reveal
-          if (s > VOICE_END) return interpolate(s, [VOICE_END, VOICE_END + 3.5], [0.35, 0], { extrapolateRight: "clamp" });
-          return interpolate(s, [0, 18, 22.3, 35], [0.28, 0.3, 0.45, 0.55], { extrapolateRight: "clamp" });
+          if (s > VOICE_END) return interpolate(s, [VOICE_END, VOICE_END + 3.5], [0.18, 0], { extrapolateRight: "clamp" });
+          // kept well under the narration (voice ~ -19 dB, bed ~ -32 dB)
+          return interpolate(s, [0, 18, 22.3, 35], [0.16, 0.17, 0.2, 0.18], { extrapolateRight: "clamp" });
         }}
       />
       {SFX.map((x, i) => (
