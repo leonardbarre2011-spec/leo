@@ -5,13 +5,16 @@ import asyncio, json, os, subprocess, sys
 import edge_tts
 
 VOICE = "en-US-AndrewNeural"
-RATE = "+0%"
-K = 1.28          # speed+pitch factor (asetrate)
+EP = sys.argv[1] if len(sys.argv) > 1 else "sun"
 GAP = 0.10        # silence between lines (before speed-up)
 SR = 24000
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-BUILD = os.path.join(HERE, "..", "build")
+EPDIR = os.path.join(HERE, "episodes", EP)
+CFG = json.load(open(os.path.join(EPDIR, "config.json")))
+RATE = CFG["rate"]
+K = CFG["K"]      # speed+pitch factor (asetrate)
+BUILD = os.path.join(HERE, "..", "build", EP)
 os.makedirs(BUILD, exist_ok=True)
 
 
@@ -36,7 +39,7 @@ def dur(path):
 
 
 async def main():
-    lines = [l.strip() for l in open(os.path.join(HERE, "script.txt")) if l.strip()]
+    lines = [l.strip() for l in open(os.path.join(EPDIR, "script.txt")) if l.strip()]
     allw, parts, t = [], [], 0.0
     for i, line in enumerate(lines):
         mp3, words = await tts_line(i, line)

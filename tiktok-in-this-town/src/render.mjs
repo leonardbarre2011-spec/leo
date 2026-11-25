@@ -26,9 +26,11 @@ const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=sw
 const page = await browser.newPage({ viewport: { width: 540, height: 960 } });
 page.on('console', m => { if (m.type() === 'error') console.error('[page]', m.text()); });
 page.on('pageerror', e => console.error('[pageerror]', e.message));
-await page.goto(`http://localhost:${port}/src/index.html`);
+await page.goto(`http://localhost:${port}/src/index.html?ep=${process.env.EP || 'sun'}`);
 await page.waitForFunction(() => typeof window.init === 'function');
-const data = JSON.parse(fs.readFileSync(path.join(BUILD, 'words.json'), 'utf8'));
+const EP = process.env.EP || 'sun';
+const EPB = path.join(BUILD, EP);
+const data = JSON.parse(fs.readFileSync(path.join(EPB, 'words.json'), 'utf8'));
 const info = await page.evaluate(d => window.init(d), data);
 console.log('init', info);
 
@@ -41,14 +43,14 @@ if (mode === 'preview') {
   for (const s of rest) {
     const t0 = Date.now();
     const buf = await frame(parseFloat(s), 0.85);
-    fs.writeFileSync(path.join(BUILD, `preview_${s}.jpg`), buf);
+    fs.writeFileSync(path.join(EPB, `preview_${s}.jpg`), buf);
     console.log('t=', s, (Date.now() - t0) + 'ms');
   }
 } else {
   const fps = parseInt(rest[0] || '30');
   const start = parseFloat(rest[1] || '0');
   const dur = parseFloat(rest[2] || String(data.duration + 0.8));
-  const outFile = path.join(BUILD, rest[3] || 'video_noaudio.mp4');
+  const outFile = path.join(EPB, rest[3] || 'video_noaudio.mp4');
   const n = Math.round(dur * fps);
   const ff = spawn('ffmpeg', ['-loglevel', 'error', '-y', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-r', String(fps), outFile], { stdio: ['pipe', 'inherit', 'inherit'] });

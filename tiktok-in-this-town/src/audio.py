@@ -6,7 +6,7 @@ import wave
 
 SR = 44100
 HERE = os.path.dirname(os.path.abspath(__file__))
-BUILD = os.path.join(HERE, "..", "build")
+BUILD = os.path.join(HERE, "..", "build", "sun")
 D = json.load(open(os.path.join(BUILD, "words.json")))
 TOTAL = D["duration"] + 0.8
 N = int(TOTAL * SR)
