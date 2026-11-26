@@ -14,20 +14,29 @@ const Cyl: React.FC<{ a: [number, number, number, number?]; p?: V3; r?: V3; c: s
 );
 
 // Every house is identical on purpose.
-export const PerfectHouse: React.FC<{ p: V3; rot: number }> = ({ p, rot }) => (
+export type Theme = { wall: string; roof: string; door: string; grass: string; sky: string; fog: string; road?: string };
+export const THEMES: Record<string, Theme> = {
+  brightwater: { wall: "#f4efe4", roof: "#5f8fc9", door: "#d64545", grass: "#62c15a", sky: "#8fd0ff", fog: "#cdeeff" },
+  snow: { wall: "#e8eef5", roof: "#8a4a5a", door: "#3a6a4a", grass: "#f2f6fb", sky: "#b9c9dc", fog: "#dfe8f2" },
+  desert: { wall: "#f0d9a8", roof: "#c0603a", door: "#3a7a8a", grass: "#e3c27a", sky: "#ffcf8f", fog: "#ffe3b8" },
+  candy: { wall: "#ffe0ef", roof: "#c05ab0", door: "#5ab0c0", grass: "#9fe0b0", sky: "#ffb8de", fog: "#ffd8ec" },
+  night: { wall: "#c9d0e8", roof: "#3a3a6a", door: "#c08a2a", grass: "#2f5a3a", sky: "#1a2347", fog: "#2a3360" },
+};
+
+export const PerfectHouse: React.FC<{ p: V3; rot: number; th?: Theme }> = ({ p, rot, th = THEMES.brightwater }) => (
   <group position={p} rotation={[0, rot, 0]}>
-    <B s={[8, 5.5, 7]} p={[0, 2.75, 0]} c="#f4efe4" />
+    <B s={[8, 5.5, 7]} p={[0, 2.75, 0]} c={th.wall} />
     <mesh position={[0, 7.0, 0]} rotation={[0, Math.PI / 4, 0]}>
       <coneGeometry args={[6.3, 3, 4]} />
-      <meshStandardMaterial color="#5f8fc9" roughness={0.8} />
+      <meshStandardMaterial color={th.roof} roughness={0.8} />
     </mesh>
-    <B s={[1.6, 3, 0.2]} p={[0, 1.5, 3.55]} c="#d64545" />
+    <B s={[1.6, 3, 0.2]} p={[0, 1.5, 3.55]} c={th.door} />
     <B s={[1.6, 1.4, 0.2]} p={[-2.4, 3.4, 3.55]} c="#bfe3ff" />
     <B s={[1.6, 1.4, 0.2]} p={[2.4, 3.4, 3.55]} c="#bfe3ff" />
     <B s={[1.8, 0.25, 0.3]} p={[-2.4, 2.6, 3.7]} c="#ffffff" />
     <B s={[1.8, 0.25, 0.3]} p={[2.4, 2.6, 3.7]} c="#ffffff" />
     {/* lawn + picket fence */}
-    <B s={[10, 0.12, 6]} p={[0, 0.06, 6.5]} c="#5fcf5a" />
+    <B s={[10, 0.12, 6]} p={[0, 0.06, 6.5]} c={th.grass} />
     {Array.from({ length: 13 }).map((_, i) => (
       <B key={i} s={[0.25, 1.2, 0.15]} p={[-4.8 + i * 0.8, 0.6, 9.4]} c="#ffffff" />
     ))}
@@ -204,12 +213,15 @@ export const birdOnLoop = (u: number) => {
   return { p: [pt.x, pt.y, pt.z] as V3, heading: Math.atan2(tan.x, tan.z) };
 };
 
-export const Brightwater: React.FC<{ t: number; tint?: "day" | "eerie"; clockMin?: number; clockHour?: number }> = ({
+export const Brightwater: React.FC<{ t: number; tint?: "day" | "eerie"; clockMin?: number; clockHour?: number; theme?: string; sun?: number }> = ({
   t,
   tint = "day",
   clockMin = 0,
   clockHour = 8,
+  theme = "brightwater",
+  sun = 0,
 }) => {
+  const th = THEMES[theme];
   const eerie = tint === "eerie";
   const houses: [number, number, number][] = [];
   for (let i = 0; i < 7; i++) {
@@ -218,10 +230,10 @@ export const Brightwater: React.FC<{ t: number; tint?: "day" | "eerie"; clockMin
   }
   return (
     <>
-      <color attach="background" args={[eerie ? "#8fb3cf" : "#8fd0ff"]} />
-      <fog attach="fog" args={[eerie ? "#a9bccb" : "#cdeeff", 40, 170]} />
+      <color attach="background" args={[eerie ? "#8fb3cf" : th.sky]} />
+      <fog attach="fog" args={[eerie ? "#a9bccb" : th.fog, 40, 170]} />
       <hemisphereLight args={["#ffffff", "#6aa860", eerie ? 0.9 : 1.25]} />
-      <directionalLight position={[30, 50, 25]} intensity={eerie ? 1.1 : 1.7} color="#fff4dc" />
+      <directionalLight position={[30 * Math.cos(sun), 50, 25 * Math.sin(sun + 1)]} intensity={eerie ? 1.1 : theme === "night" ? 0.5 : 1.7} color="#fff4dc" />
       {/* identical clouds */}
       {[
         [-30, 40, -60],
@@ -234,7 +246,7 @@ export const Brightwater: React.FC<{ t: number; tint?: "day" | "eerie"; clockMin
           <B s={[7, 3, 5]} p={[-2, 2.2, 0]} c="#ffffff" />
         </group>
       ))}
-      <B s={[400, 0.2, 400]} p={[0, -0.1, 0]} c="#62c15a" />
+      <B s={[400, 0.2, 400]} p={[0, -0.1, 0]} c={th.grass} />
       {/* main street */}
       <B s={[9, 0.05, 200]} p={[0, 0.02, 40]} c="#5a5d66" />
       {Array.from({ length: 22 }).map((_, i) => (
@@ -245,7 +257,7 @@ export const Brightwater: React.FC<{ t: number; tint?: "day" | "eerie"; clockMin
       {/* plaza */}
       <B s={[34, 0.25, 30]} p={[0, 0.12, -14]} c="#efe2c8" />
       {houses.map(([x, z, r], i) => (
-        <PerfectHouse key={i} p={[x, 0, z]} rot={r} />
+        <PerfectHouse key={i} p={[x, 0, z]} rot={r} th={th} />
       ))}
       <ClockTower p={[0, 0, -18]} hour={clockHour} minute={clockMin} />
       <Bakery p={[-13, 0, -6]} rot={Math.PI / 2} />

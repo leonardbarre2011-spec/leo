@@ -11,7 +11,8 @@ export type Face =
   | "worried"
   | "sleep"
   | "smug"
-  | "zombie";
+  | "zombie"
+  | "grin";
 
 export type Look = {
   skin: string;
@@ -22,6 +23,7 @@ export type Look = {
   hairStyle?: "short" | "long" | "spiky" | "cap" | "capBack" | "bald" | "bun";
   mustache?: string;
   headset?: boolean;
+  earpiece?: boolean;
   capColor?: string;
   beard?: string;
   backpack?: string;
@@ -132,6 +134,17 @@ const FaceFeatures: React.FC<{ face: Face }> = ({ face }) => {
           <Box s={[0.5, 0.14, 0.02]} p={[0, -0.27, z]} c="#140d0d" />
           <Box s={[0.07, 0.07, 0.025]} p={[-0.14, -0.22, z]} c="#e8e2c8" />
           <Box s={[0.07, 0.07, 0.025]} p={[0.1, -0.32, z]} c="#e8e2c8" />
+        </>
+      );
+    case "grin":
+      return (
+        <>
+          <Box s={[0.13, 0.22, 0.02]} p={[-0.25, 0.14, z]} c={ink} />
+          <Box s={[0.13, 0.22, 0.02]} p={[0.25, 0.14, z]} c={ink} />
+          <Box s={[0.84, 0.3, 0.02]} p={[0, -0.3, z]} c={ink} />
+          <Box s={[0.76, 0.1, 0.025]} p={[0, -0.22, z]} c="#ffffff" />
+          <Box s={[0.08, 0.16, 0.02]} p={[-0.44, -0.18, z]} c={ink} />
+          <Box s={[0.08, 0.16, 0.02]} p={[0.44, -0.18, z]} c={ink} />
         </>
       );
     case "smile":
@@ -290,6 +303,12 @@ export const Character: React.FC<{
           <Box s={[1.25, 1.25, 1.25]} c={look.skin} />
           <FaceFeatures face={look.zombie ? "zombie" : face} />
           <Hair look={look} />
+          {look.earpiece ? (
+            <>
+              <Box s={[0.1, 0.22, 0.18]} p={[0.66, -0.05, 0]} c="#111" />
+              <Box s={[0.05, 0.06, 0.06]} p={[0.72, 0.0, 0.0]} c="#ff3b2a" e="#ff2010" ei={2} />
+            </>
+          ) : null}
           {look.mustache ? <Box s={[0.6, 0.14, 0.08]} p={[0, -0.13, 0.65]} c={look.mustache} /> : null}
           {look.headset ? (
             <>
