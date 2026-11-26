@@ -105,15 +105,16 @@ export const Fort: React.FC<{
   toward?: V3;
   rope?: boolean;
   hallOpen?: boolean;
-}> = ({ t, night, outside, window = 1, ring = 0, turn = 0, surge = 0, toward, rope = true, hallOpen }) => {
+  emptyJar?: boolean;
+}> = ({ t, night, outside, window = 1, ring = 0, turn = 0, surge = 0, toward, rope = true, hallOpen, emptyJar }) => {
   const segs = 26;
   return (
     <>
-      <color attach="background" args={[night ? "#0a0f16" : "#9fb4c4"]} />
-      <fog attach="fog" args={[night ? "#0c121a" : "#b4c4cc", night ? 12 : 40, night ? 90 : 220]} />
-      <hemisphereLight args={[night ? "#3a4c70" : "#ffffff", night ? "#05070a" : "#5a6a4a", night ? 0.35 : 1.0]} />
-      <directionalLight position={[30, 50, 25]} intensity={night ? 0.35 : 1.3} color={night ? "#8fa8ff" : "#fff1dc"} />
-      <B s={[500, 0.2, 500]} p={[0, -0.1, 0]} c={night ? "#26301e" : "#6f8a4e"} />
+      <color attach="background" args={[night ? "#18243a" : "#9fb4c4"]} />
+      <fog attach="fog" args={[night ? "#1c2a40" : "#b4c4cc", night ? 25 : 40, night ? 150 : 220]} />
+      <hemisphereLight args={[night ? "#7a94c8" : "#ffffff", night ? "#1a2230" : "#5a6a4a", night ? 1.15 : 1.0]} />
+      <directionalLight position={[-30, 60, 120]} intensity={night ? 1.3 : 1.3} color={night ? "#a8c0ff" : "#fff1dc"} />
+      <B s={[500, 0.2, 500]} p={[0, -0.1, 0]} c={night ? "#3a4630" : "#6f8a4e"} />
       {/* wall ring: alternating school buses and containers */}
       {Array.from({ length: segs }).map((_, i) => {
         const a = (i / segs) * Math.PI * 2;
@@ -180,7 +181,7 @@ export const Fort: React.FC<{
           <cylinderGeometry args={[0.55, 0.55, 1.2, 16]} />
           <meshStandardMaterial color="#cfeeff" transparent opacity={0.45} roughness={0.1} />
         </mesh>
-        {Array.from({ length: 10 }).map((_, i) => (
+        {Array.from({ length: emptyJar ? 0 : 10 }).map((_, i) => (
           <B key={i} s={[0.3, 0.05, 0.2]} p={[Math.sin(i * 2.4) * 0.3, 3.35 + (i % 4) * 0.12, 0.6 + Math.cos(i * 2.4) * 0.3]} r={[0, i, 0.3]} c="#fff8e0" />
         ))}
         {/* bunting */}

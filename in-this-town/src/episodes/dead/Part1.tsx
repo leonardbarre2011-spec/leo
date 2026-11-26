@@ -36,7 +36,7 @@ export const DEAD1_SHOTS: Shot[] = [
       <>
         <Bedroom t={T} bird={false} />
         <Character look={JONAH} face={t > 1.6 ? "neutral" : "sleep"} pose={{ lie: true }} position={[-4, 1.95, 0.2]} />
-        <Cam from={[-1.4, 5.4, 1.8]} to={[-2.2, 5.0, 0.4]} look={[-4, 2.4, -3.8]} p={p} fov={46} t={t} />
+        <Cam from={[0.6, 6.2, 4.4]} to={[-0.6, 5.6, 3.0]} look={[-4, 2.2, -3]} p={p} fov={48} t={t} />
       </>
     ),
   },
@@ -47,7 +47,7 @@ export const DEAD1_SHOTS: Shot[] = [
       <>
         <Bedroom t={T} bird={false} />
         <Character look={JONAH} face="worried" pose={{ sit: true, headY: -0.5 + t * 0.2 }} position={[-3.4, 1.4, -2.6]} rotY={Math.PI / 2} />
-        <Cam from={[1.6, 4.6, -1]} to={[1.2, 4.5, -1.4]} look={[-3.4, 4.2, -2.6]} p={p} fov={40} t={t} />
+        <Cam from={[2.6, 4.8, -0.6]} to={[2.2, 4.7, -1.0]} look={[-3.4, 3.9, -2.6]} p={p} fov={42} t={t} />
       </>
     ),
   },
@@ -101,7 +101,7 @@ export const DEAD1_SHOTS: Shot[] = [
         <Town T={T} />
         <Character look={JONAH} face="worried" pose={breathe(t)} position={[-8, 0, 20]} rotY={0.6} />
         <Character look={DAWSON} pose={{ armL: -0.2, armR: -0.1, headZ: Math.sin(T * 1.4) * 0.15 }} position={[0.5 + Math.sin(T * 1.4) * 0.15, 0, 36]} rotY={0} />
-        <Cam from={[-10.5, 5.6, 14.5]} to={[-10.2, 5.5, 15.5]} look={[0, 3.2, 36]} p={p} fov={42} t={t} />
+        <Cam from={[-11.5, 7.4, 13]} to={[-11.2, 7.2, 14]} look={[0, 3.0, 36]} p={p} fov={42} t={t} />
       </>
     ),
   },
@@ -112,7 +112,7 @@ export const DEAD1_SHOTS: Shot[] = [
       <>
         <Town T={T} />
         <Character look={DAWSON} pose={{ armL: -0.2, armR: -0.1, headZ: Math.sin(T * 1.4) * 0.2 }} position={[0.5 + Math.sin(T * 1.4) * 0.2, 0, 36]} rotY={Math.sin(T * 1.4) * 0.08} />
-        <Cam from={[-1.2, 4.4, 30.5]} to={[-1.0, 4.4, 31.6]} look={[0.5, 4.0, 36]} p={p} fov={40} t={t} />
+        <Cam from={[-2, 4.8, 27.5]} to={[-1.7, 4.7, 28.6]} look={[0.5, 3.6, 36]} p={p} fov={42} t={t} />
       </>
     ),
   },
@@ -123,7 +123,7 @@ export const DEAD1_SHOTS: Shot[] = [
       <>
         <Town T={T} />
         <Character look={JONAH} face="worried" pose={{ ...breathe(t), armR: -0.4 }} position={[-8, 0, 20]} rotY={0.6} />
-        <Cam from={[-5.6, 4.9, 24.2]} to={[-5.8, 4.85, 23.6]} look={[-8, 4.5, 20]} p={p} fov={40} t={t} />
+        <Cam from={[-5.0, 5.0, 25.4]} to={[-5.2, 4.95, 24.8]} look={[-8, 4.2, 20]} p={p} fov={42} t={t} />
       </>
     ),
   },
@@ -190,7 +190,7 @@ export const DEAD1_SHOTS: Shot[] = [
           {[0, 1, 2].map((i) => (
             <Character key={i} look={ZOMBIES[i]} pose={{ ...walk(t + i, 4.5, 0.4), armL: -1.5, armR: -1.4 }} position={[-5 + i * 2.5, 0, 13 - t * 1.6]} rotY={Math.PI} />
           ))}
-          <Cam from={[-1.2, 0.9, -2]} to={[-1.4, 0.9, -1.4]} look={[-3, 2.5, 9]} p={p} fov={52} t={t} shake={t < 0.5 ? 0.05 : 0} />
+          <Cam from={[5, 2.6, 2]} to={[4.6, 2.6, 2.4]} look={[-3, 1.8, 7]} p={p} fov={52} t={t} shake={t < 0.5 ? 0.05 : 0} />
         </>
       );
     },
@@ -204,8 +204,8 @@ export const DEAD1_SHOTS: Shot[] = [
       return (
         <>
           <Town T={T} />
-          <Bike p={[lerp(-12, -4.8, seg(t, 0, 0.5)), 0, 8]} rot={Math.PI / 2} t={T} speed={3} />
-          <group position={[lerp(-12, -4.8, seg(t, 0, 0.5)), 0, 8]} rotation={[0, Math.PI / 2, 0]}>
+          <Bike p={[lerp(-12, -4.8, seg(t, 0, 0.5)), 0, 8]} rot={-Math.PI / 2} t={T} speed={3} />
+          <group position={[lerp(-12, -4.8, seg(t, 0, 0.5)), 0, 8]} rotation={[0, -Math.PI / 2, 0]}>
             <Character look={IVY} face="smug" pose={{ ...pedal(T), armR: lerp(-2.6, -0.6, sw), armRz: lerp(0, -1.2, sw) }} position={[0, 0.55, -0.1]} rotY={Math.PI} />
           </group>
           <Character look={ZOMBIES[0]} pose={hit ? { lean: -1.2 * seg(t, 0.55, 0.9) } : { armL: -1.5, armR: -1.4 }} position={[-3, 0, 10.5]} rotY={Math.PI} />
@@ -223,11 +223,11 @@ export const DEAD1_SHOTS: Shot[] = [
     render: ({ t, p, T }) => (
       <>
         <Town T={T} />
-        <Bike p={[-4.8, 0, 8]} rot={Math.PI / 2} t={0} />
-        <group position={[-4.8, 0, 8]} rotation={[0, Math.PI / 2, 0]}>
+        <Bike p={[-4.8, 0, 8]} rot={-Math.PI / 2} t={0} />
+        <group position={[-4.8, 0, 8]} rotation={[0, -Math.PI / 2, 0]}>
           <Character look={IVY} face="smug" pose={{ ...pedal(0), armR: -0.3, headY: 0.8 }} position={[0, 0.55, -0.1]} rotY={Math.PI} />
         </group>
-        <Cam from={[-4.0, 2.4, 3.2]} to={[-4.2, 2.6, 3.8]} look={[-4.8, 5.8, 8]} p={p} fov={44} t={t} />
+        <Cam from={[-0.6, 3.2, 7.2]} to={[-1.0, 3.4, 7.4]} look={[-4.8, 5.0, 8]} p={p} fov={44} t={t} />
       </>
     ),
   },
@@ -237,8 +237,8 @@ export const DEAD1_SHOTS: Shot[] = [
     render: ({ t, p, T }) => (
       <>
         <Town T={T} />
-        <Bike p={[-4.8, 0, 8]} rot={Math.PI / 2} t={0} />
-        <group position={[-4.8, 0, 8]} rotation={[0, Math.PI / 2, 0]}>
+        <Bike p={[-4.8, 0, 8]} rot={-Math.PI / 2} t={0} />
+        <group position={[-4.8, 0, 8]} rotation={[0, -Math.PI / 2, 0]}>
           <Character look={IVY} face="neutral" pose={{ ...pedal(0), armL: -1.6, headY: 0.9 }} position={[0, 0.55, -0.1]} rotY={Math.PI} />
         </group>
         <Character look={JONAH} face="scared" pose={{ armR: -1.4 }} position={[-3.2, 0, 5.6]} rotY={-0.6} />
@@ -255,7 +255,7 @@ export const DEAD1_SHOTS: Shot[] = [
         <>
           <Town T={T} />
           <TwoOnBike x={-3} z={z} rot={Math.PI} T={T} jonahLook={lerp(0, 2.2, ease(seg(t, 0.4, 1.4)))} />
-          <Cam from={[-1.5, 5.4, z - 8]} to={[-1.8, 5.2, z - 7]} look={[-3, 3.8, z]} p={p} fov={44} t={t} />
+          <Cam from={[-1.2, 6, z - 12]} to={[-1.6, 5.8, z - 11]} look={[-3, 3.6, z]} p={p} fov={44} t={t} />
         </>
       );
     },

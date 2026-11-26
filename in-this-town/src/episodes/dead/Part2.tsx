@@ -41,7 +41,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <Character look={IVY} face="smug" pose={{ ...breathe(t), headY: 0.3 }} position={[2, 0, 70]} rotY={Math.PI + 0.3} />
-        <Cam from={[1.0, 5.0, 65.8]} to={[1.2, 4.95, 66.6]} look={[2, 4.4, 70]} p={p} fov={40} t={t} />
+        <Cam from={[0.4, 5.4, 63.6]} to={[0.6, 5.3, 64.6]} look={[2, 4.0, 70]} p={p} fov={42} t={t} />
       </>
     ),
   },
@@ -56,7 +56,7 @@ export const DEAD2_SHOTS: Shot[] = [
           <Bike p={[2, 0, z]} rot={Math.PI} t={T} speed={3} />
           <Character look={IVY} face="smug" pose={{ armL: -1.25, armR: -1.25, legL: -1.1 + Math.sin(T * 9) * 0.5, legR: -1.1 - Math.sin(T * 9) * 0.5, lean: 0.25 }} position={[2, 0.55, z - 0.55]} rotY={Math.PI} />
           <Character look={JONAH} face="worried" pose={{ sit: true, armL: -1.2, armR: -1.2 }} position={[2, 2.5, z + 1.6]} rotY={Math.PI} />
-          <Cam from={[8, 4, z + 12]} to={[6, 4.6, z + 10]} look={[0, 4, WALL_R]} p={p} fov={50} t={t} />
+          <Cam from={[12, 7, z + 22]} to={[10, 7.4, z + 20]} look={[0, 4, WALL_R]} p={p} fov={50} t={t} />
         </>
       );
     },
@@ -76,7 +76,7 @@ export const DEAD2_SHOTS: Shot[] = [
     render: ({ t, p, T }) => (
       <>
         <Fort t={T} />
-        <Cam from={[-26, 3.2, 44]} to={[-6, 3.2, 52]} look={[-10, 3.4, 40]} lookTo={[6, 3.6, 42]} p={p} fov={50} t={t} linear />
+        <Cam from={[-24, 3.6, 58]} to={[-4, 3.6, 60]} look={[-12, 3.2, 44]} lookTo={[6, 3.2, 45]} p={p} fov={50} t={t} linear />
       </>
     ),
   },
@@ -100,7 +100,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <Crowd t={T} />
-        <Cam from={[10, 6, 10]} to={[8, 5.6, 9]} look={[0, 3, -4]} p={p} fov={50} t={t} />
+        <Cam from={[14, 9, 16]} to={[12, 8.4, 14]} look={[0, 3, -3]} p={p} fov={50} t={t} />
       </>
     ),
   },
@@ -110,8 +110,8 @@ export const DEAD2_SHOTS: Shot[] = [
     render: ({ t, p, T }) => (
       <>
         <Fort t={T} />
-        <Mayor face="grin" pose={{ armL: -2.2 * ease(seg(t, 0.1, 0.8)), armR: -2.2 * ease(seg(t, 0.1, 0.8)), armLz: 0.6, armRz: -0.6 }} />
-        <Cam from={[1.2, 2.6, -2]} to={[1.0, 2.4, -2.6]} look={[0, 5.6, -8.6]} p={p} fov={44} t={t} />
+        <Mayor face="grin" pose={{ armL: -0.6, armR: -0.6, armLz: 1.3 * ease(seg(t, 0.1, 0.8)), armRz: -1.3 * ease(seg(t, 0.1, 0.8)) }} />
+        <Cam from={[1.4, 3.4, 0.4]} to={[1.2, 3.2, -0.4]} look={[0, 5.0, -8.6]} p={p} fov={46} t={t} />
       </>
     ),
   },
@@ -123,7 +123,7 @@ export const DEAD2_SHOTS: Shot[] = [
         <Fort t={T} />
         <Character look={MAYOR} face="grin" pose={{ armR: -1.3 + Math.sin(t * 9) * 0.12 }} position={[0.9, 0, -4]} rotY={-Math.PI / 2 + 0.2} />
         <Character look={JONAH} face="worried" pose={{ armR: -1.3 + Math.sin(t * 9) * 0.12 }} position={[-2.1, 0, -4]} rotY={Math.PI / 2 - 0.2} scale={0.85} />
-        <Cam from={[-0.6, 4.6, 3.4]} to={[-0.6, 4.4, 2.4]} look={[-0.6, 3.4, -4]} p={p} fov={44} t={t} />
+        <Cam from={[-0.6, 5.2, 5.4]} to={[-0.6, 5.0, 4.4]} look={[-0.6, 3.4, -4]} p={p} fov={44} t={t} />
       </>
     ),
   },
@@ -134,7 +134,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <Character look={MAYOR} face={Math.floor(t * 4) % 2 ? "grin" : "smile"} pose={breathe(t)} position={[0.9, 0, -4]} rotY={-Math.PI / 2 + 0.2} />
-        <Cam from={[-2.6, 5.0, -2.2]} to={[-2.2, 4.95, -2.6]} look={[0.9, 4.6, -4]} p={p} fov={38} t={t} />
+        <Cam from={[-3.8, 5.4, -1.4]} to={[-3.4, 5.3, -1.8]} look={[0.9, 4.4, -4]} p={p} fov={42} t={t} />
       </>
     ),
   },
@@ -146,7 +146,7 @@ export const DEAD2_SHOTS: Shot[] = [
         <Fort t={T} />
         <Character look={JONAH} face="worried" pose={breathe(t)} position={[-2.1, 0, -4]} rotY={Math.PI / 2 - 0.2} scale={0.85} />
         <Character look={IVY} face="neutral" pose={breathe(t + 1)} position={[-4.4, 0, -1.6]} rotY={2.2} />
-        <Cam from={[1.2, 4.4, -1.8]} to={[1.0, 4.35, -2.2]} look={[-2.4, 3.8, -3.4]} p={p} fov={42} t={t} />
+        <Cam from={[2.4, 5.0, 1.0]} to={[2.2, 4.9, 0.4]} look={[-3.0, 3.6, -3.0]} p={p} fov={46} t={t} />
       </>
     ),
   },
@@ -189,7 +189,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <Mayor face="grin" pose={{ headZ: 0.1 }} />
-        <Cam from={[0.5, 6.0, -5.0]} to={[0.4, 5.95, -5.6]} look={[0, 5.6, -8.6]} p={p} fov={38} t={t} />
+        <Cam from={[0.8, 6.4, -3.2]} to={[0.7, 6.3, -3.8]} look={[0, 5.4, -8.6]} p={p} fov={40} t={t} />
       </>
     ),
   },
@@ -203,7 +203,7 @@ export const DEAD2_SHOTS: Shot[] = [
         <Character look={JONAH} face="worried" pose={breathe(t)} position={[1.5, 0, 5]} rotY={Math.PI} scale={0.85} />
         <Character look={IVY} face="neutral" pose={breathe(t)} position={[3.6, 0, 5.4]} rotY={Math.PI} />
         <Mayor />
-        <Cam from={[5, 5, 14]} to={[4, 5, 12]} look={[0, 3.5, -6]} p={p} fov={48} t={t} />
+        <Cam from={[6, 10, 18]} to={[5, 9.4, 16]} look={[0, 3.0, -5]} p={p} fov={48} t={t} />
       </>
     ),
   },
@@ -216,7 +216,7 @@ export const DEAD2_SHOTS: Shot[] = [
         <group position={[Math.sin(t * 30) * 0.08 * (1 - seg(t, 0.8, 1)), 0, 0]}>
           <Mayor pose={{ armR: -1.6, armL: -1.0 }} />
         </group>
-        <Cam from={[0.6, 5.2, -6.4]} to={[0.4, 5.0, -7.0]} look={[0, 4.4, -9.0]} p={p} fov={40} t={t} />
+        <Cam from={[1.6, 6.4, -2.6]} to={[1.3, 6.2, -3.4]} look={[0, 4.8, -8.6]} p={p} fov={42} t={t} />
       </>
     ),
   },
@@ -227,7 +227,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <Mayor face="neutral" pose={{ armR: -1.6, headX: lerp(0.35, -0.05, ease(seg(t, 0.8, 1.4))) }} />
-        <Cam from={[0.3, 6.1, -5.4]} to={[0.2, 6.0, -5.9]} look={[0, 5.6, -8.6]} p={p} fov={36} t={t} />
+        <Cam from={[0.6, 6.4, -3.4]} to={[0.5, 6.3, -4.0]} look={[0, 5.4, -8.6]} p={p} fov={40} t={t} />
       </>
     ),
   },
@@ -237,7 +237,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <Character look={JONAH} face="scared" pose={{}} position={[1.5, 0, 5]} rotY={Math.PI} scale={0.85} />
-        <Cam from={[1.6, 4.1, 1.4]} to={[1.55, 4.05, 1.9]} look={[1.5, 3.9, 5]} p={p} fov={38} t={t} />
+        <Cam from={[1.8, 4.4, 0.0]} to={[1.75, 4.35, 0.6]} look={[1.5, 3.6, 5]} p={p} fov={40} t={t} />
       </>
     ),
   },
@@ -248,7 +248,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <TextSign text="IVY" p={[0, 4.2, -7.6]} w={1.6} h={1.0} bg="#fff8e0" fg="#2a2a2a" />
-        <Cam from={[0, 4.2, -5.4]} to={[0, 4.2, -6.2]} look={[0, 4.2, -7.6]} p={p} fov={40} t={t} />
+        <Cam from={[0, 4.3, -3.6]} to={[0, 4.25, -4.4]} look={[0, 4.2, -7.6]} p={p} fov={40} t={t} />
       </>
     ),
   },
@@ -259,7 +259,7 @@ export const DEAD2_SHOTS: Shot[] = [
       <>
         <Fort t={T} />
         <Character look={IVY} face="scared" pose={{}} position={[3.6, 0, 5.4]} rotY={Math.PI} />
-        <Cam from={[3.5, 4.9, 1.6]} to={[3.55, 4.85, 2.2]} look={[3.6, 4.6, 5.4]} p={p} fov={38} t={t} />
+        <Cam from={[3.4, 5.2, 0.4]} to={[3.45, 5.1, 1.0]} look={[3.6, 4.3, 5.4]} p={p} fov={40} t={t} />
       </>
     ),
   },

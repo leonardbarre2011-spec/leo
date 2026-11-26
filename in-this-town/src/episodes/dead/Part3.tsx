@@ -39,7 +39,7 @@ export const DEAD3_SHOTS: Shot[] = [
       <>
         <Night T={T} />
         <Sneak z={47 + t * 1.6} t={t} />
-        <Cam from={[3, 9, 38]} to={[2.6, 9.4, 37]} look={[0, 1.5, 54]} p={p} fov={50} t={t} />
+        <Cam from={[4, 13, 30]} to={[3.6, 13.4, 29]} look={[0, 1.5, 54]} p={p} fov={48} t={t} />
       </>
     ),
   },
@@ -49,7 +49,7 @@ export const DEAD3_SHOTS: Shot[] = [
     render: ({ t, p, T }) => (
       <>
         <Night T={T} />
-        <Cam from={[-16, 2.4, 60]} to={[-12, 2.6, 64]} look={[4, 3, 92]} p={p} fov={52} t={t} linear />
+        <Cam from={[-18, 8, 54]} to={[-14, 7.6, 58]} look={[4, 2.5, 92]} p={p} fov={52} t={t} linear />
       </>
     ),
   },
@@ -83,7 +83,7 @@ export const DEAD3_SHOTS: Shot[] = [
         <Character look={IVY} face="neutral" pose={{ sit: true, headY: 0.5 }} position={[-1.2, 1.0, 54.5]} rotY={0.4} />
         <Character look={JONAH} face="scared" pose={{ sit: true, headY: -0.4 }} position={[1.2, 1.0, 54]} rotY={-0.3} scale={0.85} />
         <pointLight position={[0, 4, 51]} intensity={10} color="#8fa8ff" distance={8} decay={1.6} />
-        <Cam from={[0, 3.8, 49.5]} to={[0, 3.7, 50.3]} look={[0, 3.2, 54.5]} p={p} fov={44} t={t} />
+        <Cam from={[0.4, 5.2, 61.5]} to={[0.4, 5.0, 60.6]} look={[0, 2.8, 54.3]} p={p} fov={46} t={t} />
       </>
     ),
   },
@@ -104,7 +104,8 @@ export const DEAD3_SHOTS: Shot[] = [
       <>
         <Night T={T} />
         <Character look={IVY} face="worried" pose={{ sit: true, headY: 0.2 }} position={[-1.2, 1.0, 54.5]} rotY={0.4} />
-        <Cam from={[-0.6, 4.0, 51.2]} to={[-0.7, 3.95, 51.8]} look={[-1.2, 3.8, 54.5]} p={p} fov={38} t={t} />
+        <Cam from={[-1.6, 4.6, 59.6]} to={[-1.6, 4.5, 59.0]} look={[-1.2, 3.4, 54.5]} p={p} fov={42} t={t} />
+        <pointLight position={[0, 5, 59]} intensity={14} color="#8fa8ff" distance={10} decay={1.6} />
       </>
     ),
   },
@@ -115,7 +116,8 @@ export const DEAD3_SHOTS: Shot[] = [
       <>
         <Night T={T} />
         <Character look={JONAH} face="worried" pose={{ sit: true, headY: -0.2 }} position={[1.2, 1.0, 54]} rotY={-0.3} scale={0.85} />
-        <Cam from={[1.6, 3.6, 51.2]} to={[1.55, 3.55, 51.7]} look={[1.2, 3.3, 54]} p={p} fov={38} t={t} />
+        <Cam from={[1.6, 4.4, 59.2]} to={[1.6, 4.3, 58.6]} look={[1.2, 3.1, 54]} p={p} fov={42} t={t} />
+        <pointLight position={[1, 5, 59]} intensity={14} color="#8fa8ff" distance={10} decay={1.6} />
       </>
     ),
   },
@@ -131,7 +133,7 @@ export const DEAD3_SHOTS: Shot[] = [
         <B s={[10, 0.2, 8]} p={[0, -0.1, 1]} c="#2a1c14" />
         <B s={[0.08, 4, 0.08]} p={[1.55, 5.5, 0.6]} c="#8a7a5a" />
         <Character look={MAYOR} face="grin" pose={{ armR: -2.5, armRz: 0.2 }} position={[0, 0, 0]} />
-        <Cam from={[-1.2, 5.2, 4.2]} to={[-1.0, 5.1, 3.6]} look={[0, 4.6, 0]} p={p} fov={42} t={t} />
+        <Cam from={[-1.6, 5.6, 6.0]} to={[-1.4, 5.5, 5.2]} look={[0, 4.4, 0]} p={p} fov={44} t={t} />
       </>
     ),
   },
@@ -178,7 +180,7 @@ export const DEAD3_SHOTS: Shot[] = [
       <>
         <Night T={T} turn={1} surge={0.6 + seg(t, 0, 2) * 0.4} toward={TOWER} />
         <Character look={JONAH} face="scared" pose={{ headX: 0.6 }} position={[1, 16.2, 95.6]} rotY={Math.PI} scale={0.85} />
-        <Cam from={[1.4, 22, 98]} to={[1.6, 21, 97.4]} look={[0, 0, 86]} p={p} fov={56} t={t} />
+        <Cam from={[9, 25, 106]} to={[8.4, 24, 105]} look={[0, 2, 88]} p={p} fov={54} t={t} />
       </>
     ),
   },
@@ -189,7 +191,7 @@ export const DEAD3_SHOTS: Shot[] = [
       <>
         <Night T={T} turn={1} surge={1} toward={TOWER} />
         <Character look={JONAH} face="worried" pose={{ armR: -1.2 }} position={[0.8, 16.2, 95.8]} rotY={Math.PI} scale={0.85} />
-        <Cam from={[2.6, 20.5, 99]} to={[2.2, 20.2, 98.2]} look={[0, 18.2, 92]} p={p} fov={44} t={t} />
+        <Cam from={[6, 18.6, 102]} to={[5.4, 18.4, 101]} look={[0.4, 17.8, 94]} p={p} fov={46} t={t} />
       </>
     ),
   },
@@ -213,7 +215,7 @@ export const DEAD3_SHOTS: Shot[] = [
           <Night T={T} turn={1} surge={1} toward={TOWER} rope={!cut} />
           <Character look={JONAH} face="smug" pose={{ armR: cut ? -2.6 + Math.sin(t * 6) * 0.4 : lerp(-2.4, -0.6, seg(t, 0.25, 0.5)) }} position={[0.8, 16.2, 95.8]} rotY={Math.PI} scale={0.85} />
           <Character look={IVY} face="worried" pose={{ armL: -0.6 }} position={[-1.2, 16.2, 96.4]} rotY={Math.PI + 0.4} />
-          <Cam from={[3.4, 19.4, 101]} to={[3.0, 19.2, 100.4]} look={[0, 18, 95]} p={p} fov={46} t={t} shake={cut ? 0.03 : 0} />
+          <Cam from={[6, 18.8, 104]} to={[5.5, 18.6, 103.2]} look={[0, 18, 95.5]} p={p} fov={46} t={t} shake={cut ? 0.03 : 0} />
         </>
       );
     },
@@ -224,7 +226,7 @@ export const DEAD3_SHOTS: Shot[] = [
     render: ({ t, p, T }) => (
       <>
         <Night T={T} turn={1} surge={lerp(1, 0.2, seg(t, 0.2, 1.6))} toward={WALL_TARGET} />
-        <Cam from={[0, 26, 104]} to={[0, 24, 102]} look={[0, 0, 70]} p={p} fov={52} t={t} />
+        <Cam from={[14, 28, 114]} to={[12, 26, 111]} look={[0, 0, 70]} p={p} fov={52} t={t} />
       </>
     ),
   },
@@ -243,9 +245,8 @@ export const DEAD3_SHOTS: Shot[] = [
     start: mid(13, 0.55),
     render: ({ t, p, T }) => (
       <>
-        <Fort t={T} hallOpen />
-        <B s={[1.4, 1.6, 1.4]} p={[0, 3.8, -9.4]} c="#9fb4c4" />
-        <Cam from={[0.6, 4.6, -6.2]} to={[0.3, 4.3, -7.0]} look={[0, 3.9, -9.4]} p={p} fov={38} t={t} />
+        <Fort t={T} hallOpen emptyJar />
+        <Cam from={[0.8, 5.2, -4.6]} to={[0.5, 4.9, -5.6]} look={[0, 3.9, -9.4]} p={p} fov={40} t={t} />
       </>
     ),
   },
@@ -257,7 +258,7 @@ export const DEAD3_SHOTS: Shot[] = [
         <Fort t={T} />
         <Character look={JONAH} face="smile" pose={breathe(t)} position={[1, 5.4, 42]} rotY={0} scale={0.85} />
         <Character look={IVY} face="smile" pose={breathe(t + 1)} position={[-1.2, 5.4, 42]} rotY={0} />
-        <Cam from={[3, 7.6, 34]} to={[2.6, 7.6, 35]} look={[0, 6.8, 60]} p={p} fov={50} t={t} />
+        <Cam from={[0, 9, 31]} to={[0, 9, 32]} look={[0, 6.6, 60]} p={p} fov={50} t={t} />
       </>
     ),
   },
