@@ -81,7 +81,7 @@ export const PART4_SHOTS: Shot[] = [
         <>
           <Stairs t={T} />
           <Character look={MILO_BAG} face="neutral" pose={walk(t, 6, 0.5)} position={[0, 0.5 + i * 0.5, -i]} rotY={Math.PI} />
-          <Cam from={[6, 26, -8]} to={[6, 28, -10]} look={[0, i * 0.5, -i]} p={p} fov={50} t={t} />
+          <Cam from={[0.6, i * 0.5 + 9, -i + 9]} to={[0.6, i * 0.5 + 10, -i + 10]} look={[0, i * 0.5 + 1, -i]} p={p} fov={50} t={t} />
         </>
       );
     },
@@ -270,8 +270,8 @@ export const PART4_SHOTS: Shot[] = [
     render: ({ t, p, T }) => (
       <>
         <Brightwater t={T} theme="snow" />
-        <Bird p={[6 + Math.sin(T * 1.2) * 3, 11, 17 + Math.cos(T * 1.2) * 3]} heading={T * 1.2 + Math.PI / 2} flap={Math.sin(T * 22) * 0.7} s={2.6} />
-        <Cam from={[6, 2.6, 26]} to={[6, 2.4, 26.4]} look={[6, 12, 14]} p={p} fov={52} t={t} />
+        <Bird p={[6 + Math.sin(T * 1.2) * 4, 12, 13 + Math.cos(T * 1.2) * 4]} heading={T * 1.2 + Math.PI / 2} flap={Math.sin(T * 22) * 0.7} s={1.8} />
+        <Cam from={[6, 1.6, 34]} to={[6, 1.5, 34.6]} look={[6, 11, 13]} p={p} fov={44} t={t} />
       </>
     ),
     overlay: ({ t }) => <ScreenOverlay label="CH 9,377 · LIVE" t={t} />,
