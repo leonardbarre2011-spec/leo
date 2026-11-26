@@ -14,13 +14,14 @@ const Cyl: React.FC<{ a: [number, number, number, number?]; p?: V3; r?: V3; c: s
 );
 
 // Every house is identical on purpose.
-export type Theme = { wall: string; roof: string; door: string; grass: string; sky: string; fog: string; road?: string };
+export type Theme = { wall: string; roof: string; door: string; grass: string; sky: string; fog: string; road?: string; openDoors?: boolean; noLandmarks?: boolean };
 export const THEMES: Record<string, Theme> = {
   brightwater: { wall: "#f4efe4", roof: "#5f8fc9", door: "#d64545", grass: "#62c15a", sky: "#8fd0ff", fog: "#cdeeff" },
   snow: { wall: "#e8eef5", roof: "#8a4a5a", door: "#3a6a4a", grass: "#f2f6fb", sky: "#b9c9dc", fog: "#dfe8f2" },
   desert: { wall: "#f0d9a8", roof: "#c0603a", door: "#3a7a8a", grass: "#e3c27a", sky: "#ffcf8f", fog: "#ffe3b8" },
   candy: { wall: "#ffe0ef", roof: "#c05ab0", door: "#5ab0c0", grass: "#9fe0b0", sky: "#ffb8de", fog: "#ffd8ec" },
   night: { wall: "#c9d0e8", roof: "#3a3a6a", door: "#c08a2a", grass: "#2f5a3a", sky: "#1a2347", fog: "#2a3360" },
+  dead: { wall: "#bdb6a6", roof: "#5a4a4a", door: "#4a3a2a", grass: "#6f7a52", sky: "#9aa4aa", fog: "#a9b1b5", openDoors: true, noLandmarks: true },
 };
 
 export const PerfectHouse: React.FC<{ p: V3; rot: number; th?: Theme }> = ({ p, rot, th = THEMES.brightwater }) => (
@@ -30,7 +31,16 @@ export const PerfectHouse: React.FC<{ p: V3; rot: number; th?: Theme }> = ({ p, 
       <coneGeometry args={[6.3, 3, 4]} />
       <meshStandardMaterial color={th.roof} roughness={0.8} />
     </mesh>
-    <B s={[1.6, 3, 0.2]} p={[0, 1.5, 3.55]} c={th.door} />
+    {th.openDoors ? (
+      <>
+        <B s={[1.6, 3, 0.2]} p={[0, 1.5, 3.52]} c="#0c0c0c" />
+        <group position={[-0.8, 0, 3.6]} rotation={[0, -1.2, 0]}>
+          <B s={[1.6, 3, 0.15]} p={[0.8, 1.5, 0]} c={th.door} />
+        </group>
+      </>
+    ) : (
+      <B s={[1.6, 3, 0.2]} p={[0, 1.5, 3.55]} c={th.door} />
+    )}
     <B s={[1.6, 1.4, 0.2]} p={[-2.4, 3.4, 3.55]} c="#bfe3ff" />
     <B s={[1.6, 1.4, 0.2]} p={[2.4, 3.4, 3.55]} c="#bfe3ff" />
     <B s={[1.8, 0.25, 0.3]} p={[-2.4, 2.6, 3.7]} c="#ffffff" />
@@ -259,9 +269,13 @@ export const Brightwater: React.FC<{ t: number; tint?: "day" | "eerie"; clockMin
       {houses.map(([x, z, r], i) => (
         <PerfectHouse key={i} p={[x, 0, z]} rot={r} th={th} />
       ))}
-      <ClockTower p={[0, 0, -18]} hour={clockHour} minute={clockMin} />
-      <Bakery p={[-13, 0, -6]} rot={Math.PI / 2} />
-      <BusStop p={[5.2, 0.3, 26]} />
+      {th.noLandmarks ? null : (
+        <>
+          <ClockTower p={[0, 0, -18]} hour={clockHour} minute={clockMin} />
+          <Bakery p={[-13, 0, -6]} rot={Math.PI / 2} />
+          <BusStop p={[5.2, 0.3, 26]} />
+        </>
+      )}
       {/* the grove the bird disappears behind */}
       {[
         [16, -26],
