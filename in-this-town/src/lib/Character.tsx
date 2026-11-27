@@ -12,7 +12,8 @@ export type Face =
   | "sleep"
   | "smug"
   | "zombie"
-  | "grin";
+  | "grin"
+  | "blank";
 
 export type Look = {
   skin: string;
@@ -136,6 +137,8 @@ const FaceFeatures: React.FC<{ face: Face }> = ({ face }) => {
           <Box s={[0.07, 0.07, 0.025]} p={[0.1, -0.32, z]} c="#e8e2c8" />
         </>
       );
+    case "blank":
+      return null;
     case "grin":
       return (
         <>

@@ -14,7 +14,7 @@ const ShotCanvas: React.FC<{ shot: Shot; dur: number }> = ({ shot, dur }) => {
   const t = frame / fps;
   const ctx = { t, p: Math.min(1, frame / Math.max(1, dur - 1)), T: shot.start + t };
   return (
-    <AbsoluteFill>
+    <AbsoluteFill style={{ filter: shot.filter }}>
       <ThreeCanvas width={width} height={height} camera={{ fov: 40, position: [0, 5, 10] }} gl={{ antialias: true }}>
         {shot.render(ctx)}
       </ThreeCanvas>

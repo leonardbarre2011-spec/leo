@@ -10,6 +10,9 @@ import { PART3_BEDS, PART3_SFX, PART3_SHOTS, PART3_VOICE_END } from "./episodes/
 import { DEAD1_BEDS, DEAD1_END, DEAD1_SFX, DEAD1_SHOTS } from "./episodes/dead/Part1";
 import { DEAD2_BEDS, DEAD2_END, DEAD2_SFX, DEAD2_SHOTS } from "./episodes/dead/Part2";
 import { DEAD3_BEDS, DEAD3_END, DEAD3_SFX, DEAD3_SHOTS } from "./episodes/dead/Part3";
+import { STATIC1_BEDS, STATIC1_END, STATIC1_SFX, STATIC1_SHOTS } from "./episodes/static/Part1";
+import { STATIC2_BEDS, STATIC2_END, STATIC2_SFX, STATIC2_SHOTS } from "./episodes/static/Part2";
+import { STATIC3_BEDS, STATIC3_END, STATIC3_SFX, STATIC3_SHOTS } from "./episodes/static/Part3";
 import { PART4_BEDS, PART4_SFX, PART4_SHOTS, PART4_VOICE_END } from "./episodes/smiling/Part4";
 
 const SmilingTownPart1: React.FC = () => (
@@ -48,6 +51,19 @@ const DeadPart2: React.FC = () => (
 const DeadPart3: React.FC = () => (
   <Episode shots={DEAD3_SHOTS} voiceEnd={DEAD3_END} voice="dead3/voiceover.mp3" captions="dead3/captions.json" sfx={DEAD3_SFX} beds={DEAD3_BEDS}
     cta={<Cta question="Would YOU go outside?" sub="Tell me in the comments." button="+ Follow for more" motif="eyes" />} />
+);
+
+const StaticPart1: React.FC = () => (
+  <Episode shots={STATIC1_SHOTS} voiceEnd={STATIC1_END} voice="static1/voiceover.mp3" captions="static1/captions.json" sfx={STATIC1_SFX} beds={STATIC1_BEDS}
+    cta={<Cta question="Who's on channel nine?" sub="Part 2 is coming." button="+ Follow for Part 2" motif="rec" />} />
+);
+const StaticPart2: React.FC = () => (
+  <Episode shots={STATIC2_SHOTS} voiceEnd={STATIC2_END} voice="static2/voiceover.mp3" captions="static2/captions.json" sfx={STATIC2_SFX} beds={STATIC2_BEDS}
+    cta={<Cta question="Can they get Toby back?" sub="The final part is coming." button="+ Follow for Part 3" motif="rec" />} />
+);
+const StaticPart3: React.FC = () => (
+  <Episode shots={STATIC3_SHOTS} voiceEnd={STATIC3_END} voice="static3/voiceover.mp3" captions="static3/captions.json" sfx={STATIC3_SFX} beds={STATIC3_BEDS}
+    cta={<Cta question="Is YOUR walkie-talkie on?" sub="Follow for the next story." button="+ Follow for more" motif="rec" />} />
 );
 
 export const RemotionRoot: React.FC = () => {
@@ -105,6 +121,30 @@ export const RemotionRoot: React.FC = () => {
         id="DeadPart3"
         component={DeadPart3}
         durationInFrames={Math.round((DEAD3_END + CTA_SECONDS) * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="StaticPart1"
+        component={StaticPart1}
+        durationInFrames={Math.round((STATIC1_END + CTA_SECONDS) * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="StaticPart2"
+        component={StaticPart2}
+        durationInFrames={Math.round((STATIC2_END + CTA_SECONDS) * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="StaticPart3"
+        component={StaticPart3}
+        durationInFrames={Math.round((STATIC3_END + CTA_SECONDS) * 30)}
         fps={30}
         width={1080}
         height={1920}

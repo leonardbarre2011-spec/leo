@@ -5,7 +5,7 @@ import { B, Bunker, OutsideCorridor, ShoesCorridor, Town } from "./lib/Sets";
 import { DAD, GIRL, GRANDMA, GUARD, KID2, MOM, NOAH, NOAH_NOBAG, ZOMBIE, ZOMBIES } from "./lib/cast";
 
 export type ShotCtx = { t: number; p: number; T: number };
-export type Shot = { start: number; render: (c: ShotCtx) => React.ReactNode; overlay?: (c: ShotCtx) => React.ReactNode };
+export type Shot = { start: number; render: (c: ShotCtx) => React.ReactNode; overlay?: (c: ShotCtx) => React.ReactNode; filter?: string };
 
 const seg = (t: number, a: number, b: number) => clamp01((t - a) / (b - a));
 const tremble = (t: number, amp = 0.05) => Math.sin(t * 55) * amp;
