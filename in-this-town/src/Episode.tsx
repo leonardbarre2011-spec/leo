@@ -32,7 +32,9 @@ export const Episode: React.FC<{
   sfx: Sfx[];
   beds: Bed[];
   cta: React.ReactNode;
-}> = ({ shots, voiceEnd, voice, captions, sfx, beds, cta }) => {
+  popCaptions?: boolean;
+  hud?: React.ReactNode;
+}> = ({ shots, voiceEnd, voice, captions, sfx, beds, cta, popCaptions, hud }) => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
   const voiceEndF = Math.round(voiceEnd * fps);
@@ -53,7 +55,8 @@ export const Episode: React.FC<{
       })}
       <AbsoluteFill style={{ backgroundColor: "#000", opacity: fadeBlack }} />
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%)" }} />
-      <Captions src={captions} endMs={voiceEnd * 1000} />
+      {hud ? <Sequence durationInFrames={voiceEndF} name="HUD">{hud}</Sequence> : null}
+      <Captions src={captions} endMs={voiceEnd * 1000} pop={popCaptions} />
       <Sequence from={voiceEndF} name="CTA">
         {cta}
       </Sequence>

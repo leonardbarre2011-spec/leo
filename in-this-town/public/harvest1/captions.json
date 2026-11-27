@@ -1,0 +1,1054 @@
+[
+ {
+  "text": "Twenty-four",
+  "startMs": 50,
+  "endMs": 320,
+  "timestampMs": 340,
+  "confidence": 0.421833
+ },
+ {
+  "text": " kids",
+  "startMs": 320,
+  "endMs": 530,
+  "timestampMs": 600,
+  "confidence": 0.986982
+ },
+ {
+  "text": " enter",
+  "startMs": 530,
+  "endMs": 800,
+  "timestampMs": 820,
+  "confidence": 0.972999
+ },
+ {
+  "text": " the",
+  "startMs": 800,
+  "endMs": 960,
+  "timestampMs": 940,
+  "confidence": 0.994962
+ },
+ {
+  "text": " arena,",
+  "startMs": 960,
+  "endMs": 1430,
+  "timestampMs": 1180,
+  "confidence": 0.959049
+ },
+ {
+  "text": " only",
+  "startMs": 1430,
+  "endMs": 1640,
+  "timestampMs": 1640,
+  "confidence": 0.947658
+ },
+ {
+  "text": " one",
+  "startMs": 1640,
+  "endMs": 1850,
+  "timestampMs": 1860,
+  "confidence": 0.731384
+ },
+ {
+  "text": " comes",
+  "startMs": 1850,
+  "endMs": 2200,
+  "timestampMs": 2060,
+  "confidence": 0.983485
+ },
+ {
+  "text": " out",
+  "startMs": 2200,
+  "endMs": 2410,
+  "timestampMs": 2220,
+  "confidence": 0.991261
+ },
+ {
+  "text": " alive,",
+  "startMs": 2410,
+  "endMs": 2870,
+  "timestampMs": 2560,
+  "confidence": 0.996017
+ },
+ {
+  "text": " and",
+  "startMs": 2870,
+  "endMs": 3010,
+  "timestampMs": 2960,
+  "confidence": 0.870463
+ },
+ {
+  "text": " this",
+  "startMs": 3010,
+  "endMs": 3150,
+  "timestampMs": 3140,
+  "confidence": 0.982444
+ },
+ {
+  "text": " year,",
+  "startMs": 3150,
+  "endMs": 3470,
+  "timestampMs": 3340,
+  "confidence": 0.99545
+ },
+ {
+  "text": " the",
+  "startMs": 3470,
+  "endMs": 3490,
+  "timestampMs": 3540,
+  "confidence": 0.972702
+ },
+ {
+  "text": " winner",
+  "startMs": 3490,
+  "endMs": 3680,
+  "timestampMs": 3680,
+  "confidence": 0.98875
+ },
+ {
+  "text": " did",
+  "startMs": 3680,
+  "endMs": 3770,
+  "timestampMs": 3860,
+  "confidence": 0.988551
+ },
+ {
+  "text": " something",
+  "startMs": 3770,
+  "endMs": 4080,
+  "timestampMs": 4060,
+  "confidence": 0.991802
+ },
+ {
+  "text": " nobody",
+  "startMs": 4080,
+  "endMs": 4540,
+  "timestampMs": 4340,
+  "confidence": 0.995832
+ },
+ {
+  "text": " expected.",
+  "startMs": 4540,
+  "endMs": 5400,
+  "timestampMs": 4820,
+  "confidence": 0.99456,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Every",
+  "startMs": 5400,
+  "endMs": 5680,
+  "timestampMs": 5440,
+  "confidence": 0.998329
+ },
+ {
+  "text": " year,",
+  "startMs": 5680,
+  "endMs": 6010,
+  "timestampMs": 5680,
+  "confidence": 0.999157
+ },
+ {
+  "text": " the",
+  "startMs": 6010,
+  "endMs": 6180,
+  "timestampMs": 5940,
+  "confidence": 0.988631
+ },
+ {
+  "text": " capital",
+  "startMs": 6180,
+  "endMs": 6570,
+  "timestampMs": 6140,
+  "confidence": 0.692902
+ },
+ {
+  "text": " pulls",
+  "startMs": 6570,
+  "endMs": 6850,
+  "timestampMs": 6420,
+  "confidence": 0.99732
+ },
+ {
+  "text": " one",
+  "startMs": 6850,
+  "endMs": 7020,
+  "timestampMs": 6720,
+  "confidence": 0.977646
+ },
+ {
+  "text": " name",
+  "startMs": 7020,
+  "endMs": 7240,
+  "timestampMs": 6960,
+  "confidence": 0.993885
+ },
+ {
+  "text": " from",
+  "startMs": 7240,
+  "endMs": 7480,
+  "timestampMs": 7140,
+  "confidence": 0.993691
+ },
+ {
+  "text": " every",
+  "startMs": 7480,
+  "endMs": 7730,
+  "timestampMs": 7440,
+  "confidence": 0.995718
+ },
+ {
+  "text": " town.",
+  "startMs": 7730,
+  "endMs": 8180,
+  "timestampMs": 7720,
+  "confidence": 0.998235,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " This",
+  "startMs": 8180,
+  "endMs": 8360,
+  "timestampMs": 8240,
+  "confidence": 0.99926
+ },
+ {
+  "text": " year,",
+  "startMs": 8360,
+  "endMs": 8630,
+  "timestampMs": 8440,
+  "confidence": 0.999744
+ },
+ {
+  "text": " the",
+  "startMs": 8630,
+  "endMs": 8770,
+  "timestampMs": 8680,
+  "confidence": 0.991783
+ },
+ {
+  "text": " jar",
+  "startMs": 8770,
+  "endMs": 8910,
+  "timestampMs": 8800,
+  "confidence": 0.738609
+ },
+ {
+  "text": " picked",
+  "startMs": 8910,
+  "endMs": 9190,
+  "timestampMs": 9000,
+  "confidence": 0.132433
+ },
+ {
+  "text": " Mila's",
+  "startMs": 9190,
+  "endMs": 9460,
+  "timestampMs": 9160,
+  "confidence": 0.721279
+ },
+ {
+  "text": " little",
+  "startMs": 9460,
+  "endMs": 9740,
+  "timestampMs": 9440,
+  "confidence": 0.994577
+ },
+ {
+  "text": " brother,",
+  "startMs": 9740,
+  "endMs": 10150,
+  "timestampMs": 9700,
+  "confidence": 0.996983
+ },
+ {
+  "text": " he",
+  "startMs": 10150,
+  "endMs": 10240,
+  "timestampMs": 9960,
+  "confidence": 0.979572
+ },
+ {
+  "text": " was",
+  "startMs": 10240,
+  "endMs": 10590,
+  "timestampMs": 10060,
+  "confidence": 0.999016
+ },
+ {
+  "text": " eight,",
+  "startMs": 10590,
+  "endMs": 10700,
+  "timestampMs": 10320,
+  "confidence": 0.471374
+ },
+ {
+  "text": " so",
+  "startMs": 10700,
+  "endMs": 10790,
+  "timestampMs": 10760,
+  "confidence": 0.990951
+ },
+ {
+  "text": " Mila",
+  "startMs": 10790,
+  "endMs": 10970,
+  "timestampMs": 10900,
+  "confidence": 0.998325
+ },
+ {
+  "text": " stepped",
+  "startMs": 10970,
+  "endMs": 11370,
+  "timestampMs": 11220,
+  "confidence": 0.987873
+ },
+ {
+  "text": " forward.",
+  "startMs": 11370,
+  "endMs": 11840,
+  "timestampMs": 11660,
+  "confidence": 0.994359,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " I",
+  "startMs": 11840,
+  "endMs": 11920,
+  "timestampMs": 12100,
+  "confidence": 0.856475
+ },
+ {
+  "text": " volunteer.",
+  "startMs": 11920,
+  "endMs": 12840,
+  "timestampMs": 12620,
+  "confidence": 0.979758,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " day",
+  "startMs": 13140,
+  "endMs": 13400,
+  "timestampMs": 13500,
+  "confidence": 0.832385
+ },
+ {
+  "text": " one,",
+  "startMs": 13400,
+  "endMs": 13740,
+  "timestampMs": 13760,
+  "confidence": 0.806307
+ },
+ {
+  "text": " the",
+  "startMs": 13740,
+  "endMs": 13980,
+  "timestampMs": 14000,
+  "confidence": 0.977558
+ },
+ {
+  "text": " horn",
+  "startMs": 13980,
+  "endMs": 14290,
+  "timestampMs": 14160,
+  "confidence": 0.965707
+ },
+ {
+  "text": " blows.",
+  "startMs": 14290,
+  "endMs": 14960,
+  "timestampMs": 14400,
+  "confidence": 0.985092,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Every",
+  "startMs": 14960,
+  "endMs": 15200,
+  "timestampMs": 15000,
+  "confidence": 0.99752
+ },
+ {
+  "text": " kid",
+  "startMs": 15200,
+  "endMs": 15290,
+  "timestampMs": 15160,
+  "confidence": 0.992852
+ },
+ {
+  "text": " sprints",
+  "startMs": 15290,
+  "endMs": 15580,
+  "timestampMs": 15340,
+  "confidence": 0.922103
+ },
+ {
+  "text": " for",
+  "startMs": 15580,
+  "endMs": 15700,
+  "timestampMs": 15540,
+  "confidence": 0.996056
+ },
+ {
+  "text": " the",
+  "startMs": 15700,
+  "endMs": 15820,
+  "timestampMs": 15640,
+  "confidence": 0.961962
+ },
+ {
+  "text": " supplies",
+  "startMs": 15820,
+  "endMs": 16160,
+  "timestampMs": 15920,
+  "confidence": 0.998152
+ },
+ {
+  "text": " in",
+  "startMs": 16160,
+  "endMs": 16240,
+  "timestampMs": 16080,
+  "confidence": 0.997029
+ },
+ {
+  "text": " the",
+  "startMs": 16240,
+  "endMs": 16600,
+  "timestampMs": 16140,
+  "confidence": 0.998872
+ },
+ {
+  "text": " middle.",
+  "startMs": 16600,
+  "endMs": 16800,
+  "timestampMs": 16340,
+  "confidence": 0.998917,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Mila",
+  "startMs": 16800,
+  "endMs": 16970,
+  "timestampMs": 16760,
+  "confidence": 0.998767
+ },
+ {
+  "text": " runs",
+  "startMs": 16970,
+  "endMs": 17150,
+  "timestampMs": 17020,
+  "confidence": 0.994987
+ },
+ {
+  "text": " the",
+  "startMs": 17150,
+  "endMs": 17280,
+  "timestampMs": 17160,
+  "confidence": 0.994628
+ },
+ {
+  "text": " other",
+  "startMs": 17280,
+  "endMs": 17500,
+  "timestampMs": 17300,
+  "confidence": 0.998993
+ },
+ {
+  "text": " way.",
+  "startMs": 17500,
+  "endMs": 17800,
+  "timestampMs": 17540,
+  "confidence": 0.998852,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Into",
+  "startMs": 17800,
+  "endMs": 18090,
+  "timestampMs": 17940,
+  "confidence": 0.955777
+ },
+ {
+  "text": " the",
+  "startMs": 18090,
+  "endMs": 18230,
+  "timestampMs": 18060,
+  "confidence": 0.996409
+ },
+ {
+  "text": " forest.",
+  "startMs": 18230,
+  "endMs": 18800,
+  "timestampMs": 18320,
+  "confidence": 0.990752,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Day",
+  "startMs": 18800,
+  "endMs": 19070,
+  "timestampMs": 18820,
+  "confidence": 0.991769
+ },
+ {
+  "text": " three.",
+  "startMs": 19070,
+  "endMs": 19800,
+  "timestampMs": 19200,
+  "confidence": 0.805849,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Twelve",
+  "startMs": 19800,
+  "endMs": 20380,
+  "timestampMs": 19700,
+  "confidence": 0.556467
+ },
+ {
+  "text": " left.",
+  "startMs": 20380,
+  "endMs": 20800,
+  "timestampMs": 20000,
+  "confidence": 0.987784,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Day",
+  "startMs": 20800,
+  "endMs": 21100,
+  "timestampMs": 20540,
+  "confidence": 0.993566
+ },
+ {
+  "text": " five.",
+  "startMs": 21100,
+  "endMs": 21800,
+  "timestampMs": 20840,
+  "confidence": 0.990849,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Four",
+  "startMs": 21800,
+  "endMs": 22160,
+  "timestampMs": 21180,
+  "confidence": 0.9969
+ },
+ {
+  "text": " left.",
+  "startMs": 22160,
+  "endMs": 22800,
+  "timestampMs": 21420,
+  "confidence": 0.998407,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " On",
+  "startMs": 22800,
+  "endMs": 22900,
+  "timestampMs": 21800,
+  "confidence": 0.983423
+ },
+ {
+  "text": " the",
+  "startMs": 22900,
+  "endMs": 22980,
+  "timestampMs": 21900,
+  "confidence": 0.989345
+ },
+ {
+  "text": " last",
+  "startMs": 22980,
+  "endMs": 23090,
+  "timestampMs": 22100,
+  "confidence": 0.999653
+ },
+ {
+  "text": " night,",
+  "startMs": 23090,
+  "endMs": 23320,
+  "timestampMs": 22380,
+  "confidence": 0.998146
+ },
+ {
+  "text": " only",
+  "startMs": 23320,
+  "endMs": 23450,
+  "timestampMs": 22820,
+  "confidence": 0.996276
+ },
+ {
+  "text": " two",
+  "startMs": 23450,
+  "endMs": 23550,
+  "timestampMs": 23060,
+  "confidence": 0.994014
+ },
+ {
+  "text": " are",
+  "startMs": 23550,
+  "endMs": 23650,
+  "timestampMs": 23220,
+  "confidence": 0.995767
+ },
+ {
+  "text": " standing.",
+  "startMs": 23650,
+  "endMs": 24080,
+  "timestampMs": 23580,
+  "confidence": 0.998628,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Mila",
+  "startMs": 24080,
+  "endMs": 24360,
+  "timestampMs": 24160,
+  "confidence": 0.997676
+ },
+ {
+  "text": " and",
+  "startMs": 24360,
+  "endMs": 24570,
+  "timestampMs": 24600,
+  "confidence": 0.701115
+ },
+ {
+  "text": " a",
+  "startMs": 24570,
+  "endMs": 24640,
+  "timestampMs": 24700,
+  "confidence": 0.989032
+ },
+ {
+  "text": " boy",
+  "startMs": 24640,
+  "endMs": 24850,
+  "timestampMs": 24800,
+  "confidence": 0.996999
+ },
+ {
+  "text": " named",
+  "startMs": 24850,
+  "endMs": 25210,
+  "timestampMs": 25020,
+  "confidence": 0.992824
+ },
+ {
+  "text": " Ash.",
+  "startMs": 25210,
+  "endMs": 25680,
+  "timestampMs": 25340,
+  "confidence": 0.899262,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " The",
+  "startMs": 25680,
+  "endMs": 25830,
+  "timestampMs": 25740,
+  "confidence": 0.985496
+ },
+ {
+  "text": " boy",
+  "startMs": 25830,
+  "endMs": 25980,
+  "timestampMs": 25880,
+  "confidence": 0.995932
+ },
+ {
+  "text": " who",
+  "startMs": 25980,
+  "endMs": 26130,
+  "timestampMs": 26020,
+  "confidence": 0.997664
+ },
+ {
+  "text": " saved",
+  "startMs": 26130,
+  "endMs": 26380,
+  "timestampMs": 26160,
+  "confidence": 0.997067
+ },
+ {
+  "text": " her",
+  "startMs": 26380,
+  "endMs": 26530,
+  "timestampMs": 26300,
+  "confidence": 0.990936
+ },
+ {
+  "text": " life",
+  "startMs": 26530,
+  "endMs": 26730,
+  "timestampMs": 26440,
+  "confidence": 0.9987
+ },
+ {
+  "text": " on",
+  "startMs": 26730,
+  "endMs": 26830,
+  "timestampMs": 26620,
+  "confidence": 0.995915
+ },
+ {
+  "text": " day",
+  "startMs": 26830,
+  "endMs": 26980,
+  "timestampMs": 26740,
+  "confidence": 0.942554
+ },
+ {
+  "text": " two.",
+  "startMs": 26980,
+  "endMs": 27320,
+  "timestampMs": 27040,
+  "confidence": 0.974736,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " The",
+  "startMs": 27320,
+  "endMs": 27470,
+  "timestampMs": 27400,
+  "confidence": 0.957061
+ },
+ {
+  "text": " cameras",
+  "startMs": 27470,
+  "endMs": 27830,
+  "timestampMs": 27680,
+  "confidence": 0.935776
+ },
+ {
+  "text": " zoom",
+  "startMs": 27830,
+  "endMs": 28040,
+  "timestampMs": 27920,
+  "confidence": 0.993441
+ },
+ {
+  "text": " in.",
+  "startMs": 28040,
+  "endMs": 28320,
+  "timestampMs": 28160,
+  "confidence": 0.998289,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " The",
+  "startMs": 28320,
+  "endMs": 28490,
+  "timestampMs": 28500,
+  "confidence": 0.769736
+ },
+ {
+  "text": " whole",
+  "startMs": 28490,
+  "endMs": 28780,
+  "timestampMs": 28660,
+  "confidence": 0.998761
+ },
+ {
+  "text": " country",
+  "startMs": 28780,
+  "endMs": 29180,
+  "timestampMs": 28880,
+  "confidence": 0.995657
+ },
+ {
+  "text": " is",
+  "startMs": 29180,
+  "endMs": 29290,
+  "timestampMs": 29100,
+  "confidence": 0.998209
+ },
+ {
+  "text": " watching.",
+  "startMs": 29290,
+  "endMs": 29960,
+  "timestampMs": 29360,
+  "confidence": 0.99915,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Finish",
+  "startMs": 29960,
+  "endMs": 30500,
+  "timestampMs": 30060,
+  "confidence": 0.0763466
+ },
+ {
+  "text": " it.",
+  "startMs": 30500,
+  "endMs": 30960,
+  "timestampMs": 30220,
+  "confidence": 0.971339,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " The",
+  "startMs": 30960,
+  "endMs": 31360,
+  "timestampMs": 30480,
+  "confidence": 0.952296
+ },
+ {
+  "text": " announcer",
+  "startMs": 31360,
+  "endMs": 31580,
+  "timestampMs": 30700,
+  "confidence": 0.969183
+ },
+ {
+  "text": " says.",
+  "startMs": 31580,
+  "endMs": 31960,
+  "timestampMs": 31080,
+  "confidence": 0.99493,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Mila",
+  "startMs": 31960,
+  "endMs": 32180,
+  "timestampMs": 31500,
+  "confidence": 0.987733
+ },
+ {
+  "text": " looks",
+  "startMs": 32180,
+  "endMs": 32470,
+  "timestampMs": 31840,
+  "confidence": 0.99066
+ },
+ {
+  "text": " at",
+  "startMs": 32470,
+  "endMs": 32580,
+  "timestampMs": 31980,
+  "confidence": 0.996938
+ },
+ {
+  "text": " Ash.",
+  "startMs": 32580,
+  "endMs": 32960,
+  "timestampMs": 32200,
+  "confidence": 0.98692,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Ash",
+  "startMs": 32960,
+  "endMs": 33130,
+  "timestampMs": 32620,
+  "confidence": 0.997329
+ },
+ {
+  "text": " looks",
+  "startMs": 33130,
+  "endMs": 33420,
+  "timestampMs": 32780,
+  "confidence": 0.989546
+ },
+ {
+  "text": " at",
+  "startMs": 33420,
+  "endMs": 33530,
+  "timestampMs": 32920,
+  "confidence": 0.99694
+ },
+ {
+  "text": " Mila.",
+  "startMs": 33530,
+  "endMs": 33960,
+  "timestampMs": 33020,
+  "confidence": 0.997763,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " And",
+  "startMs": 33960,
+  "endMs": 34070,
+  "timestampMs": 33460,
+  "confidence": 0.972995
+ },
+ {
+  "text": " together,",
+  "startMs": 34070,
+  "endMs": 34430,
+  "timestampMs": 33740,
+  "confidence": 0.975915
+ },
+ {
+  "text": " they",
+  "startMs": 34430,
+  "endMs": 34610,
+  "timestampMs": 34020,
+  "confidence": 0.996462
+ },
+ {
+  "text": " turn",
+  "startMs": 34610,
+  "endMs": 34710,
+  "timestampMs": 34160,
+  "confidence": 0.984515
+ },
+ {
+  "text": " around",
+  "startMs": 34710,
+  "endMs": 34930,
+  "timestampMs": 34440,
+  "confidence": 0.992536
+ },
+ {
+  "text": " and",
+  "startMs": 34930,
+  "endMs": 35040,
+  "timestampMs": 34700,
+  "confidence": 0.873561
+ },
+ {
+  "text": " walk",
+  "startMs": 35040,
+  "endMs": 35210,
+  "timestampMs": 34860,
+  "confidence": 0.990737
+ },
+ {
+  "text": " straight",
+  "startMs": 35210,
+  "endMs": 35500,
+  "timestampMs": 35140,
+  "confidence": 0.996734
+ },
+ {
+  "text": " toward",
+  "startMs": 35500,
+  "endMs": 35690,
+  "timestampMs": 35320,
+  "confidence": 0.918112
+ },
+ {
+  "text": " the",
+  "startMs": 35690,
+  "endMs": 35800,
+  "timestampMs": 35480,
+  "confidence": 0.994114
+ },
+ {
+  "text": " cameras.",
+  "startMs": 35800,
+  "endMs": 36240,
+  "timestampMs": 35740,
+  "confidence": 0.991505,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " That",
+  "startMs": 36240,
+  "endMs": 36400,
+  "timestampMs": 36240,
+  "confidence": 0.998708
+ },
+ {
+  "text": " night,",
+  "startMs": 36400,
+  "endMs": 36690,
+  "timestampMs": 36480,
+  "confidence": 0.99958
+ },
+ {
+  "text": " for",
+  "startMs": 36690,
+  "endMs": 36780,
+  "timestampMs": 36740,
+  "confidence": 0.98462
+ },
+ {
+  "text": " the",
+  "startMs": 36780,
+  "endMs": 36900,
+  "timestampMs": 36840,
+  "confidence": 0.998597
+ },
+ {
+  "text": " first",
+  "startMs": 36900,
+  "endMs": 37090,
+  "timestampMs": 37020,
+  "confidence": 0.999275
+ },
+ {
+  "text": " time",
+  "startMs": 37090,
+  "endMs": 37250,
+  "timestampMs": 37200,
+  "confidence": 0.998468
+ },
+ {
+  "text": " in",
+  "startMs": 37250,
+  "endMs": 37330,
+  "timestampMs": 37320,
+  "confidence": 0.997337
+ },
+ {
+  "text": " history,",
+  "startMs": 37330,
+  "endMs": 37670,
+  "timestampMs": 37620,
+  "confidence": 0.997
+ },
+ {
+  "text": " every",
+  "startMs": 37670,
+  "endMs": 37860,
+  "timestampMs": 37980,
+  "confidence": 0.996253
+ },
+ {
+  "text": " screen",
+  "startMs": 37860,
+  "endMs": 38130,
+  "timestampMs": 38200,
+  "confidence": 0.992704
+ },
+ {
+  "text": " in",
+  "startMs": 38130,
+  "endMs": 38170,
+  "timestampMs": 38320,
+  "confidence": 0.996961
+ },
+ {
+  "text": " the",
+  "startMs": 38170,
+  "endMs": 38290,
+  "timestampMs": 38400,
+  "confidence": 0.997257
+ },
+ {
+  "text": " country",
+  "startMs": 38290,
+  "endMs": 38600,
+  "timestampMs": 38620,
+  "confidence": 0.99654
+ },
+ {
+  "text": " went",
+  "startMs": 38600,
+  "endMs": 38710,
+  "timestampMs": 38860,
+  "confidence": 0.998005
+ },
+ {
+  "text": " black.",
+  "startMs": 38710,
+  "endMs": 39120,
+  "timestampMs": 39100,
+  "confidence": 0.97131,
+  "pageBreakAfter": true
+ }
+]

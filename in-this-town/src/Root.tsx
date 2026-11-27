@@ -15,6 +15,8 @@ import { STATIC2_BEDS, STATIC2_END, STATIC2_SFX, STATIC2_SHOTS } from "./episode
 import { STATIC3_BEDS, STATIC3_END, STATIC3_SFX, STATIC3_SHOTS } from "./episodes/static/Part3";
 import { JUP1_BEDS, JUP1_END, JUP1_SFX, JUP1_SHOTS } from "./episodes/jupiter/Story";
 import { JUP2_BEDS, JUP2_END, JUP2_SFX, JUP2_SHOTS } from "./episodes/jupiter/BlackBoxVideo";
+import { HARVEST1_ALIVE, HARVEST1_BEDS, HARVEST1_DAYS, HARVEST1_END, HARVEST1_SFX, HARVEST1_SHOTS } from "./episodes/harvest/Part1";
+import { HarvestHud } from "./episodes/harvest/Hud";
 import { PART4_BEDS, PART4_SFX, PART4_SHOTS, PART4_VOICE_END } from "./episodes/smiling/Part4";
 
 const SmilingTownPart1: React.FC = () => (
@@ -75,6 +77,12 @@ const JupiterStory: React.FC = () => (
 const JupiterBlackBox: React.FC = () => (
   <Episode shots={JUP2_SHOTS} voiceEnd={JUP2_END} voice="jupiter2/voiceover.mp3" captions="jupiter2/captions.json" sfx={JUP2_SFX} beds={JUP2_BEDS}
     cta={<Cta question="Who opened the door?" sub="Drop your theory in the comments 🔑" button="+ Follow for more" motif="rec" />} />
+);
+
+const HarvestPart1: React.FC = () => (
+  <Episode shots={HARVEST1_SHOTS} voiceEnd={HARVEST1_END} voice="harvest1/voiceover.mp3" captions="harvest1/captions.json" sfx={HARVEST1_SFX} beds={HARVEST1_BEDS} popCaptions
+    hud={<HarvestHud alive={HARVEST1_ALIVE} days={HARVEST1_DAYS} hookEnd={2.6} end={HARVEST1_END} />}
+    cta={<Cta question="What happens to Mila & Ash?" sub="Part 2 is coming." button="+ Follow for Part 2" motif="eyes" />} />
 );
 
 export const RemotionRoot: React.FC = () => {
@@ -172,6 +180,14 @@ export const RemotionRoot: React.FC = () => {
         id="JupiterBlackBox"
         component={JupiterBlackBox}
         durationInFrames={Math.round((JUP2_END + CTA_SECONDS) * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="HarvestPart1"
+        component={HarvestPart1}
+        durationInFrames={Math.round((HARVEST1_END + CTA_SECONDS) * 30)}
         fps={30}
         width={1080}
         height={1920}

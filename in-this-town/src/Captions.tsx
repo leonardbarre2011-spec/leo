@@ -16,7 +16,7 @@ import type { Caption, TikTokPage } from "@remotion/captions";
 // Short pages = fast reading = higher retention.
 const SWITCH_EVERY_MS = 700;
 
-const Page: React.FC<{ page: TikTokPage }> = ({ page }) => {
+const Page: React.FC<{ page: TikTokPage; pop?: boolean }> = ({ page, pop }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const nowMs = page.startMs + (frame / fps) * 1000;
@@ -26,7 +26,7 @@ const Page: React.FC<{ page: TikTokPage }> = ({ page }) => {
         style={{
           fontFamily,
           fontWeight: 900,
-          fontSize: 86,
+          fontSize: pop ? 100 : 86,
           lineHeight: 1.08,
           color: "white",
           textAlign: "center",
@@ -52,6 +52,7 @@ const Page: React.FC<{ page: TikTokPage }> = ({ page }) => {
                 display: "inline-block",
                 whiteSpace: "pre",
                 opacity: shown ? 1 : 0,
+                color: pop && shown && tok.toMs > nowMs ? "#ffe14a" : undefined,
                 transform: `scale(${shown ? s : 0.75})`,
               }}
             >
@@ -64,7 +65,7 @@ const Page: React.FC<{ page: TikTokPage }> = ({ page }) => {
   );
 };
 
-export const Captions: React.FC<{ src: string; endMs: number }> = ({ src, endMs }) => {
+export const Captions: React.FC<{ src: string; endMs: number; pop?: boolean }> = ({ src, endMs, pop }) => {
   const [captions, setCaptions] = useState<Caption[] | null>(null);
   const { delayRender, continueRender, cancelRender } = useDelayRender();
   const [handle] = useState(() => delayRender("captions"));
@@ -98,7 +99,7 @@ export const Captions: React.FC<{ src: string; endMs: number }> = ({ src, endMs 
         if (dur <= 0) return null;
         return (
           <Sequence key={i} from={from} durationInFrames={dur} layout="none">
-            <Page page={page} />
+            <Page page={page} pop={pop} />
           </Sequence>
         );
       })}
