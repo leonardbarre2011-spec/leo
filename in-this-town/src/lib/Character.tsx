@@ -1,4 +1,5 @@
 import React from "react";
+import { roundedBox } from "./detail";
 
 // Original blocky characters (our own style – no third-party assets).
 // Units: legs 0..2, torso 2..4, head 4..5.25. Feet on y = 0.
@@ -64,12 +65,25 @@ const Box: React.FC<{
   c: string;
   e?: string;
   ei?: number;
-}> = ({ s, p, c, e, ei }) => (
-  <mesh position={p}>
-    <boxGeometry args={s} />
-    <M c={c} e={e} ei={ei} />
-  </mesh>
-);
+  round?: number;
+}> = ({ s, p, c, e, ei, round }) =>
+  round ? (
+    <mesh position={p} geometry={roundedBox(s[0], s[1], s[2], round)}>
+      <M c={c} e={e} ei={ei} />
+    </mesh>
+  ) : (
+    <mesh position={p}>
+      <boxGeometry args={s} />
+      <M c={c} e={e} ei={ei} />
+    </mesh>
+  );
+
+// darker shade of a hex colour (for belts, cuffs, soles)
+const shade = (hex: string, k: number) => {
+  const n = parseInt(hex.replace("#", ""), 16);
+  const f = (v: number) => Math.max(0, Math.min(255, Math.round(v * k)));
+  return `#${((f(n >> 16) << 16) | (f((n >> 8) & 255) << 8) | f(n & 255)).toString(16).padStart(6, "0")}`;
+};
 
 const FaceFeatures: React.FC<{ face: Face }> = ({ face }) => {
   const z = 0.63;
@@ -268,13 +282,17 @@ export const Character: React.FC<{
             position={[x, 2, 0]}
             rotation={[legRot + (i === 0 ? pose.legL ?? 0 : pose.legR ?? 0), 0, 0]}
           >
-            <Box s={[0.98, 1.7, 0.98]} p={[0, -0.85, 0]} c={look.pants} />
-            <Box s={[1.0, 0.3, 1.02]} p={[0, -1.85, 0.02]} c={shoes} />
+            <Box s={[0.98, 1.7, 0.98]} p={[0, -0.85, 0]} c={look.pants} round={0.12} />
+            <Box s={[1.02, 0.3, 1.1]} p={[0, -1.82, 0.05]} c={shoes} round={0.1} />
+            <Box s={[1.04, 0.08, 1.14]} p={[0, -1.96, 0.05]} c={shade(shoes, 0.55)} />
             {torn && i === 0 ? <Box s={[0.6, 0.4, 0.02]} p={[0, -1.2, 0.5]} c={look.skin} /> : null}
           </group>
         ))}
         {/* torso */}
-        <Box s={[2, 2, 1]} p={[0, 3, 0]} c={look.shirt} />
+        <Box s={[2, 2, 1]} p={[0, 3, 0]} c={look.shirt} round={0.14} />
+        <Box s={[2.04, 0.22, 1.04]} p={[0, 2.08, 0]} c={shade(look.pants, 0.6)} />
+        <Box s={[0.3, 0.18, 0.06]} p={[0, 2.08, 0.53]} c="#c8b070" />
+        <Box s={[0.9, 0.16, 0.04]} p={[0, 3.92, 0.5]} c={shade(look.shirt, 0.78)} />
         {torn ? (
           <>
             <Box s={[0.5, 0.5, 0.02]} p={[0.45, 2.6, 0.51]} c={look.skin} />
@@ -306,13 +324,15 @@ export const Character: React.FC<{
               i === 0 ? pose.armLz ?? 0 : pose.armRz ?? 0,
             ]}
           >
-            <Box s={[0.96, 1.4, 0.96]} p={[0, -0.55, 0]} c={look.shirt} />
-            <Box s={[0.95, 0.55, 0.95]} p={[0, -1.5, 0]} c={look.skin} />
+            <Box s={[0.96, 1.4, 0.96]} p={[0, -0.55, 0]} c={look.shirt} round={0.12} />
+            <Box s={[0.98, 0.14, 0.98]} p={[0, -1.18, 0]} c={shade(look.shirt, 0.75)} />
+            <Box s={[0.9, 0.55, 0.9]} p={[0, -1.52, 0]} c={look.skin} round={0.14} />
           </group>
         ))}
         {/* head */}
         <group position={[0, 4.62, 0]} rotation={[pose.headX ?? 0, pose.headY ?? 0, pose.headZ ?? 0]}>
-          <Box s={[1.25, 1.25, 1.25]} c={look.skin} />
+          <Box s={[1.25, 1.25, 1.25]} c={look.skin} round={0.16} />
+          <Box s={[0.5, 0.3, 0.5]} p={[0, -0.72, 0]} c={shade(look.skin, 0.88)} />
           <FaceFeatures face={look.zombie ? "zombie" : face} />
           <Hair look={look} />
           {look.earpiece ? (

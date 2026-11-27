@@ -3,6 +3,7 @@ import { AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame
 import { ThreeCanvas } from "@remotion/three";
 import type { Shot } from "./Shots";
 import { Captions } from "./Captions";
+import { AutoShadows } from "./lib/detail";
 
 export const CTA_SECONDS = 4;
 export type Sfx = { src: string; at: number; vol?: number };
@@ -15,7 +16,8 @@ const ShotCanvas: React.FC<{ shot: Shot; dur: number }> = ({ shot, dur }) => {
   const ctx = { t, p: Math.min(1, frame / Math.max(1, dur - 1)), T: shot.start + t };
   return (
     <AbsoluteFill style={{ filter: shot.filter }}>
-      <ThreeCanvas width={width} height={height} camera={{ fov: 40, position: [0, 5, 10] }} gl={{ antialias: true }}>
+      <ThreeCanvas width={width} height={height} camera={{ fov: 40, position: [0, 5, 10] }} gl={{ antialias: true }} shadows>
+        <AutoShadows />
         {shot.render(ctx)}
       </ThreeCanvas>
       {shot.overlay ? shot.overlay(ctx) : null}
