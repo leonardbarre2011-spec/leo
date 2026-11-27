@@ -152,6 +152,9 @@ export const JUP2_SHOTS: Shot[] = [
 
 export const JUP2_SFX: Sfx[] = [
   { src: "static", at: 0.1, vol: 0.4 },
+  { src: "braam", at: 0.2, vol: 0.45 },
+  { src: "riser", at: LINES[9].start - 2.4, vol: 0.3 },
+  { src: "braam", at: LINES[9].start + LINES[9].dur + 0.15, vol: 0.55 },
   { src: "smiling1/beep.wav", at: 0.5, vol: 0.3 },
   ...LINES.map((l) => ({ src: "static", at: l.start - 0.25, vol: 0.12 })),
   { src: "knock", at: LINES[5].start + 0.2, vol: 0.7 },
@@ -162,6 +165,10 @@ export const JUP2_SFX: Sfx[] = [
 ];
 
 export const JUP2_BEDS: Bed[] = [
-  { src: "sfx/drone.wav", from: 0, to: JUP2_END + 3, vol: 0.18, fadeIn: 0.5, fadeOut: 2.5 },
-  { src: "sfx/bass.wav", from: LINES[2].start, to: LINES[9].start + LINES[9].dur, vol: 0.25, fadeIn: 0.3, fadeOut: 0.3 },
+  // no music: ship hum + alarm + heartbeat
+  { src: "sfx/space_amb.wav", from: 0, to: JUP2_END + 3, vol: 0.14, fadeIn: 0.5, fadeOut: 2.5 },
+  { src: "sfx/alarm.wav", from: LINES[2].start, to: LINES[2].start + 6, vol: 0.05, fadeIn: 0.3, fadeOut: 0.1 },
+  { src: "sfx/alarm.wav", from: LINES[2].start + 6, to: LINES[8].start, vol: 0.05, fadeIn: 0.1, fadeOut: 0.5 },
+  { src: "sfx/heartbeat.wav", from: LINES[4].start, to: LINES[4].start + 8, vol: 0.35, fadeIn: 0.5, fadeOut: 0.1 },
+  { src: "sfx/heartbeat.wav", from: LINES[4].start + 8, to: LINES[9].start, vol: 0.4, fadeIn: 0.1, fadeOut: 0.3 },
 ];

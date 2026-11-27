@@ -336,9 +336,14 @@ export const JUP1_SHOTS: Shot[] = [
 ];
 
 export const JUP1_SFX: Sfx[] = [
+  { src: "braam", at: L[0] + 0.05, vol: 0.45 },
   { src: "rumble", at: L[3], vol: 0.3 },
+  { src: "riser", at: L[6] - 1.9, vol: 0.3 },
+  { src: "braam", at: L[6] + 0.5, vol: 0.55 },
+  { src: "braam", at: L[9], vol: 0.4 },
+  { src: "riser", at: L[14] - 2.3, vol: 0.3 },
+  { src: "braam", at: L[14], vol: 0.55 },
   { src: "thud", at: L[3] + 2.3, vol: 0.5 },
-  { src: "boom", at: L[6] + 0.5, vol: 0.4 },
   { src: "creak", at: mid(7, 0.5), vol: 0.4 },
   { src: "smiling1/beep.wav", at: L[8], vol: 0.25 },
   { src: "static", at: mid(9, 0.6), vol: 0.35 },
@@ -352,7 +357,9 @@ export const JUP1_SFX: Sfx[] = [
 ];
 
 export const JUP1_BEDS: Bed[] = [
-  { src: "sfx/synth.wav", from: 0, to: L[3], vol: 0.22, fadeIn: 0.5, fadeOut: 0.8 },
-  { src: "sfx/drone.wav", from: L[3], to: JUP1_END + 3, vol: 0.2, fadeIn: 1.0, fadeOut: 2.5 },
-  { src: "sfx/bass.wav", from: L[7], to: JUP1_END + 3, vol: 0.22, fadeIn: 1.0, fadeOut: 2.5 },
+  // no music: dark space ambience, then a heartbeat once the keys are inside
+  { src: "sfx/space_amb.wav", from: 0, to: JUP1_END + 3, vol: 0.16, fadeIn: 1.5, fadeOut: 2.5 },
+  { src: "sfx/heartbeat.wav", from: L[7], to: L[7] + 8, vol: 0.35, fadeIn: 1.0, fadeOut: 0.5 },
+  { src: "sfx/heartbeat.wav", from: L[7] + 8, to: L[14], vol: 0.4, fadeIn: 0.1, fadeOut: 0.8 },
+  { src: "sfx/alarm.wav", from: L[9], to: L[9] + 4.4, vol: 0.06, fadeIn: 0.2, fadeOut: 0.8 },
 ];
