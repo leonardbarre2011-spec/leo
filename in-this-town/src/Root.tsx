@@ -13,6 +13,8 @@ import { DEAD3_BEDS, DEAD3_END, DEAD3_SFX, DEAD3_SHOTS } from "./episodes/dead/P
 import { STATIC1_BEDS, STATIC1_END, STATIC1_SFX, STATIC1_SHOTS } from "./episodes/static/Part1";
 import { STATIC2_BEDS, STATIC2_END, STATIC2_SFX, STATIC2_SHOTS } from "./episodes/static/Part2";
 import { STATIC3_BEDS, STATIC3_END, STATIC3_SFX, STATIC3_SHOTS } from "./episodes/static/Part3";
+import { JUP1_BEDS, JUP1_END, JUP1_SFX, JUP1_SHOTS } from "./episodes/jupiter/Story";
+import { JUP2_BEDS, JUP2_END, JUP2_SFX, JUP2_SHOTS } from "./episodes/jupiter/BlackBoxVideo";
 import { PART4_BEDS, PART4_SFX, PART4_SHOTS, PART4_VOICE_END } from "./episodes/smiling/Part4";
 
 const SmilingTownPart1: React.FC = () => (
@@ -64,6 +66,15 @@ const StaticPart2: React.FC = () => (
 const StaticPart3: React.FC = () => (
   <Episode shots={STATIC3_SHOTS} voiceEnd={STATIC3_END} voice="static3/voiceover.mp3" captions="static3/captions.json" sfx={STATIC3_SFX} beds={STATIC3_BEDS}
     cta={<Cta question="Is YOUR walkie-talkie on?" sub="Follow for the next story." button="+ Follow for more" motif="rec" />} />
+);
+
+const JupiterStory: React.FC = () => (
+  <Episode shots={JUP1_SHOTS} voiceEnd={JUP1_END} voice="jupiter1/voiceover.mp3" captions="jupiter1/captions.json" sfx={JUP1_SFX} beds={JUP1_BEDS}
+    cta={<Cta question="Want to hear the black box?" sub="The full recording is next." button="+ Follow for Part 2" motif="rec" />} />
+);
+const JupiterBlackBox: React.FC = () => (
+  <Episode shots={JUP2_SHOTS} voiceEnd={JUP2_END} voice="jupiter2/voiceover.mp3" captions="jupiter2/captions.json" sfx={JUP2_SFX} beds={JUP2_BEDS}
+    cta={<Cta question="Who opened the door?" sub="Drop your theory in the comments 🔑" button="+ Follow for more" motif="rec" />} />
 );
 
 export const RemotionRoot: React.FC = () => {
@@ -145,6 +156,22 @@ export const RemotionRoot: React.FC = () => {
         id="StaticPart3"
         component={StaticPart3}
         durationInFrames={Math.round((STATIC3_END + CTA_SECONDS) * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="JupiterStory"
+        component={JupiterStory}
+        durationInFrames={Math.round((JUP1_END + CTA_SECONDS) * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="JupiterBlackBox"
+        component={JupiterBlackBox}
+        durationInFrames={Math.round((JUP2_END + CTA_SECONDS) * 30)}
         fps={30}
         width={1080}
         height={1920}

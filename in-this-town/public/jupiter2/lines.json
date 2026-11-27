@@ -1,0 +1,65 @@
+{
+ "lines": [
+  {
+   "who": "MATEO",
+   "text": "Guys... the keys are moving!",
+   "start": 2.8,
+   "dur": 2.18
+  },
+  {
+   "who": "IShowSpeed",
+   "text": "What was that?!",
+   "start": 5.48,
+   "dur": 1.01
+  },
+  {
+   "who": "KreekCraft",
+   "text": "It's in the vents! It's in the vents!",
+   "start": 6.85,
+   "dur": 2.48
+  },
+  {
+   "who": "Joe Bartolozzi",
+   "text": "Get the gun! Get the gun!",
+   "start": 9.62,
+   "dur": 1.67
+  },
+  {
+   "who": "CaseOh",
+   "text": "I got a gun!",
+   "start": 11.59,
+   "dur": 0.73
+  },
+  {
+   "who": "IShowSpeed",
+   "text": "Hold the door! I'll hold the door!",
+   "start": 12.67,
+   "dur": 2.02
+  },
+  {
+   "who": "KreekCraft",
+   "text": "Mayday, mayday, this is Odyssey JX-11!",
+   "start": 14.99,
+   "dur": 4.63
+  },
+  {
+   "who": "CaseOh",
+   "text": "Reloading!",
+   "start": 19.96,
+   "dur": 1.99
+  },
+  {
+   "who": "Joe Bartolozzi",
+   "text": "It's open.",
+   "start": 22.55,
+   "dur": 0.86
+  },
+  {
+   "who": "???",
+   "text": "KEYS. KEYS. KEYS.",
+   "start": 24.01,
+   "dur": 3.58
+  }
+ ],
+ "end": 29.59
+}

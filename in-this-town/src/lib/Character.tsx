@@ -25,6 +25,8 @@ export type Look = {
   mustache?: string;
   headset?: boolean;
   earpiece?: boolean;
+  helmet?: boolean;
+  patch?: string;
   capColor?: string;
   beard?: string;
   backpack?: string;
@@ -279,6 +281,13 @@ export const Character: React.FC<{
             <Box s={[0.3, 0.3, 0.02]} p={[-0.5, 3.4, 0.51]} c="#5b2b2b" />
           </>
         ) : null}
+        {look.patch ? <Box s={[0.5, 0.5, 0.02]} p={[-0.5, 3.4, 0.51]} c={look.patch} /> : null}
+        {look.helmet ? (
+          <>
+            <Box s={[2.2, 0.35, 1.2]} p={[0, 4.05, 0]} c="#d8d8d8" />
+            <Box s={[1.4, 1.8, 0.7]} p={[0, 3.0, -0.85]} c="#e8e8e8" />
+          </>
+        ) : null}
         {look.backpack ? (
           <>
             <Box s={[1.5, 1.6, 0.6]} p={[0, 3.0, -0.8]} c={look.backpack} />
@@ -321,6 +330,12 @@ export const Character: React.FC<{
               <Box s={[0.06, 0.06, 0.6]} p={[-0.6, -0.3, 0.35]} c="#222" />
               <Box s={[0.12, 0.12, 0.12]} p={[-0.45, -0.32, 0.66]} c="#111" e="#ff2a1a" ei={1.5} />
             </>
+          ) : null}
+          {look.helmet ? (
+            <mesh>
+              <sphereGeometry args={[1.08, 20, 16]} />
+              <meshStandardMaterial color="#cfe8ff" transparent opacity={0.28} roughness={0.05} metalness={0.2} />
+            </mesh>
           ) : null}
           {look.beard ? (
             <>
