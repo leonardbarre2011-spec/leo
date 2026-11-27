@@ -1,1 +1,876 @@
-[]
+[
+ {
+  "text": "the",
+  "startMs": 40,
+  "endMs": 210,
+  "timestampMs": 180,
+  "confidence": 0.108929
+ },
+ {
+  "text": " friends",
+  "startMs": 210,
+  "endMs": 710,
+  "timestampMs": 360,
+  "confidence": 0.90735
+ },
+ {
+  "text": " made",
+  "startMs": 710,
+  "endMs": 1000,
+  "timestampMs": 660,
+  "confidence": 0.989496
+ },
+ {
+  "text": " a",
+  "startMs": 1000,
+  "endMs": 1070,
+  "timestampMs": 780,
+  "confidence": 0.997444
+ },
+ {
+  "text": " plan.",
+  "startMs": 1070,
+  "endMs": 1600,
+  "timestampMs": 1120,
+  "confidence": 0.998586,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Sam,",
+  "startMs": 1600,
+  "endMs": 2020,
+  "timestampMs": 1820,
+  "confidence": 0.485549
+ },
+ {
+  "text": " Lena,",
+  "startMs": 2020,
+  "endMs": 2320,
+  "timestampMs": 2180,
+  "confidence": 0.702269
+ },
+ {
+  "text": " and",
+  "startMs": 2320,
+  "endMs": 2590,
+  "timestampMs": 2560,
+  "confidence": 0.978332
+ },
+ {
+  "text": " Theo",
+  "startMs": 2590,
+  "endMs": 3020,
+  "timestampMs": 2800,
+  "confidence": 0.990565
+ },
+ {
+  "text": " met",
+  "startMs": 3020,
+  "endMs": 3120,
+  "timestampMs": 3140,
+  "confidence": 0.973558
+ },
+ {
+  "text": " in",
+  "startMs": 3120,
+  "endMs": 3220,
+  "timestampMs": 3380,
+  "confidence": 0.990252
+ },
+ {
+  "text": " Toby's",
+  "startMs": 3220,
+  "endMs": 3530,
+  "timestampMs": 3440,
+  "confidence": 0.883897
+ },
+ {
+  "text": " room",
+  "startMs": 3530,
+  "endMs": 3760,
+  "timestampMs": 3720,
+  "confidence": 0.997474
+ },
+ {
+  "text": " at",
+  "startMs": 3760,
+  "endMs": 3840,
+  "timestampMs": 3880,
+  "confidence": 0.970177
+ },
+ {
+  "text": " midnight",
+  "startMs": 3840,
+  "endMs": 4190,
+  "timestampMs": 4140,
+  "confidence": 0.958629
+ },
+ {
+  "text": " with",
+  "startMs": 4190,
+  "endMs": 4410,
+  "timestampMs": 4400,
+  "confidence": 0.883939
+ },
+ {
+  "text": " every",
+  "startMs": 4410,
+  "endMs": 4640,
+  "timestampMs": 4680,
+  "confidence": 0.894029
+ },
+ {
+  "text": " flashlight",
+  "startMs": 4640,
+  "endMs": 5110,
+  "timestampMs": 4940,
+  "confidence": 0.996462
+ },
+ {
+  "text": " they",
+  "startMs": 5110,
+  "endMs": 5260,
+  "timestampMs": 5200,
+  "confidence": 0.985622
+ },
+ {
+  "text": " owned.",
+  "startMs": 5260,
+  "endMs": 5700,
+  "timestampMs": 5500,
+  "confidence": 0.992759,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " If",
+  "startMs": 5830,
+  "endMs": 5940,
+  "timestampMs": 6040,
+  "confidence": 0.994915
+ },
+ {
+  "text": " he's",
+  "startMs": 5940,
+  "endMs": 6090,
+  "timestampMs": 6140,
+  "confidence": 0.992534
+ },
+ {
+  "text": " right",
+  "startMs": 6090,
+  "endMs": 6420,
+  "timestampMs": 6360,
+  "confidence": 0.994262
+ },
+ {
+  "text": " next",
+  "startMs": 6420,
+  "endMs": 6680,
+  "timestampMs": 6580,
+  "confidence": 0.993926
+ },
+ {
+  "text": " to",
+  "startMs": 6680,
+  "endMs": 6810,
+  "timestampMs": 6760,
+  "confidence": 0.997885
+ },
+ {
+  "text": " us,",
+  "startMs": 6810,
+  "endMs": 7140,
+  "timestampMs": 6940,
+  "confidence": 0.998544
+ },
+ {
+  "text": " Lena",
+  "startMs": 7140,
+  "endMs": 7400,
+  "timestampMs": 7280,
+  "confidence": 0.98008
+ },
+ {
+  "text": " said,",
+  "startMs": 7400,
+  "endMs": 7870,
+  "timestampMs": 7560,
+  "confidence": 0.996858
+ },
+ {
+  "text": " there",
+  "startMs": 7890,
+  "endMs": 8040,
+  "timestampMs": 7960,
+  "confidence": 0.909041
+ },
+ {
+  "text": " has",
+  "startMs": 8040,
+  "endMs": 8160,
+  "timestampMs": 8140,
+  "confidence": 0.922531
+ },
+ {
+  "text": " to",
+  "startMs": 8160,
+  "endMs": 8280,
+  "timestampMs": 8320,
+  "confidence": 0.969435
+ },
+ {
+  "text": " be",
+  "startMs": 8280,
+  "endMs": 8460,
+  "timestampMs": 8440,
+  "confidence": 0.998418
+ },
+ {
+  "text": " a",
+  "startMs": 8460,
+  "endMs": 8550,
+  "timestampMs": 8540,
+  "confidence": 0.995889
+ },
+ {
+  "text": " door.",
+  "startMs": 8550,
+  "endMs": 9590,
+  "timestampMs": 8740,
+  "confidence": 0.998384,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " They",
+  "startMs": 9590,
+  "endMs": 9600,
+  "timestampMs": 9680,
+  "confidence": 0.87161
+ },
+ {
+  "text": " turned",
+  "startMs": 9600,
+  "endMs": 10070,
+  "timestampMs": 9860,
+  "confidence": 0.997451
+ },
+ {
+  "text": " off",
+  "startMs": 10070,
+  "endMs": 10310,
+  "timestampMs": 10020,
+  "confidence": 0.992411
+ },
+ {
+  "text": " the",
+  "startMs": 10310,
+  "endMs": 10530,
+  "timestampMs": 10120,
+  "confidence": 0.991768
+ },
+ {
+  "text": " lights.",
+  "startMs": 10530,
+  "endMs": 11280,
+  "timestampMs": 10400,
+  "confidence": 0.996348,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " And",
+  "startMs": 11280,
+  "endMs": 11410,
+  "timestampMs": 11280,
+  "confidence": 0.726221
+ },
+ {
+  "text": " under",
+  "startMs": 11410,
+  "endMs": 11630,
+  "timestampMs": 11520,
+  "confidence": 0.919318
+ },
+ {
+  "text": " Toby's",
+  "startMs": 11630,
+  "endMs": 11920,
+  "timestampMs": 11720,
+  "confidence": 0.964472
+ },
+ {
+  "text": " bed,",
+  "startMs": 11920,
+  "endMs": 12310,
+  "timestampMs": 12020,
+  "confidence": 0.907849
+ },
+ {
+  "text": " the",
+  "startMs": 12310,
+  "endMs": 12490,
+  "timestampMs": 12420,
+  "confidence": 0.993549
+ },
+ {
+  "text": " floor",
+  "startMs": 12490,
+  "endMs": 12830,
+  "timestampMs": 12620,
+  "confidence": 0.993473
+ },
+ {
+  "text": " was",
+  "startMs": 12830,
+  "endMs": 13040,
+  "timestampMs": 12860,
+  "confidence": 0.99496
+ },
+ {
+  "text": " glowing.",
+  "startMs": 13040,
+  "endMs": 13760,
+  "timestampMs": 13140,
+  "confidence": 0.988844,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " A",
+  "startMs": 13760,
+  "endMs": 13850,
+  "timestampMs": 13900,
+  "confidence": 0.995313
+ },
+ {
+  "text": " crack.",
+  "startMs": 13850,
+  "endMs": 14660,
+  "timestampMs": 14160,
+  "confidence": 0.951248,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Thin",
+  "startMs": 14660,
+  "endMs": 14930,
+  "timestampMs": 14760,
+  "confidence": 0.816175
+ },
+ {
+  "text": " as",
+  "startMs": 14930,
+  "endMs": 15110,
+  "timestampMs": 14900,
+  "confidence": 0.981294
+ },
+ {
+  "text": " a",
+  "startMs": 15110,
+  "endMs": 15200,
+  "timestampMs": 15000,
+  "confidence": 0.948171
+ },
+ {
+  "text": " hair,",
+  "startMs": 15200,
+  "endMs": 15740,
+  "timestampMs": 15260,
+  "confidence": 0.978284
+ },
+ {
+  "text": " breathing",
+  "startMs": 15740,
+  "endMs": 16910,
+  "timestampMs": 15740,
+  "confidence": 0.992949
+ },
+ {
+  "text": " cold",
+  "startMs": 16910,
+  "endMs": 17180,
+  "timestampMs": 16100,
+  "confidence": 0.994442
+ },
+ {
+  "text": " air.",
+  "startMs": 17180,
+  "endMs": 17480,
+  "timestampMs": 16400,
+  "confidence": 0.998744,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Sam",
+  "startMs": 17480,
+  "endMs": 17690,
+  "timestampMs": 17480,
+  "confidence": 0.955407
+ },
+ {
+  "text": " put",
+  "startMs": 17690,
+  "endMs": 17900,
+  "timestampMs": 17660,
+  "confidence": 0.996006
+ },
+ {
+  "text": " his",
+  "startMs": 17900,
+  "endMs": 18110,
+  "timestampMs": 17820,
+  "confidence": 0.998369
+ },
+ {
+  "text": " hand",
+  "startMs": 18110,
+  "endMs": 18470,
+  "timestampMs": 18000,
+  "confidence": 0.991603
+ },
+ {
+  "text": " on",
+  "startMs": 18470,
+  "endMs": 18530,
+  "timestampMs": 18200,
+  "confidence": 0.996067
+ },
+ {
+  "text": " it",
+  "startMs": 18530,
+  "endMs": 18670,
+  "timestampMs": 18360,
+  "confidence": 0.996611
+ },
+ {
+  "text": " and",
+  "startMs": 18670,
+  "endMs": 18880,
+  "timestampMs": 18580,
+  "confidence": 0.696498
+ },
+ {
+  "text": " the",
+  "startMs": 18880,
+  "endMs": 19140,
+  "timestampMs": 18700,
+  "confidence": 0.995232
+ },
+ {
+  "text": " room",
+  "startMs": 19140,
+  "endMs": 19360,
+  "timestampMs": 18940,
+  "confidence": 0.996892
+ },
+ {
+  "text": " flipped.",
+  "startMs": 19360,
+  "endMs": 20160,
+  "timestampMs": 19300,
+  "confidence": 0.99253,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Same",
+  "startMs": 20160,
+  "endMs": 20400,
+  "timestampMs": 20160,
+  "confidence": 0.99811
+ },
+ {
+  "text": " bed,",
+  "startMs": 20400,
+  "endMs": 20760,
+  "timestampMs": 20400,
+  "confidence": 0.998601
+ },
+ {
+  "text": " same",
+  "startMs": 20760,
+  "endMs": 20970,
+  "timestampMs": 20980,
+  "confidence": 0.99647
+ },
+ {
+  "text": " posters,",
+  "startMs": 20970,
+  "endMs": 21530,
+  "timestampMs": 21400,
+  "confidence": 0.995044
+ },
+ {
+  "text": " same",
+  "startMs": 21530,
+  "endMs": 21780,
+  "timestampMs": 21940,
+  "confidence": 0.99625
+ },
+ {
+  "text": " window.",
+  "startMs": 21780,
+  "endMs": 22320,
+  "timestampMs": 22260,
+  "confidence": 0.99689,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " But",
+  "startMs": 22320,
+  "endMs": 22790,
+  "timestampMs": 22880,
+  "confidence": 0.96461
+ },
+ {
+  "text": " everything",
+  "startMs": 22790,
+  "endMs": 23150,
+  "timestampMs": 23100,
+  "confidence": 0.992191
+ },
+ {
+  "text": " was",
+  "startMs": 23150,
+  "endMs": 23410,
+  "timestampMs": 23340,
+  "confidence": 0.997518
+ },
+ {
+  "text": " grey,",
+  "startMs": 23410,
+  "endMs": 23710,
+  "timestampMs": 23660,
+  "confidence": 0.560634
+ },
+ {
+  "text": " and",
+  "startMs": 23710,
+  "endMs": 24060,
+  "timestampMs": 24140,
+  "confidence": 0.990684
+ },
+ {
+  "text": " the",
+  "startMs": 24060,
+  "endMs": 24090,
+  "timestampMs": 24220,
+  "confidence": 0.996219
+ },
+ {
+  "text": " ash",
+  "startMs": 24090,
+  "endMs": 24280,
+  "timestampMs": 24460,
+  "confidence": 0.987104
+ },
+ {
+  "text": " floated",
+  "startMs": 24280,
+  "endMs": 24780,
+  "timestampMs": 24680,
+  "confidence": 0.996639
+ },
+ {
+  "text": " up",
+  "startMs": 24780,
+  "endMs": 25160,
+  "timestampMs": 25000,
+  "confidence": 0.931173
+ },
+ {
+  "text": " instead",
+  "startMs": 25160,
+  "endMs": 25400,
+  "timestampMs": 25380,
+  "confidence": 0.817728
+ },
+ {
+  "text": " of",
+  "startMs": 25400,
+  "endMs": 25560,
+  "timestampMs": 25540,
+  "confidence": 0.969122
+ },
+ {
+  "text": " down.",
+  "startMs": 25560,
+  "endMs": 26230,
+  "timestampMs": 25800,
+  "confidence": 0.885628,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " And",
+  "startMs": 26230,
+  "endMs": 26570,
+  "timestampMs": 26880,
+  "confidence": 0.962829
+ },
+ {
+  "text": " there",
+  "startMs": 26570,
+  "endMs": 26600,
+  "timestampMs": 27080,
+  "confidence": 0.9751
+ },
+ {
+  "text": " was",
+  "startMs": 26600,
+  "endMs": 26770,
+  "timestampMs": 27240,
+  "confidence": 0.999152
+ },
+ {
+  "text": " Toby,",
+  "startMs": 26770,
+  "endMs": 27170,
+  "timestampMs": 27540,
+  "confidence": 0.998015
+ },
+ {
+  "text": " sitting",
+  "startMs": 27170,
+  "endMs": 27640,
+  "timestampMs": 28140,
+  "confidence": 0.997406
+ },
+ {
+  "text": " in",
+  "startMs": 27640,
+  "endMs": 27960,
+  "timestampMs": 28320,
+  "confidence": 0.997539
+ },
+ {
+  "text": " the",
+  "startMs": 27960,
+  "endMs": 28060,
+  "timestampMs": 28420,
+  "confidence": 0.991367
+ },
+ {
+  "text": " corner,",
+  "startMs": 28060,
+  "endMs": 28510,
+  "timestampMs": 28720,
+  "confidence": 0.999531
+ },
+ {
+  "text": " holding",
+  "startMs": 28510,
+  "endMs": 29040,
+  "timestampMs": 29180,
+  "confidence": 0.999451
+ },
+ {
+  "text": " his",
+  "startMs": 29040,
+  "endMs": 29180,
+  "timestampMs": 29400,
+  "confidence": 0.998942
+ },
+ {
+  "text": " walkie-talkie.",
+  "startMs": 29180,
+  "endMs": 30430,
+  "timestampMs": 29540,
+  "confidence": 0.990746,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " You",
+  "startMs": 30590,
+  "endMs": 30640,
+  "timestampMs": 30700,
+  "confidence": 0.996871
+ },
+ {
+  "text": " came,",
+  "startMs": 30640,
+  "endMs": 31280,
+  "timestampMs": 31060,
+  "confidence": 0.814027
+ },
+ {
+  "text": " he",
+  "startMs": 31280,
+  "endMs": 31280,
+  "timestampMs": 31340,
+  "confidence": 0.612843
+ },
+ {
+  "text": " whispered,",
+  "startMs": 31280,
+  "endMs": 32140,
+  "timestampMs": 31580,
+  "confidence": 0.999601
+ },
+ {
+  "text": " but",
+  "startMs": 32220,
+  "endMs": 32450,
+  "timestampMs": 32140,
+  "confidence": 0.974514
+ },
+ {
+  "text": " you",
+  "startMs": 32450,
+  "endMs": 32680,
+  "timestampMs": 32280,
+  "confidence": 0.997729
+ },
+ {
+  "text": " shouldn't",
+  "startMs": 32680,
+  "endMs": 33720,
+  "timestampMs": 32440,
+  "confidence": 0.996959
+ },
+ {
+  "text": " have.",
+  "startMs": 33720,
+  "endMs": 34080,
+  "timestampMs": 32860,
+  "confidence": 0.997877,
+  "pageBreakAfter": true
+ },
+ {
+  "text": " Behind",
+  "startMs": 34080,
+  "endMs": 34580,
+  "timestampMs": 34020,
+  "confidence": 0.921451
+ },
+ {
+  "text": " him,",
+  "startMs": 34580,
+  "endMs": 34760,
+  "timestampMs": 34300,
+  "confidence": 0.999222
+ },
+ {
+  "text": " the",
+  "startMs": 34760,
+  "endMs": 34970,
+  "timestampMs": 34680,
+  "confidence": 0.996573
+ },
+ {
+  "text": " closet",
+  "startMs": 34970,
+  "endMs": 35320,
+  "timestampMs": 34900,
+  "confidence": 0.995228
+ },
+ {
+  "text": " door",
+  "startMs": 35320,
+  "endMs": 35580,
+  "timestampMs": 35120,
+  "confidence": 0.994234
+ },
+ {
+  "text": " slowly",
+  "startMs": 35580,
+  "endMs": 35930,
+  "timestampMs": 35500,
+  "confidence": 0.997508
+ },
+ {
+  "text": " opened,",
+  "startMs": 35930,
+  "endMs": 36480,
+  "timestampMs": 35860,
+  "confidence": 0.992017
+ },
+ {
+  "text": " and",
+  "startMs": 36480,
+  "endMs": 36560,
+  "timestampMs": 36520,
+  "confidence": 0.701168
+ },
+ {
+  "text": " something",
+  "startMs": 36560,
+  "endMs": 36760,
+  "timestampMs": 36760,
+  "confidence": 0.754227
+ },
+ {
+  "text": " tall,",
+  "startMs": 36760,
+  "endMs": 37070,
+  "timestampMs": 37080,
+  "confidence": 0.99898
+ },
+ {
+  "text": " with",
+  "startMs": 37070,
+  "endMs": 37280,
+  "timestampMs": 37320,
+  "confidence": 0.99493
+ },
+ {
+  "text": " no",
+  "startMs": 37280,
+  "endMs": 37380,
+  "timestampMs": 37480,
+  "confidence": 0.9996
+ },
+ {
+  "text": " face",
+  "startMs": 37380,
+  "endMs": 37590,
+  "timestampMs": 37660,
+  "confidence": 0.999255
+ },
+ {
+  "text": " at",
+  "startMs": 37590,
+  "endMs": 37690,
+  "timestampMs": 37780,
+  "confidence": 0.997794
+ },
+ {
+  "text": " all,",
+  "startMs": 37690,
+  "endMs": 37950,
+  "timestampMs": 38020,
+  "confidence": 0.999737
+ },
+ {
+  "text": " leaned",
+  "startMs": 37950,
+  "endMs": 38270,
+  "timestampMs": 38360,
+  "confidence": 0.996299
+ },
+ {
+  "text": " out",
+  "startMs": 38270,
+  "endMs": 38430,
+  "timestampMs": 38540,
+  "confidence": 0.999199
+ },
+ {
+  "text": " of",
+  "startMs": 38430,
+  "endMs": 38530,
+  "timestampMs": 38640,
+  "confidence": 0.990225
+ },
+ {
+  "text": " the",
+  "startMs": 38530,
+  "endMs": 38690,
+  "timestampMs": 38740,
+  "confidence": 0.998228
+ },
+ {
+  "text": " dark.",
+  "startMs": 38690,
+  "endMs": 39160,
+  "timestampMs": 39000,
+  "confidence": 0.998475,
+  "pageBreakAfter": true
+ }
+]
