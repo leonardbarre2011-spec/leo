@@ -23,7 +23,7 @@ const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--ena
 const page = await browser.newPage({ viewport: { width: 720, height: 1280 }, deviceScaleFactor: 1.5 });
 page.on('console', m => { if (m.type() === 'error') console.log('PAGE', m.text()); });
 page.on('pageerror', e => console.log('PAGEERR', e.message));
-await page.goto(`http://localhost:${port}/scene.html`);
+await page.goto(`http://localhost:${port}/${process.env.SCENE || 'scene.html'}`);
 await page.waitForFunction(() => window.READY === true, null, { timeout: 120000 });
 const stage = await page.$('#stage');
 

@@ -1,0 +1,301 @@
+{
+ "duration": 107.049,
+ "scenes": [
+  {
+   "name": "hook",
+   "start": 0.0,
+   "end": 4.724
+  },
+  {
+   "name": "yard",
+   "start": 4.724,
+   "end": 23.237
+  },
+  {
+   "name": "sick",
+   "start": 23.237,
+   "end": 29.885
+  },
+  {
+   "name": "promise",
+   "start": 29.885,
+   "end": 38.879
+  },
+  {
+   "name": "locker",
+   "start": 38.879,
+   "end": 43.639
+  },
+  {
+   "name": "warmup",
+   "start": 43.639,
+   "end": 54.668
+  },
+  {
+   "name": "tackles",
+   "start": 54.668,
+   "end": 70.411
+  },
+  {
+   "name": "lastplay",
+   "start": 70.411,
+   "end": 82.75
+  },
+  {
+   "name": "twist",
+   "start": 82.75,
+   "end": 90.935
+  },
+  {
+   "name": "hug",
+   "start": 90.935,
+   "end": 96.535
+  },
+  {
+   "name": "end",
+   "start": 96.535,
+   "end": 107.049
+  }
+ ],
+ "lines": [
+  {
+   "start": 0.5,
+   "end": 2.265,
+   "spk": "N",
+   "text": "My dad gave me his old jersey..."
+  },
+  {
+   "start": 2.515,
+   "end": 4.024,
+   "spk": "N",
+   "text": "and asked me for one last thing."
+  },
+  {
+   "start": 5.024,
+   "end": 8.031,
+   "spk": "N",
+   "text": "My dad was the best rugby player our town ever had."
+  },
+  {
+   "start": 8.281,
+   "end": 10.533,
+   "spk": "N",
+   "text": "Every Sunday, he trained me in the backyard."
+  },
+  {
+   "start": 10.733,
+   "end": 12.486,
+   "spk": "N",
+   "text": "And every Sunday... I dropped the ball."
+  },
+  {
+   "start": 12.986,
+   "end": 17.472,
+   "spk": "DAD",
+   "text": "Hey. Look at me."
+  },
+  {
+   "start": 17.772,
+   "end": 20.913,
+   "spk": "DAD",
+   "text": "A real rugby player isn't the one who never falls."
+  },
+  {
+   "start": 21.113,
+   "end": 22.437,
+   "spk": "DAD",
+   "text": "It's the one who gets back up."
+  },
+  {
+   "start": 23.737,
+   "end": 26.477,
+   "spk": "N",
+   "text": "Last winter, Dad got sick. Really sick."
+  },
+  {
+   "start": 26.877,
+   "end": 29.385,
+   "spk": "N",
+   "text": "The doctors stopped smiling when they talked to us."
+  },
+  {
+   "start": 30.085,
+   "end": 32.092,
+   "spk": "DAD",
+   "text": "Saturday is the final, buddy."
+  },
+  {
+   "start": 32.442,
+   "end": 34.407,
+   "spk": "DAD",
+   "text": "Wear my number ten... and play it for me."
+  },
+  {
+   "start": 34.907,
+   "end": 35.859,
+   "spk": "N",
+   "text": "I promised him."
+  },
+  {
+   "start": 36.159,
+   "end": 38.179,
+   "spk": "N",
+   "text": "But we both knew he wouldn't be there to watch."
+  },
+  {
+   "start": 39.379,
+   "end": 41.457,
+   "spk": "N",
+   "text": "On Saturday, I put on his jersey."
+  },
+  {
+   "start": 41.657,
+   "end": 43.039,
+   "spk": "N",
+   "text": "It was way too big for me."
+  },
+  {
+   "start": 43.939,
+   "end": 48.623,
+   "spk": "KYLE",
+   "text": "Nice pajamas, kid! Did you steal them from your daddy?"
+  },
+  {
+   "start": 49.623,
+   "end": 51.423,
+   "spk": "N",
+   "text": "Kyle. Captain of the other team."
+  },
+  {
+   "start": 51.723,
+   "end": 54.068,
+   "spk": "N",
+   "text": "Everyone laughed. I almost took the jersey off."
+  },
+  {
+   "start": 54.868,
+   "end": 57.176,
+   "spk": "ANN",
+   "text": "Two minutes left, and the Reds lead by three!"
+  },
+  {
+   "start": 58.576,
+   "end": 59.493,
+   "spk": "N",
+   "text": "They hit me hard."
+  },
+  {
+   "start": 60.893,
+   "end": 61.125,
+   "spk": "N",
+   "text": "Again."
+  },
+  {
+   "start": 62.625,
+   "end": 63.182,
+   "spk": "N",
+   "text": "And again."
+  },
+  {
+   "start": 63.782,
+   "end": 66.511,
+   "spk": "N",
+   "text": "Every time I hit the ground... I heard his voice."
+  },
+  {
+   "start": 66.911,
+   "end": 68.411,
+   "spk": "DADECHO",
+   "text": "It's the one who gets back up."
+  },
+  {
+   "start": 70.611,
+   "end": 72.89,
+   "spk": "ANN",
+   "text": "Last play of the game! The Blues have the ball!"
+  },
+  {
+   "start": 73.19,
+   "end": 74.34,
+   "spk": "N",
+   "text": "Then the ball came to me."
+  },
+  {
+   "start": 74.54,
+   "end": 76.118,
+   "spk": "N",
+   "text": "Kyle was right in front of me."
+  },
+  {
+   "start": 76.118,
+   "end": 77.79,
+   "spk": "N",
+   "text": "Just like Dad taught me... left... then right."
+  },
+  {
+   "start": 78.79,
+   "end": 81.75,
+   "spk": "ANN",
+   "text": "Try! Number ten scores! The Blues win the final!"
+  },
+  {
+   "start": 82.75,
+   "end": 84.213,
+   "spk": "N",
+   "text": "Then I looked up at the stands."
+  },
+  {
+   "start": 84.813,
+   "end": 86.311,
+   "spk": "N",
+   "text": "He was there. In a wheelchair."
+  },
+  {
+   "start": 86.711,
+   "end": 88.719,
+   "spk": "N",
+   "text": "The doctors said no. He came anyway."
+  },
+  {
+   "start": 89.119,
+   "end": 90.135,
+   "spk": "DAD",
+   "text": "That's my boy."
+  },
+  {
+   "start": 97.535,
+   "end": 99.3,
+   "spk": "N",
+   "text": "He passed away three days later."
+  },
+  {
+   "start": 100.1,
+   "end": 101.249,
+   "spk": "N",
+   "text": "But he saw me score."
+  }
+ ],
+ "marks": {
+  "pass": 10.533,
+  "help": 12.986,
+  "rise": 21.113,
+  "give": 30.085,
+  "wear": 39.379,
+  "laugh": 48.623,
+  "t1": 57.476,
+  "t2": 59.793,
+  "t3": 61.425,
+  "up": 68.411,
+  "catch": 72.89,
+  "step": 76.118,
+  "dive": 77.79,
+  "try": 78.79,
+  "reveal": 84.813,
+  "boy": 89.119,
+  "run": 90.935,
+  "hugstart": 93.135,
+  "l1": 97.535,
+  "l2": 100.1,
+  "card": 103.449
+ }
+}
