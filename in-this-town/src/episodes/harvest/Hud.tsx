@@ -10,7 +10,8 @@ export const HarvestHud: React.FC<{
   days: [number, string][]; // [time, label]
   hookEnd: number;
   end: number;
-}> = ({ alive, days, hookEnd, end }) => {
+  hookLines?: [string, string];
+}> = ({ alive, days, hookEnd, end, hookLines = ["24 ENTER.", "1 LEAVES."] }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const T = f / fps;
@@ -36,11 +37,11 @@ export const HarvestHud: React.FC<{
       {/* hook (first seconds) */}
       {T < hookEnd ? (
         <AbsoluteFill style={{ justifyContent: "flex-start", alignItems: "center", paddingTop: 360 }}>
-          <div style={{ color: "#fff", fontWeight: 900, fontSize: 118, lineHeight: 1, textAlign: "center", WebkitTextStroke: "12px #000", paintOrder: "stroke fill", transform: `scale(${interpolate(T, [0, 0.12, 0.25], [1.4, 0.95, 1], c)})` }}>
-            24 ENTER.
+          <div style={{ color: "#fff", fontWeight: 900, fontSize: hookLines[0].length > 11 ? 90 : 118, lineHeight: 1, textAlign: "center", WebkitTextStroke: "12px #000", paintOrder: "stroke fill", transform: `scale(${interpolate(T, [0, 0.12, 0.25], [1.4, 0.95, 1], c)})` }}>
+            {hookLines[0]}
           </div>
-          <div style={{ color: "#ff3b2a", fontWeight: 900, fontSize: 118, lineHeight: 1, marginTop: 12, textAlign: "center", WebkitTextStroke: "12px #000", paintOrder: "stroke fill", opacity: T > 0.9 ? 1 : 0, transform: `scale(${interpolate(T, [0.9, 1.02, 1.15], [1.4, 0.95, 1], c)})` }}>
-            1 LEAVES.
+          <div style={{ color: "#ff3b2a", fontWeight: 900, fontSize: hookLines[1].length > 11 ? 90 : 118, lineHeight: 1, marginTop: 12, textAlign: "center", WebkitTextStroke: "12px #000", paintOrder: "stroke fill", opacity: T > 0.9 ? 1 : 0, transform: `scale(${interpolate(T, [0.9, 1.02, 1.15], [1.4, 0.95, 1], c)})` }}>
+            {hookLines[1]}
           </div>
         </AbsoluteFill>
       ) : null}

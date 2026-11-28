@@ -5,6 +5,7 @@ import type { Look } from "../../lib/Character";
 import { Cam } from "../static/CamS";
 import { Pine } from "../static/Sets";
 import { TextSign } from "../smiling/Props";
+import { Scatter, TexturedGround, noiseTexture } from "../../lib/detail";
 
 type V3 = [number, number, number];
 
@@ -63,8 +64,15 @@ export const Arena: React.FC<{ t: number; night?: boolean; dome?: boolean; suppl
     <fog attach="fog" args={[night ? "#0e1628" : "#b8d4e8", 30, 150]} />
     <hemisphereLight args={[night ? "#7a94d8" : "#ffffff", night ? "#1a2030" : "#4a6a3a", night ? 1.4 : 1.1]} />
     <directionalLight position={[30, 50, 20]} intensity={night ? 1.1 : 1.5} color={night ? "#a8c0ff" : "#fff1d8"} />
-    <B s={[400, 0.2, 400]} p={[0, -0.1, 0]} c={night ? "#2e4430" : "#4f7a3a"} />
-    <B s={[44, 0.05, 44]} p={[0, 0.02, 0]} c={night ? "#3a4030" : "#8a9a6a"} />
+    <TexturedGround color={night ? "#2e4430" : "#4f7a3a"} repeat={70} />
+    <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <circleGeometry args={[22, 48]} />
+      <meshStandardMaterial map={noiseTexture(night ? "#3a4030" : "#8a9a6a", 0.25, 8)} roughness={0.95} />
+    </mesh>
+    {/* grass tufts, pebbles and rocks */}
+    <Scatter count={900} rMin={22} rMax={60} color={night ? "#3a5a34" : "#5f9a44"} size={[0.18, 0.7, 0.18]} />
+    <Scatter count={260} rMin={4} rMax={22} color="#8a8a7a" size={[0.35, 0.22, 0.3]} />
+    <Scatter count={40} rMin={23} rMax={30} color="#7a7a72" size={[1.6, 1.0, 1.3]} />
     {/* pedestals */}
     {Array.from({ length: 24 }).map((_, i) => {
       const [x, , z] = pedestal(i);
@@ -110,12 +118,15 @@ export const Square: React.FC<{ t: number; screen?: number; screenText?: string;
     <fog attach="fog" args={[night ? "#0e1018" : "#9aa2aa", 40, 160]} />
     <hemisphereLight args={[night ? "#7a8ac0" : "#e8eef4", "#2a2a2a", night ? 1.2 : 1.0]} />
     <directionalLight position={[20, 40, 30]} intensity={night ? 0.8 : 1.1} color="#f0f0ff" />
-    <B s={[300, 0.2, 300]} p={[0, -0.1, 0]} c="#6a6a6a" />
+    <TexturedGround size={300} color="#6a6a6a" repeat={30} kind="tiles" />
     {Array.from({ length: 12 }).map((_, i) =>
       Array.from({ length: 12 }).map((__, j) => ((i + j) % 2 ? <B key={`${i}-${j}`} s={[4, 0.03, 4]} p={[-22 + i * 4, 0.02, -10 + j * 4]} c="#5a5a5a" /> : null)),
     )}
     {/* hall + stage */}
-    <B s={[40, 16, 6]} p={[0, 8, -22]} c="#b8b0a0" />
+    <mesh position={[0, 8, -22]}>
+      <boxGeometry args={[40, 16, 6]} />
+      <meshStandardMaterial map={noiseTexture("#b8b0a0", 0.12, 6, "tiles")} roughness={0.9} />
+    </mesh>
     {[-15, -9, -3, 3, 9, 15].map((x) => (
       <B key={x} s={[1.6, 14, 1.6]} p={[x, 7, -18.4]} c="#d8d0c0" />
     ))}

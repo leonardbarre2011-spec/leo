@@ -169,6 +169,8 @@ const FaceFeatures: React.FC<{ face: Face }> = ({ face }) => {
     case "smile":
       return (
         <>
+          <Box s={[0.05, 0.06, 0.025]} p={[-0.22, 0.17, z]} c="#ffffff" />
+          <Box s={[0.05, 0.06, 0.025]} p={[0.28, 0.17, z]} c="#ffffff" />
           <Box s={[0.13, 0.22, 0.02]} p={[-0.25, 0.1, z]} c={ink} />
           <Box s={[0.13, 0.22, 0.02]} p={[0.25, 0.1, z]} c={ink} />
           <Box s={[0.3, 0.06, 0.02]} p={[0, -0.3, z]} c={ink} />
@@ -179,6 +181,8 @@ const FaceFeatures: React.FC<{ face: Face }> = ({ face }) => {
     default:
       return (
         <>
+          <Box s={[0.05, 0.06, 0.025]} p={[-0.22, 0.17, z]} c="#ffffff" />
+          <Box s={[0.05, 0.06, 0.025]} p={[0.28, 0.17, z]} c="#ffffff" />
           <Box s={[0.13, 0.22, 0.02]} p={[-0.25, 0.1, z]} c={ink} />
           <Box s={[0.13, 0.22, 0.02]} p={[0.25, 0.1, z]} c={ink} />
           <Box s={[0.24, 0.05, 0.02]} p={[0, -0.26, z]} c={ink} />

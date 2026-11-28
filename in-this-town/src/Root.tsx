@@ -17,6 +17,7 @@ import { JUP1_BEDS, JUP1_END, JUP1_SFX, JUP1_SHOTS } from "./episodes/jupiter/St
 import { JUP2_BEDS, JUP2_END, JUP2_SFX, JUP2_SHOTS } from "./episodes/jupiter/BlackBoxVideo";
 import { HARVEST1_ALIVE, HARVEST1_BEDS, HARVEST1_DAYS, HARVEST1_END, HARVEST1_SFX, HARVEST1_SHOTS } from "./episodes/harvest/Part1";
 import { HarvestHud } from "./episodes/harvest/Hud";
+import { HARVEST2_ALIVE, HARVEST2_BEDS, HARVEST2_DAYS, HARVEST2_END, HARVEST2_SFX, HARVEST2_SHOTS } from "./episodes/harvest/Part2";
 import { PART4_BEDS, PART4_SFX, PART4_SHOTS, PART4_VOICE_END } from "./episodes/smiling/Part4";
 
 const SmilingTownPart1: React.FC = () => (
@@ -83,6 +84,12 @@ const HarvestPart1: React.FC = () => (
   <Episode shots={HARVEST1_SHOTS} voiceEnd={HARVEST1_END} voice="harvest1/voiceover.mp3" captions="harvest1/captions.json" sfx={HARVEST1_SFX} beds={HARVEST1_BEDS} popCaptions
     hud={<HarvestHud alive={HARVEST1_ALIVE} days={HARVEST1_DAYS} hookEnd={2.6} end={HARVEST1_END} />}
     cta={<Cta question="What happens to Mila & Ash?" sub="Part 2 is coming." button="+ Follow for Part 2" motif="eyes" />} />
+);
+
+const HarvestPart2: React.FC = () => (
+  <Episode shots={HARVEST2_SHOTS} voiceEnd={HARVEST2_END} voice="harvest2/voiceover.mp3" captions="harvest2/captions.json" sfx={HARVEST2_SFX} beds={HARVEST2_BEDS} popCaptions
+    hud={<HarvestHud alive={HARVEST2_ALIVE} days={HARVEST2_DAYS} hookEnd={2.8} end={HARVEST2_END} hookLines={["ONLY 2 SURVIVED?", "THEY LIED."]} />}
+    cta={<Cta question="What did the president plan?" sub="Part 3 is coming." button="+ Follow for Part 3" motif="eyes" />} />
 );
 
 export const RemotionRoot: React.FC = () => {
@@ -180,6 +187,14 @@ export const RemotionRoot: React.FC = () => {
         id="JupiterBlackBox"
         component={JupiterBlackBox}
         durationInFrames={Math.round((JUP2_END + CTA_SECONDS) * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="HarvestPart2"
+        component={HarvestPart2}
+        durationInFrames={Math.round((HARVEST2_END + CTA_SECONDS) * 30)}
         fps={30}
         width={1080}
         height={1920}
